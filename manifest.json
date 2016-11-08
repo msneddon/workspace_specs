@@ -168,14 +168,15 @@
         },
         "KBaseNarrative": {
             "_chsum": "83fe4013e9dd5ce748abd66651d3bc3f",
-            "_timestamp": "2014-01-21 22:55:08",
-            "_version": 1390373708078,
+            "_timestamp": "2014-02-05 12:03:43",
+            "_version": 1391630623434,
             "owners": [
                 "kkeller",
                 "wjriehl"
             ],
             "types": [
                 "KBaseNarrative.Cell-2.0",
+                "KBaseNarrative.Metadata-1.0",
                 "KBaseNarrative.Narrative-2.0",
                 "KBaseNarrative.Worksheet-2.0"
             ]
