@@ -41,14 +41,15 @@ def main():
         'KBaseFeatureValues',
         'KBaseFile',
         'KBaseGeneFamilies',
-        'KBaseGenomes'
         'KBaseGenomeAnnotations',
+        'KBaseGenomes'
         'KBaseNarrative',
         'KBaseOntology',
         'KBasePhenotypes',
         'KBaseRNASeq',
         'KBaseSets',
-        'KBaseTrees'
+        'KBaseTrees',
+        'ProbabilisticAnnotation'
     ]
 
     for m in modules:
