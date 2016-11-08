@@ -34,7 +34,7 @@ string type - type of CDD, possible values are cd, pfam, smart, COG, PRK, CHL
 string name - name of CDD
 string description - description of CDD
 
-@optional feature_ref
+@optional feature_ref domains
 */
 typedef structure {
   string id;
