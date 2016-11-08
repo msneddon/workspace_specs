@@ -44,7 +44,7 @@ list<ws_sub_id> new_inactive_rxns - List of new reactions dependant upon reactio
 list<ws_sub_id> new_essentials - List of new essential genes with reaction knockout
         
 @searchable ws_subset id new_essentials new_inactive_rxns biomass_compounds modelreaction_ref delete growth_fraction deleted normalized_activated_reaction_count
-@optional
+@optional direction
 */
 typedef structure {
   string id;
