@@ -69,6 +69,12 @@ Reference to a SeedRoles object
 typedef string seed_roles_ref;
 
 /*
+Reference to a handle to the Genbank file on shock
+    @id handle
+*/
+typedef string genbank_handle_ref;
+
+/*
 The key is alias source.
 This is designed for fast count lookup of all the allias sources instead of having to drill down into the containers
 */
@@ -124,7 +130,7 @@ typedef structure {
   counts_map counts_map;
   seed_roles_ref seed_roles_ref;
   string type;
-  string genbank_handle_ref;
+  genbank_handle_ref genbank_handle_ref;
   alias_source_counts_map alias_source_counts_map;
   interfeature_relationship_counts_map interfeature_relationship_counts_map;
 } GenomeAnnotation;
