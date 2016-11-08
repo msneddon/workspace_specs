@@ -30,7 +30,6 @@ typedef string metagenome_otu_ref;
 
 /*
 Reference to a model template
-@id ws KBaseFBA.ModelTemplate
 */
 typedef string template_ref;
 
@@ -145,14 +144,18 @@ typedef string modelcompound_ref;
 BiomassCompound object
 
     @searchable ws_subset modelcompound_ref coefficient
+    @optional gapfill_data
 */
 typedef structure {
   modelcompound_ref modelcompound_ref;
   float coefficient;
+  mapping<gapfill_id, bool> gapfill_data;
 } BiomassCompound;
 
 /*
 Biomass object
+
+@optional removedcompounds
 */
 typedef structure {
   biomass_id id;
@@ -166,6 +169,7 @@ typedef structure {
   float cofactor;
   float energy;
   list<BiomassCompound> biomasscompounds;
+  list<BiomassCompound> removedcompounds;
 } Biomass;
 
 /*
@@ -275,17 +279,20 @@ typedef structure {
 
 /*
 ModelReactionProtein object
+
+@optional source complex_ref
 */
 typedef structure {
   complex_ref complex_ref;
   string note;
   list<ModelReactionProteinSubunit> modelReactionProteinSubunits;
+  string source;
 } ModelReactionProtein;
 
 /*
 ModelReaction object
 
-@optional name pathway reference aliases maxforflux maxrevflux
+@optional gapfill_data name pathway reference aliases maxforflux maxrevflux
 */
 typedef structure {
   modelreaction_id id;
@@ -302,12 +309,13 @@ typedef structure {
   float probability;
   list<ModelReactionReagent> modelReactionReagents;
   list<ModelReactionProtein> modelReactionProteins;
+  mapping<string, mapping<int, tuple<string, bool, list<ModelReactionProtein>>>> gapfill_data;
 } ModelReaction;
 
 /*
 FBAModel object
 
-@optional metagenome_otu_ref metagenome_ref genome_ref template_refs ATPSynthaseStoichiometry ATPMaintenance quantopts
+@optional gapfilledcandidates metagenome_otu_ref metagenome_ref genome_ref template_refs ATPSynthaseStoichiometry ATPMaintenance quantopts
     @metadata ws source_id as Source ID
     @metadata ws source as Source
     @metadata ws name as Name
@@ -340,4 +348,5 @@ typedef structure {
   list<ModelCompartment> modelcompartments;
   list<ModelCompound> modelcompounds;
   list<ModelReaction> modelreactions;
+  list<ModelReaction> gapfilledcandidates;
 } FBAModel;
