@@ -150,14 +150,15 @@
         },
         "KBaseGenomes": {
             "_chsum": "9e7fa3e1733cc00502e325ac4e60e56b",
-            "_timestamp": "2014-06-24 13:08:07",
-            "_version": 1403640487824,
+            "_timestamp": "2014-07-11 12:17:46",
+            "_version": 1405106266520,
             "owners": [
                 "chenry"
             ],
             "types": [
                 "KBaseGenomes.ContigSet-2.0",
                 "KBaseGenomes.Genome-6.0",
+                "KBaseGenomes.Feature-1.0",
                 "KBaseGenomes.GenomeDomainData-3.0",
                 "KBaseGenomes.MetagenomeAnnotation-1.0",
                 "KBaseGenomes.ProbabilisticAnnotation-2.0",
