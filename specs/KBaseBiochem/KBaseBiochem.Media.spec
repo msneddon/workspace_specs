@@ -13,12 +13,6 @@ typedef string source_id;
 typedef int bool;
 
 /*
-Reference to a compound object in a biochemistry
-@id subws KBaseBiochem.Media.mediacompounds.[*].id
-*/
-typedef string mediacompound_ref;
-
-/*
 MediaReagent object
 
 @optional molecular_weight concentration_units concentration associated_compounds
@@ -29,7 +23,7 @@ typedef structure {
   float concentration;
   string concentration_units;
   float molecular_weight;
-  mapping<mediacompound_ref, int> associated_compounds;
+  mapping<string, float> associated_compounds;
 } MediaReagent;
 
 /*
