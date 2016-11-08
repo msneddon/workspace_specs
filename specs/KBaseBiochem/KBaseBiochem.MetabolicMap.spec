@@ -105,7 +105,11 @@ typedef structure {
 MetabolicMap object
 
 @optional description link
-@searchable ws_subset id id name source_id source reaction_ids compound_ids
+@metadata ws source_id as Source ID
+    @metadata ws source as Source
+    @metadata ws name as Name
+    @metadata ws length(reactions) as Number reactions
+    @metadata ws length(compounds) as Number compounds
 */
 typedef structure {
   map_id id;
