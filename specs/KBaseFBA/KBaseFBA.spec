@@ -947,7 +947,9 @@ module KBaseFBA {
     simplified data object for use in constructing a PROM model.  NOTE: this data object should be migrated to
     the Regulation service, and simply imported here.
     */
-    typedef list<RegulatoryInteraction> regulatory_network;
+    typedef structure {
+        list<RegulatoryInteraction> regulatory_network;
+    } regulatory_network;
 
 	/*
     Object required by the prom_constraints object which defines the computed probabilities for a target gene.  The
