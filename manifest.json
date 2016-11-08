@@ -54,6 +54,21 @@
                 "KBaseCommon.Location-1.0",
                 "KBaseCommon.StrainInfo-1.0"
             ]
+        },
+        "KBaseFBA": {
+            "_chsum": "890b4e32ea15b0fe7ad2765559ba9d0f",
+            "_timestamp": "2014-01-13 23:36:36",
+            "_version": 1389684996236,
+            "owners": [
+                "chenry"
+            ],
+            "types": [
+                "KBaseFBA.ModelTemplate-1.0",
+                "KBaseFBA.Gapfilling-1.0",
+                "KBaseFBA.FBAModel-1.0",
+                "KBaseFBA.FBA-1.0",
+                "KBaseFBA.Gapgeneration-1.0"
+            ]
         }
     }
 }
