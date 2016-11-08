@@ -59,19 +59,13 @@ typedef structure {
 } MapCompound;
 
 /*
-Reference to a metabolic map
-@id ws KBaseBiochem.MetabolicMap
-*/
-typedef string map_ref;
-
-/*
 MapLink object
 
 @optional link
 */
 typedef structure {
   string id;
-  map_ref map_ref;
+  string map_ref;
   string name;
   string shape;
   string link;
