@@ -8,7 +8,7 @@ typedef string ProbabilisticAnnotation_id;
 Reference to a Genome object in the workspace
 @id ws KBaseGenomes.Genome
 */
-typedef string genome_ref;
+typedef string Genome_ref;
 
 /*
 Genome feature ID
@@ -34,7 +34,7 @@ Object to carry alternative functions and probabilities for genes in a genome
 */
 typedef structure {
   ProbabilisticAnnotation_id id;
-  genome_ref genome_ref;
+  Genome_ref genome_ref;
   mapping<Feature_id, list<function_probability>> roleset_probabilities;
   list<Feature_id> skipped_features;
 } ProbabilisticAnnotation;
