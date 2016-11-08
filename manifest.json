@@ -126,6 +126,27 @@
                 "KBaseGeneFamilies.DomainLibrary-1.0",
                 "KBaseGeneFamilies.DomainModelSet-1.0"
             ]
+        },
+        "KBaseGenomeAnnotations": {
+            "_chsum": "839ddc36e6580211ad636958c4650ffc",
+            "_timestamp": "2016-02-02 16:30:15",
+            "_version": 1454459415051,
+            "owners": [
+                "kbasedata"
+            ],
+            "types": [
+                "KBaseGenomeAnnotations.GenomeAnnotation-1.0",
+                "KBaseGenomeAnnotations.EvidenceContainer-1.0",
+                "KBaseGenomeAnnotations.SeedRoles-1.0",
+                "KBaseGenomeAnnotations.FeatureContainer-1.0",
+                "KBaseGenomeAnnotations.ProteinContainer-1.0",
+                "KBaseGenomeAnnotations.AnnotationQuality-1.0",
+                "KBaseGenomeAnnotations.Assembly-1.0",
+                "KBaseGenomeAnnotations.Taxon-1.0",
+                "KBaseGenomeAnnotations.TaxonSet-1.0",
+                "KBaseGenomeAnnotations.TaxonLookup-1.0",
+                "KBaseGenomeAnnotations.GenomeAnnotationSet-1.0"
+            ]
         }
     }
 }
