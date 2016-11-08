@@ -437,6 +437,8 @@ module KBaseGenomes {
 		string type - type of CDD, possible values are cd, pfam, smart, COG, PRK, CHL
 		string name - name of CDD
 		string description - description of CDD
+		
+		@optional feature_ref
     */
     typedef structure {
 		string id;
@@ -450,6 +452,7 @@ module KBaseGenomes {
     /*
     	GenomeDomainData object: this object holds all data regarding protein domains in a genome in KBase
 
+		@optional genome_ref
     	@searchable ws_subset id genome_id scientific_name genome_ref num_domains num_features
     */
     typedef structure {
