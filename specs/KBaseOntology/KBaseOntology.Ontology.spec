@@ -1,4 +1,9 @@
 /*
+A ontology id is a string (usually GO:NNNN)
+*/
+typedef string ontology_id;
+
+/*
 A code for evidence
 */
 typedef string evidence_code;
@@ -24,7 +29,7 @@ Structure for Ontology object
 @optional evidence_codes
 */
 typedef structure {
-  string ontology_id;
+  ontology_id id;
   string ontology_type;
   string ontology_domain;
   string ontology_description;
