@@ -32,6 +32,7 @@ typedef structure {
   int start_position;
   int num_bytes;
   float gc_content;
+  int Ncount;
 } contig;
 
 /*
