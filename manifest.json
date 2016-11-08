@@ -56,9 +56,9 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "ce2b8e813f7774ff5d439923e074b757",
-            "_timestamp": "2014-12-01 00:08:48",
-            "_version": 1417421328641,
+            "_chsum": "ce30df64ff3cb2d080b5663e215ba919",
+            "_timestamp": "2015-01-30 13:18:34",
+            "_version": 1422652714305,
             "owners": [
                 "chenry"
             ],
@@ -67,6 +67,7 @@
                 "KBaseFBA.ReactionSensitivityAnalysis-5.0",
                 "KBaseFBA.Classifier-1.1",
                 "KBaseFBA.FBA-10.1",
+                "KBaseFBA.FBAModelSet-1.0",
                 "KBaseFBA.ModelTemplate-4.1",
                 "KBaseFBA.ETC-6.0",
                 "KBaseFBA.Gapfilling-6.1",
