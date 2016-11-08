@@ -261,6 +261,7 @@ module KBaseFBA {
     /* 
     	ModelCompound object
     	
+    	@optional aliases
 		@searchable ws_subset id compound_ref name charge formula modelcompartment_ref
     */
     typedef structure {
@@ -310,7 +311,7 @@ module KBaseFBA {
     /* 
     	ModelReaction object
     	
-    	@optional name pathway reference
+    	@optional name pathway reference aliases
 		@searchable ws_subset id reaction_ref direction protons modelcompartment_ref probability
 		@searchable ws_subset modelReactionReagents.[*].(modelcompound_ref,coefficient)
 		@searchable ws_subset modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs))
@@ -826,7 +827,7 @@ module KBaseFBA {
 		list<ws_sub_id> new_essentials - List of new essential genes with reaction knockout
 	
 		@searchable ws_subset id new_essentials new_inactive_rxns biomass_compounds modelreaction_ref delete growth_fraction deleted normalized_activated_reaction_count
-		@optional
+		@optional direction
 	*/
 	typedef structure {
 		string id;
