@@ -38,14 +38,14 @@ typedef structure {
   phenotype_ref phenotype_ref;
   float simulatedGrowth;
   float simulatedGrowthFraction;
+  int numGapfilledReactions;
   string phenoclass;
 } PhenotypeSimulation;
 
 /*
 PhenotypeSimulationSet object holds data on simulations of many phenotypes
 
-@searchable ws_subset id fbamodel_ref phenotypeset_ref
-@searchable ws_subset phenotypeSimulations.[*].(id,phenotype_ref,simulatedGrowth,simulatedGrowthFraction,phenoclass)
+    @metadata ws length(phenotypeSimulations) as Number phenotypes
 */
 typedef structure {
   phenosimset_id id;
