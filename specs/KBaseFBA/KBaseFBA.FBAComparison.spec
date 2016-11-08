@@ -28,7 +28,8 @@ typedef structure {
   media_ref media_ref;
   int reactions;
   int compounds;
-  int active_reactions;
+  int forward_reactions;
+  int reverse_reactions;
   int uptake_compounds;
   int excretion_compounds;
 } FBAComparisonFBA;
