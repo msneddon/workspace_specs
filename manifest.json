@@ -147,6 +147,18 @@
                 "KBaseGenomeAnnotations.TaxonLookup-1.0",
                 "KBaseGenomeAnnotations.GenomeAnnotationSet-1.0"
             ]
+        },
+        "KBaseGenomes": {
+            "_chsum": "10fcab131bd2f481e6840c75f4a74ea6",
+            "_timestamp": "2014-01-13 23:27:26",
+            "_version": 1389684446648,
+            "owners": [
+                "chenry"
+            ],
+            "types": [
+                "KBaseGenomes.Genome-1.0",
+                "KBaseGenomes.ContigSet-1.0"
+            ]
         }
     }
 }
