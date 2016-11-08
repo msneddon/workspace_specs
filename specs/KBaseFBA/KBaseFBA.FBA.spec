@@ -238,12 +238,46 @@ typedef structure {
   list<string> reaction_directions;
 } FBAMinimalReactionsResult;
 
+typedef structure {
+  string biomass_component;
+  float mod_coefficient;
+} QuantOptBiomassMod;
+
+typedef structure {
+  modelreaction_ref modelreaction_ref;
+  modelcompound_ref modelcompound_ref;
+  bool reaction;
+  float mod_upperbound;
+} QuantOptBoundMod;
+
+typedef structure {
+  float atp_synthase;
+  float atp_maintenance;
+  list<QuantOptBiomassMod> QuantOptBiomassMods;
+  list<QuantOptBoundMod> QuantOptBoundMods;
+} QuantitativeOptimizationSolution;
+
 /*
 FBA object holds the formulation and results of a flux balance analysis study
 
-@optional minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
-@searchable ws_subset comboDeletions id fva fluxMinimization findMinimalMedia allReversible simpleThermoConstraints thermodynamicConstraints noErrorThermodynamicConstraints minimizeErrorThermodynamicConstraints
-@searchable ws_subset regulome_ref fbamodel_ref promconstraint_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
+@optional QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
+@metadata ws maximizeObjective as Maximized
+    @metadata ws comboDeletions as Combination deletions
+    @metadata ws minimize_reactions as Minimize reactions
+    @metadata ws regulome_ref as Regulome
+    @metadata ws fbamodel_ref as Model
+    @metadata ws promconstraint_ref as PromConstraint
+    @metadata ws media_ref as Media
+    @metadata ws objectiveValue as Objective
+    @metadata ws length(biomassflux_objterms) as Number biomass objectives
+    @metadata ws length(geneKO_refs) as Number gene KO
+    @metadata ws length(reactionKO_refs) as Number reaction KO
+    @metadata ws length(additionalCpd_refs) as Number additional compounds
+    @metadata ws length(FBAConstraints) as Number constraints
+    @metadata ws length(FBAReactionBounds) as Number reaction bounds
+    @metadata ws length(FBACompoundBounds) as Number compound bounds
+    @metadata ws length(FBACompoundVariables) as Number compound variables
+    @metadata ws length(FBAReactionVariables) as Number reaction variables
 */
 typedef structure {
   fba_id id;
@@ -255,6 +289,7 @@ typedef structure {
   bool thermodynamicConstraints;
   bool noErrorThermodynamicConstraints;
   bool minimizeErrorThermodynamicConstraints;
+  bool quantitativeOptimization;
   bool maximizeObjective;
   mapping<modelcompound_id, float> compoundflux_objterms;
   mapping<modelreaction_id, float> reactionflux_objterms;
@@ -301,4 +336,5 @@ typedef structure {
   list<FBAMinimalMediaResult> FBAMinimalMediaResults;
   list<FBAMetaboliteProductionResult> FBAMetaboliteProductionResults;
   list<FBAMinimalReactionsResult> FBAMinimalReactionsResults;
+  list<QuantitativeOptimizationSolution> QuantitativeOptimizationSolutions;
 } FBA;
