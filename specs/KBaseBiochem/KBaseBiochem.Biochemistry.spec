@@ -61,7 +61,7 @@ typedef structure {
   string md5;
   string formula;
   string unchargedFormula;
-  int mass;
+  float mass;
   float defaultCharge;
   float deltaG;
   float deltaGErr;
@@ -182,7 +182,7 @@ typedef structure {
   string abbreviation;
   string formula;
   string unchargedFormula;
-  int mass;
+  float mass;
   float defaultCharge;
   float deltaG;
   float deltaGErr;
