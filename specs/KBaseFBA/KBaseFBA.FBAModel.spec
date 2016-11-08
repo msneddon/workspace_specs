@@ -185,6 +185,7 @@ typedef string modelcompartment_ref;
 /*
 ModelCompound object
 
+@optional aliases
     @searchable ws_subset id compound_ref name charge formula modelcompartment_ref
 */
 typedef structure {
@@ -258,7 +259,7 @@ typedef structure {
 /*
 ModelReaction object
 
-@optional name pathway reference
+@optional name pathway reference aliases
     @searchable ws_subset id reaction_ref direction protons modelcompartment_ref probability
     @searchable ws_subset modelReactionReagents.[*].(modelcompound_ref,coefficient)
     @searchable ws_subset modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs))
