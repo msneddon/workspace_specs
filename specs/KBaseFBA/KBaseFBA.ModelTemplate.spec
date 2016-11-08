@@ -11,6 +11,12 @@ Reference to a mapping object
 typedef string mapping_ref;
 
 /*
+Reference to a biochemistry object
+@id ws KBaseBiochem.Biochemistry
+*/
+typedef string Biochemistry_ref;
+
+/*
 Template reaction ID
 @id external
 */
@@ -117,6 +123,7 @@ typedef structure {
   string modelType;
   string domain;
   mapping_ref mapping_ref;
+  Biochemistry_ref biochemistry_ref;
   list<TemplateReaction> templateReactions;
   list<TemplateBiomass> templateBiomasses;
 } ModelTemplate;
