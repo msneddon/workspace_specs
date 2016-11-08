@@ -23,7 +23,7 @@ typedef structure {
   string id;
   fba_ref fba_ref;
   fbamodel_ref fbamodel_ref;
-  mapping<string, tuple<int, int, int, int, int, int>> fba_similarity;
+  mapping<string, tuple<int, int, int, int, int, int, int, int>> fba_similarity;
   float objective;
   media_ref media_ref;
   int reactions;
