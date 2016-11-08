@@ -149,18 +149,18 @@
             ]
         },
         "KBaseGenomes": {
-            "_chsum": "1b9f8107fa3741b5c13e32ebf1ebcd8a",
-            "_timestamp": "2014-04-16 13:56:15",
-            "_version": 1397681775300,
+            "_chsum": "32b92795b640c975f9b030afd6e63514",
+            "_timestamp": "2014-06-22 20:37:38",
+            "_version": 1403494658020,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBaseGenomes.Genome-1.0",
                 "KBaseGenomes.GenomeDomainData-3.0",
+                "KBaseGenomes.ContigSet-2.0",
+                "KBaseGenomes.Genome-3.0",
                 "KBaseGenomes.MetagenomeAnnotation-1.0",
-                "KBaseGenomes.ProbabilisticAnnotation-2.0",
-                "KBaseGenomes.ContigSet-1.1"
+                "KBaseGenomes.ProbabilisticAnnotation-2.0"
             ]
         }
     }
