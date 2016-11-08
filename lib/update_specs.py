@@ -13,6 +13,7 @@ from biokbase.workspace.client import Workspace
 WS_URL = {
     'ci': 'https://ci.kbase.us/services/ws',
     'appdev': 'https://appdev.kbase.us/services/ws',
+    'next': 'https://next.kbase.us/services/ws',
     'prod': 'https://kbase.us/services/ws'
 }
 
