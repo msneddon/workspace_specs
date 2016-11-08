@@ -524,13 +524,14 @@ module KBaseFBA {
 	/* 
     	FBAMinimalReactionsResult object
     	
-    	@searchable ws_subset reactions id
+    	@searchable ws_subset reaction_refs id
     */
     typedef structure {
     	string id;
     	bool suboptimal;
     	float totalcost;
-    	list<modelreaction_ref> reactions;
+    	list<modelreaction_ref> reaction_refs;
+    	list<string> reaction_directions;
 	} FBAMinimalReactionsResult;  
     
     /* 
