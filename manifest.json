@@ -167,17 +167,17 @@
             ]
         },
         "KBaseNarrative": {
-            "_chsum": "8e3d6c4a589d2b6b89212bd9685b1450",
-            "_timestamp": "2014-01-16 12:59:44",
-            "_version": 1389905984085,
+            "_chsum": "83fe4013e9dd5ce748abd66651d3bc3f",
+            "_timestamp": "2014-01-21 22:55:08",
+            "_version": 1390373708078,
             "owners": [
                 "kkeller",
                 "wjriehl"
             ],
             "types": [
-                "KBaseNarrative.Worksheet-1.0",
-                "KBaseNarrative.Narrative-1.0",
-                "KBaseNarrative.Cell-1.0"
+                "KBaseNarrative.Cell-2.0",
+                "KBaseNarrative.Narrative-2.0",
+                "KBaseNarrative.Worksheet-2.0"
             ]
         }
     }
