@@ -1,18 +1,8 @@
 /*
-ETCCompound object
-*/
-typedef structure {
-  list<string> compound_refs;
-  string name;
-} ETCCompound;
-
-/*
 ETCStep object
 */
 typedef structure {
   list<string> reactions;
-  ETCCompound substrates;
-  ETCCompound products;
 } ETCStep;
 
 /*
