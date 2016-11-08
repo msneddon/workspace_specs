@@ -54,8 +54,6 @@ Genome feature ID
 */
 typedef string Feature_id;
 
-typedef string Feature_type;
-
 /*
 Structure for a protein family
         @optional query_begin query_end subject_begin subject_end score evalue subject_description release_version
@@ -136,7 +134,7 @@ Structure for a single feature of a genome
 typedef structure {
   Feature_id id;
   list<tuple<Contig_id, int, string, int>> location;
-  Feature_type type;
+  string type;
   string function;
   string md5;
   string protein_translation;
