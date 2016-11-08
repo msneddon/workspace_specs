@@ -1045,6 +1045,6 @@ module KBaseFBA {
     a PROM Model. NOTE: this data object should be migrated to the Expression Data service, and simply imported here. */
     typedef structure {
         expression_data_collection_id id;
-        list<BooleanGeneExpressionData> expression_data_ids;
+        list<boolean_gene_expression_data_id> expression_data_ids;
     } BooleanGeneExpressionDataCollection;
 };
