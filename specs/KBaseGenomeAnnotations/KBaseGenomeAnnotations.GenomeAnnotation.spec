@@ -75,6 +75,12 @@ Reference to a handle to the Genbank file on shock
 typedef string genbank_handle_ref;
 
 /*
+Reference to a handle to the GFF file on shock 
+    @id handle
+*/
+typedef string gff_handle_ref;
+
+/*
 The key is alias source.
 This is designed for fast count lookup of all the allias sources instead of having to drill down into the containers
 */
@@ -97,6 +103,8 @@ methodology - Not sure if needed? example would be rast
 
 type -refers to representative, reference, user, etc
 
+display_sc_name is the scientific_name for display purposes only.  Should go through taxon object for accurate information. as scientific names can change.
+
 taxon_ref is a versioned workspace reference
 annotation_quality_ref is a versioned workspace reference
 evidence_container_ref would be a versioned workspace reference 
@@ -105,16 +113,23 @@ assembly_ref would be a versioned workspace reference
 
 genbank_handle_ref are handle service references to shock.
 
+@metadata ws display_sc_name as Name
+@metadata ws external_source as Source
+@metadata ws release as Release
+@metadata ws original_source_file_name as Source_File_Name
+
 @optional external_source external_source_id external_source_origination_date notes environmental_comments quality_score 
-@optional annotation_quality_ref publications evidence_container_ref methodology seed_roles_ref genbank_handle_ref 
-@optional alias_source_counts_map interfeature_relationship_counts_map release
+@optional annotation_quality_ref publications evidence_container_ref methodology seed_roles_ref genbank_handle_ref gff_handle_ref
+@optional alias_source_counts_map interfeature_relationship_counts_map release original_source_file_name
 */
 typedef structure {
   string genome_annotation_id;
+  string display_sc_name;
   string external_source;
   string external_source_id;
   string external_source_origination_date;
   string release;
+  string original_source_file_name;
   string notes;
   string environmental_comments;
   taxon_ref taxon_ref;
@@ -132,6 +147,7 @@ typedef structure {
   seed_roles_ref seed_roles_ref;
   string type;
   genbank_handle_ref genbank_handle_ref;
+  gff_handle_ref gff_handle_ref;
   alias_source_counts_map alias_source_counts_map;
   interfeature_relationship_counts_map interfeature_relationship_counts_map;
 } GenomeAnnotation;
