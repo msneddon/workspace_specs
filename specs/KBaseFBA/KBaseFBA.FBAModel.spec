@@ -46,6 +46,12 @@ Reference to a gapfilling object
 */
 typedef string gapfill_ref;
 
+/*
+Reference to a FBA object
+@id ws KBaseFBA.FBA
+*/
+typedef string fba_ref;
+
 typedef int bool;
 
 /*
@@ -58,11 +64,14 @@ typedef string media_ref;
 ModelGapfill object
  
 @optional integrated_solution
+@optional fba_ref
+@optional gapfill_ref
 */
 typedef structure {
   gapfill_id id;
   gapfill_id gapfill_id;
   gapfill_ref gapfill_ref;
+  fba_ref fba_ref;
   bool integrated;
   string integrated_solution;
   media_ref media_ref;
@@ -84,21 +93,18 @@ typedef string gapgen_ref;
 ModelGapgen object
 
 @optional integrated_solution
+@optional fba_ref
+@optional gapgen_ref
 */
 typedef structure {
   gapgen_id id;
   gapgen_id gapgen_id;
   gapgen_ref gapgen_ref;
+  fba_ref fba_ref;
   bool integrated;
   string integrated_solution;
   media_ref media_ref;
 } ModelGapgen;
-
-/*
-Reference to a FBA object
-@id ws KBaseFBA.FBA
-*/
-typedef string fba_ref;
 
 typedef structure {
   bool integrated;
