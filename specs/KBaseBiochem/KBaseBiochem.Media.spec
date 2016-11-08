@@ -45,7 +45,15 @@ typedef structure {
 /*
 Media object
 
-@optional reagents atmosphere_addition atmosphere temperature pH_data isAerobic protocol_link source source_id
+@optional reagents atmosphere_addition atmosphere temperature pH_data isAerobic protocol_link source source_id         
+    @metadata ws source_id as Source ID
+    @metadata ws source as Source
+    @metadata ws name as Name
+    @metadata ws temperature as Temperature
+    @metadata ws isAerobic as Is Aerobic
+    @metadata ws isMinimal as Is Minimal
+    @metadata ws isDefined as Is Defined
+    @metadata ws length(mediacompounds) as Number compounds
 */
 typedef structure {
   media_id id;
