@@ -277,10 +277,10 @@ module KBaseBiochem {
     	Biochemistry object
     	
     	@optional description name
-    	@searchable ws_subset compartments.[*].(id,name,hierarchy)
-    	@searchable ws_subset compounds.[*].(id,isCofactor,name,abbreviation,formula,unchargedFormula,abstractCompound_ref,comprisedOfCompound_refs)
-    	@searchable ws_subset reactions.[*].(id,name,abbreviation,defaultProtons,abstractReaction_ref,reagents.[*].(compound_ref))
-    	@searchable ws_subset cues.[*].(id,name,abbreviation,formula,unchargedFormula,smallMolecule,priority)
+    	@searchable ws_subset compartments.[*].(id,name)
+    	@searchable ws_subset compounds.[*].(id,name)
+    	@searchable ws_subset reactions.[*].(id)
+    	@searchable ws_subset cues.[*].(id,name,smallMolecule)
     	@searchable ws_subset reactionSets.[*].(id,name,class,reaction_refs,type)
     	@searchable ws_subset compoundSets.[*].(id,name,class,compound_refs,type)
     */
