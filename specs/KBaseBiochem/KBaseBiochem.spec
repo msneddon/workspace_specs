@@ -395,7 +395,7 @@ module KBaseBiochem {
     */
 	typedef structure {
 		string id;
-		map_ref map_ref;
+		string map_ref;
 		string name;
 		string shape;
 		string link;

@@ -29,15 +29,15 @@
             ]
         },
         "KBaseBiochem": {
-            "_chsum": "71fd67cbfa77018cb98aafbdd1f73cbd",
-            "_timestamp": "2014-02-18 20:52:30",
-            "_version": 1392785550713,
+            "_chsum": "98661ab94ff9e3e354e43f02b66f65a4",
+            "_timestamp": "2014-03-21 13:56:28",
+            "_version": 1395435388241,
             "owners": [
                 "chenry"
             ],
             "types": [
                 "KBaseBiochem.BiochemistryStructures-1.0",
-                "KBaseBiochem.MetabolicMap-1.0",
+                "KBaseBiochem.MetabolicMap-2.0",
                 "KBaseBiochem.Media-1.0",
                 "KBaseBiochem.Biochemistry-3.1"
             ]
