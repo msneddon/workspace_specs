@@ -10,6 +10,32 @@ ContigSet contig ID
 */
 typedef string Contig_id;
 
+typedef int Bool;
+
+/*
+Type spec for a "Contig" subobject in the "ContigSet" object
+
+                Contig_id id - ID of contig in contigset
+                string md5 - unique hash of contig sequence
+                string sequence - sequence of the contig
+                string description - Description of the contig (e.g. everything after the ID in a FASTA file)
+
+                @optional length md5 genetic_code cell_compartment replicon_geometry replicon_type name description complete
+*/
+typedef structure {
+  Contig_id id;
+  int length;
+  string md5;
+  string sequence;
+  int genetic_code;
+  string cell_compartment;
+  string replicon_type;
+  string replicon_geometry;
+  string name;
+  string description;
+  Bool complete;
+} Contig;
+
 /*
 Reference to a source_id
 @id external
@@ -27,6 +53,8 @@ Genome feature ID
 @id external
 */
 typedef string Feature_id;
+
+typedef string Feature_type;
 
 /*
 Structure for a protein family
@@ -76,21 +104,39 @@ Structure for co-occurring fids (from CDMI API)
 typedef tuple<Feature_id, float> co_occurring_fid;
 
 /*
-Structure for a single feature of a Feature
-        Should genome_id contain the genome_id in the Genome object,
-        the workspace id of the Genome object, a genomeref,
-        something else?
-        Should sequence be in separate objects too?
-        We may want to add additional fields for other CDM functions
-        (e.g., atomic regulons, coexpressed fids, co_occurring fids,...)
+@optional weighted_hit_count hit_count existence_priority overlap_rules pyrrolysylprotein truncated_begin truncated_end existence_confidence frameshifted selenoprotein
+*/
+typedef structure {
+  Bool truncated_begin;
+  Bool truncated_end;
+  float existence_confidence;
+  Bool frameshifted;
+  Bool selenoprotein;
+  Bool pyrrolysylprotein;
+  list<string> overlap_rules;
+  float existence_priority;
+  float hit_count;
+  float weighted_hit_count;
+} Feature_quality_measure;
 
-    @optional md5 location function protein_translation protein_families subsystems publications subsystems subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
-    @searchable ws_subset id type function aliases md5
+typedef string Analysis_event_id;
+
+/*
+Structure for a single feature of a genome
+    
+    Should genome_id contain the genome_id in the Genome object,
+    the workspace id of the Genome object, a genomeref,
+    something else?
+    Should sequence be in separate objects too?
+    We may want to add additional fields for other CDM functions
+    (e.g., atomic regulons, coexpressed fids, co_occurring fids,...)
+
+    @optional quality feature_creation_event md5 location function protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
 */
 typedef structure {
   Feature_id id;
   list<tuple<Contig_id, int, string, int>> location;
-  string type;
+  Feature_type type;
   string function;
   string md5;
   string protein_translation;
@@ -101,12 +147,15 @@ typedef structure {
   list<string> subsystems;
   list<ProteinFamily> protein_families;
   list<string> aliases;
+  list<tuple<string, float>> orthologs;
   list<annotation> annotations;
   list<subsystem_data> subsystem_data;
   list<regulon_data> regulon_data;
   list<atomic_regulon> atomic_regulons;
   list<coexpressed_fid> coexpressed_fids;
   list<co_occurring_fid> co_occurring_fids;
+  Feature_quality_measure quality;
+  Analysis_event_id feature_creation_event;
 } Feature;
 
 /*
@@ -116,16 +165,31 @@ Reference to a ContigSet object containing the contigs for this genome in the wo
 typedef string ContigSet_ref;
 
 /*
-Reference to a ProteinSet object containing the proteins for this genome in the workspace
-@id ws KBaseGenomes.ProteinSet
+@optional frameshift_error_rate sequence_error_rate
 */
-typedef string ProteinSet_ref;
+typedef structure {
+  float frameshift_error_rate;
+  float sequence_error_rate;
+} Genome_quality_measure;
 
 /*
-Reference to a TranscriptSet object containing the transcripts for this genome in the workspace
-@id ws KBaseGenomes.TranscriptSet
+@optional genome closeness_measure
 */
-typedef string TranscriptSet_ref;
+typedef structure {
+  Genome_id genome;
+  float closeness_measure;
+} Close_genome;
+
+/*
+@optional tool_name execution_time parameters hostname
+*/
+typedef structure {
+  Analysis_event_id id;
+  string tool_name;
+  float execution_time;
+  list<string> parameters;
+  string hostname;
+} Analysis_event;
 
 /*
 Genome object holds much of the data relevant for a genome in KBase
@@ -136,8 +200,8 @@ Genome object holds much of the data relevant for a genome in KBase
         addition to having a list of feature_refs)
         Should the Genome object contain a list of contig_ids too?
 
-@optional contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref proteinset_ref transcriptset_ref
-@searchable ws_subset features.[*].(md5,id,type,function,aliases) taxonomy num_contigs source_id source genetic_code id scientific_name domain contigset_ref proteinset_ref transcriptset_ref
+@optional quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
+@searchable ws_subset taxonomy num_contigs source_id source genetic_code id scientific_name domain contigset_ref
 */
 typedef structure {
   Genome_id id;
@@ -146,6 +210,7 @@ typedef structure {
   int genetic_code;
   int dna_size;
   int num_contigs;
+  list<Contig> contigs;
   list<int> contig_lengths;
   list<Contig_id> contig_ids;
   string source;
@@ -157,6 +222,7 @@ typedef structure {
   list<publication> publications;
   list<Feature> features;
   ContigSet_ref contigset_ref;
-  ProteinSet_ref proteinset_ref;
-  TranscriptSet_ref transcriptset_ref;
+  Genome_quality_measure quality;
+  list<Close_genome> close_genomes;
+  list<Analysis_event> analysis_events;
 } Genome;
