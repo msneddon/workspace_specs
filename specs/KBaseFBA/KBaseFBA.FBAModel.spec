@@ -190,6 +190,7 @@ ModelCompound object
 typedef structure {
   modelcompound_id id;
   compound_ref compound_ref;
+  list<string> aliases;
   string name;
   float charge;
   string formula;
@@ -257,6 +258,7 @@ typedef structure {
 /*
 ModelReaction object
 
+@optional name pathway reference
     @searchable ws_subset id reaction_ref direction protons modelcompartment_ref probability
     @searchable ws_subset modelReactionReagents.[*].(modelcompound_ref,coefficient)
     @searchable ws_subset modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs))
@@ -265,6 +267,9 @@ typedef structure {
   modelreaction_id id;
   reaction_ref reaction_ref;
   string name;
+  list<string> aliases;
+  string pathway;
+  string reference;
   string direction;
   float protons;
   modelcompartment_ref modelcompartment_ref;
@@ -282,8 +287,8 @@ FBAModel object
 @searchable ws_subset gapgens.[*].(gapgen_id,gapgen_ref,integrated,media_ref,integrated_solution) 
 @searchable ws_subset biomasses.[*].(id,name,other,dna,rna,protein,cellwall,lipid,cofactor,energy,biomasscompounds.[*].(modelcompound_ref,coefficient)) 
 @searchable ws_subset modelcompartments.[*].(id,compartment_ref,compartmentIndex,label,pH,potential) 
-@searchable ws_subset modelcompounds.[*].(id,compound_ref,name,charge,formula,modelcompartment_ref)
-@searchable ws_subset modelreactions.[*].(id,reaction_ref,direction,protons,modelcompartment_ref,probability,modelReactionReagents.[*].(modelcompound_ref,coefficient),modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs)))
+@searchable ws_subset modelcompounds.[*].(id,name)
+@searchable ws_subset modelreactions.[*].(id,modelReactionReagents.[*].(modelcompound_ref,coefficient),modelReactionProteins.[*].(modelReactionProteinSubunits.[*].(feature_refs)))
 */
 typedef structure {
   fbamodel_id id;
