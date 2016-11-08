@@ -1,6 +1,4 @@
-typedef UnspecifiedObject Metadata;
-
 typedef structure {
-  list<#KBaseNarrative.Cell-2.0#> cells;
-  Metadata metadata;
+  list<#KBaseNarrative.Cell-3.0#> cells;
+  UnspecifiedObject metadata;
 } Worksheet;
