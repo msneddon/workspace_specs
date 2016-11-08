@@ -113,6 +113,22 @@
                 "KBaseFile.SingleEndLibrary-2.0",
                 "KBaseFile.FileRef-1.1"
             ]
+        },
+        "KBaseGeneFamilies": {
+            "_chsum": "e60c40dc16f697b454aec6ae6d1829d4",
+            "_timestamp": "2014-12-10 14:13:26",
+            "_version": 1418249606026,
+            "owners": [
+                "rsutormin"
+            ],
+            "types": [
+                "KBaseGeneFamilies.DomainAlignments-1.0",
+                "KBaseGeneFamilies.DomainLibrary-1.0",
+                "KBaseGeneFamilies.DomainCluster-1.0",
+                "KBaseGeneFamilies.DomainModelSet-1.0",
+                "KBaseGeneFamilies.DomainClusterSearchResult-1.0",
+                "KBaseGeneFamilies.DomainAnnotation-1.0"
+            ]
         }
     }
 }
