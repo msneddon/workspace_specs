@@ -71,6 +71,7 @@ typedef structure {
 /*
 GapGeneration object holds data on formulation and solutions from gapgen analysis
 
+@optional fba_ref totalTimeLimit timePerSolution media_ref referenceMedia_ref gprHypothesis reactionRemovalHypothesis biomassHypothesis mediaHypothesis
 @searchable ws_subset id totalTimeLimit timePerSolution referenceMedia_ref fbamodel_ref fba_ref reactionRemovalHypothesis gprHypothesis biomassHypothesis mediaHypothesis
 @searchable ws_subset gapgenSolutions.[*].(id,suboptimal,gapgenSolutionReactions.[*].(modelreaction_ref,direction),integrated,biomassSuppplement_refs,mediaRemoval_refs,additionalKO_refs)
 */
@@ -82,6 +83,7 @@ typedef structure {
   bool biomassHypothesis;
   bool gprHypothesis;
   bool reactionRemovalHypothesis;
+  media_ref media_ref;
   media_ref referenceMedia_ref;
   int timePerSolution;
   int totalTimeLimit;
