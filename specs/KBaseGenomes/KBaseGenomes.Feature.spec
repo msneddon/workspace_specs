@@ -11,6 +11,25 @@ ContigSet contig ID
 typedef string Contig_id;
 
 /*
+@optional translation_provenance alignment_evidence
+*/
+typedef structure {
+  string method;
+  string method_version;
+  string timestamp;
+  tuple<string, string, string> translation_provenance;
+  list<tuple<int, int, int, float>> alignment_evidence;
+} OntologyEvidence;
+
+typedef structure {
+  string id;
+  string ontology_ref;
+  list<string> term_lineage;
+  string term_name;
+  list<OntologyEvidence> evidence;
+} OntologyData;
+
+/*
 Structure for a publication (from ER API)
 also want to capture authors, journal name (not in ER)
 */
@@ -104,13 +123,14 @@ Structure for a single feature of a genome
     We may want to add additional fields for other CDM functions
     (e.g., atomic regulons, coexpressed fids, co_occurring fids,...)
 
-    @optional orthologs quality feature_creation_event md5 location function protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
+    @optional orthologs quality feature_creation_event md5 location function ontology_terms protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
 */
 typedef structure {
   Feature_id id;
   list<tuple<Contig_id, int, string, int>> location;
   string type;
   string function;
+  mapping<string, mapping<string, OntologyData>> ontology_terms;
   string md5;
   string protein_translation;
   string dna_sequence;

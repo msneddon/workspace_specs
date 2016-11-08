@@ -1,11 +1,7 @@
 module KBaseOntology {
 
-
-    typedef tuple<string term, int distance> AncestralTerm;
-    typedef mapping<string, list<AncestralTerm>> RelatinoshipClosure;
-
     /*
-        @optional is_anonymous name namespace alt_id def comment subset synonym xref builtin property_value is_a intersection_of union_of equivalent_to disjoint_from relationship created_by creation_date is_obsolete replaced_by consider relationship_closure
+        @optional is_anonymous name namespace alt_id def comment subset synonym xref builtin property_value is_a intersection_of union_of equivalent_to disjoint_from relationship created_by creation_date is_obsolete replaced_by consider
     */
     typedef structure {
         string id;
@@ -31,7 +27,6 @@ module KBaseOntology {
         string is_obsolete;
         list<string> replaced_by;
         list<string> consider;
-        RelatinoshipClosure relationship_closure;
     } OntologyTerm;
 
     /*
@@ -148,19 +143,13 @@ module KBaseOntology {
         list<EquivalentTerm> equiv_terms;
     } TranslationRecord;
 
-	/* 
-        The workspace reference for an ontology dictionary object
-        @id ws KBaseOntology.OntologyDictionary
-    */
-	typedef string OntologyDictionary_ref;
-	
     /*
        @optional comment
     */
     typedef structure {
         string comment;
-        OntologyDictionary_ref ontology1;
-        OntologyDictionary_ref ontology2;
+        string ontology1;
+        string ontology2;
         mapping<string, TranslationRecord> translation;
     } OntologyTranslation;
 

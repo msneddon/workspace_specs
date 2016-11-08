@@ -1,10 +1,4 @@
 /*
-The workspace reference for an ontology dictionary object
-@id ws KBaseOntology.OntologyDictionary
-*/
-typedef string OntologyDictionary_ref;
-
-/*
 @optional equiv_name
 */
 typedef structure {
@@ -25,7 +19,7 @@ typedef structure {
 */
 typedef structure {
   string comment;
-  OntologyDictionary_ref ontology1;
-  OntologyDictionary_ref ontology2;
+  string ontology1;
+  string ontology2;
   mapping<string, TranslationRecord> translation;
 } OntologyTranslation;
