@@ -78,6 +78,10 @@ typedef structure {
 GenomeComparisonData object: this object holds information about a multigenome comparison
 
 @optional protcomp_ref pangenome_ref
+@metadata ws core_functions as Core functions
+    @metadata ws core_families as Core families
+    @metadata ws name as Name
+    @metadata ws length(genomes) as Number genomes
 */
 typedef structure {
   string id;
