@@ -236,6 +236,18 @@
                 "KBaseTrees.MSA-1.0",
                 "KBaseTrees.MSASet-1.0"
             ]
+        },
+        "ProbabilisticAnnotation": {
+            "_chsum": "b5a47a5bd6e2af101d9ba544187a7f82",
+            "_timestamp": "2014-01-17 12:28:59",
+            "_version": 1389990539152,
+            "owners": [
+                "mmundy"
+            ],
+            "types": [
+                "ProbabilisticAnnotation.RxnProbs-1.0",
+                "ProbabilisticAnnotation.ProbAnno-1.0"
+            ]
         }
     }
 }
