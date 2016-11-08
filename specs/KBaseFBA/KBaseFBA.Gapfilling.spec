@@ -11,6 +11,12 @@ Reference to a FBA object
 typedef string fba_ref;
 
 /*
+Reference to a model template
+@id ws KBaseBiochem.Media
+*/
+typedef string media_ref;
+
+/*
 Reference to metabolic model
 @id ws KBaseFBA.FBAModel
 */
@@ -92,12 +98,14 @@ typedef structure {
 /*
 GapFilling object holds data on the formulations and solutions of a gapfilling analysis
 
+@optional totalTimeLimit timePerSolution transporterMultiplier singleTransporterMultiplier biomassTransporterMultiplier noDeltaGMultiplier noStructureMultiplier deltaGMultiplier directionalityMultiplier drainFluxMultiplier reactionActivationBonus allowableCompartment_refs blacklistedReaction_refs targetedreaction_refs guaranteedReaction_refs completeGapfill balancedReactionsOnly reactionAdditionHypothesis gprHypothesis biomassHypothesis mediaHypothesis fba_ref media_ref probanno_ref
 @searchable ws_subset id totalTimeLimit timePerSolution transporterMultiplier singleTransporterMultiplier biomassTransporterMultiplier noDeltaGMultiplier noStructureMultiplier deltaGMultiplier directionalityMultiplier drainFluxMultiplier reactionActivationBonus allowableCompartment_refs blacklistedReaction_refs targetedreaction_refs guaranteedReaction_refs completeGapfill balancedReactionsOnly reactionAdditionHypothesis gprHypothesis biomassHypothesis fba_ref fbamodel_ref probanno_ref mediaHypothesis
 @searchable ws_subset gapfillingSolutions.[*].(id,suboptimal,integrated,solutionCost,koRestore_refs,biomassRemoval_refs,mediaSupplement_refs,gapfillingSolutionReactions.[*].(reaction_ref,compartment_ref,direction,candidateFeature_refs))
 */
 typedef structure {
   gapfill_id id;
   fba_ref fba_ref;
+  media_ref media_ref;
   fbamodel_ref fbamodel_ref;
   probanno_ref probanno_ref;
   bool mediaHypothesis;
