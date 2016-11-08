@@ -7,7 +7,7 @@ typedef string Genome_ref;
 /*
 OrthologFamily object: this object holds all data for a single ortholog family in a metagenome
 
-@searchable ws_subset id type function md5 protein_translation
+@optional type function md5 protein_translation
 */
 typedef structure {
   string id;
