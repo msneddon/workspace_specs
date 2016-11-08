@@ -43,7 +43,7 @@ def main():
         'KBaseFile',
         'KBaseGeneFamilies',
         'KBaseGenomeAnnotations',
-        'KBaseGenomes'
+        'KBaseGenomes',
         'KBaseNarrative',
         'KBaseOntology',
         'KBasePhenotypes',
