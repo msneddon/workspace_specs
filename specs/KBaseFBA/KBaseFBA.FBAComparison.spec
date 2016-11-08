@@ -22,10 +22,10 @@ FBAComparisonFBA object: this object holds information about an FBA in a FBA com
 typedef structure {
   string id;
   fba_ref fba_ref;
-  fbamodel_ref model_ref;
+  fbamodel_ref fbamodel_ref;
   mapping<string, tuple<int, int, int, int, int, int>> fba_similarity;
   float objective;
-  media_ref media;
+  media_ref media_ref;
   int reactions;
   int compounds;
   int active_reactions;
