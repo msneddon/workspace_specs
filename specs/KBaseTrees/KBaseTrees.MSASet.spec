@@ -14,7 +14,7 @@ defined either ref or data field.
 typedef structure {
   mapping<string, string> metadata;
   ws_alignment_id ref;
-  #KBaseTrees.MSA-0.1# data;
+  #KBaseTrees.MSA-1.0# data;
 } MSASetElement;
 
 /*
