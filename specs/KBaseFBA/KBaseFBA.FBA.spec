@@ -132,6 +132,8 @@ typedef structure {
 
 /*
 FBAReactionVariable object
+
+@optional exp_state expression scaled_exp
 */
 typedef structure {
   modelreaction_ref modelreaction_ref;
@@ -142,6 +144,9 @@ typedef structure {
   float min;
   float max;
   float value;
+  string exp_state;
+  float expression;
+  float scaled_exp;
 } FBAReactionVariable;
 
 /*
@@ -328,7 +333,7 @@ typedef structure {
 /*
 FBA object holds the formulation and results of a flux balance analysis study
 
-@optional gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
+@optional jobnode gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
 @metadata ws maximizeObjective as Maximized
     @metadata ws comboDeletions as Combination deletions
     @metadata ws minimize_reactions as Minimize reactions
@@ -376,6 +381,7 @@ typedef structure {
   bool fluxUseVariables;
   bool drainfluxUseVariables;
   bool minimize_reactions;
+  string jobnode;
   regulome_ref regulome_ref;
   fbamodel_ref fbamodel_ref;
   promconstraint_ref promconstraint_ref;
