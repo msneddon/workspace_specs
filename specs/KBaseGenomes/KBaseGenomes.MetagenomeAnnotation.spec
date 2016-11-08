@@ -51,6 +51,11 @@ Structure for the "MetagenomeAnnotation" object
         list<MetagenomeAnnotationOTU> otus - list of otus in metagenome
         
     @searchable ws_subset type name id source_id source confidence_type otus.[*].(id,name,source_id,source,functions.[*].(id,abundance,confidence,functional_role))
+        @metadata ws type as Type
+        @metadata ws name as Name
+        @metadata ws source_id as Source ID
+        @metadata ws source as Source
+        @metadata ws length(otus) as Number OTUs
 */
 typedef structure {
   string type;
