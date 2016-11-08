@@ -182,12 +182,15 @@
         },
         "KBaseOntology": {
             "_chsum": "aac8a2d694fded2790ad18294aaa9cc6",
-            "_timestamp": "2016-10-03 10:10:53",
-            "_version": 1475514653903,
+            "_timestamp": "2016-10-03 10:56:35",
+            "_version": 1475517395503,
             "owners": [
                 "chenry"
             ],
-            "types": []
+            "types": [
+                "KBaseOntology.OntologyTranslation-1.0",
+                "KBaseOntology.OntologyDictionary-1.0"
+            ]
         }
     }
 }
