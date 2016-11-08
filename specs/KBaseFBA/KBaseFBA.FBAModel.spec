@@ -282,7 +282,7 @@ typedef structure {
 /*
 FBAModel object
 
-@optional metagenome_otu_ref metagenome_ref genome_ref
+@optional metagenome_otu_ref metagenome_ref genome_ref template_refs
 @searchable ws_subset id source_id source name type genome_ref metagenome_ref metagenome_otu_ref template_ref
 @searchable ws_subset gapfillings.[*].(gapfill_id,gapfill_ref,integrated,media_ref,integrated_solution) 
 @searchable ws_subset gapgens.[*].(gapgen_id,gapgen_ref,integrated,media_ref,integrated_solution) 
@@ -301,6 +301,7 @@ typedef structure {
   metagenome_ref metagenome_ref;
   metagenome_otu_ref metagenome_otu_ref;
   template_ref template_ref;
+  list<template_ref> template_refs;
   list<ModelGapfill> gapfillings;
   list<ModelGapgen> gapgens;
   list<Biomass> biomasses;
