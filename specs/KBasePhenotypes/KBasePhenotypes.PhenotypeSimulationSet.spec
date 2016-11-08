@@ -24,7 +24,7 @@ typedef string phenosim_id;
 
 /*
 Reference to a PhenotypeSet object
-@id ws KBasePhenotypes.PhenotypeSet.phenotypes.[*].id
+@id subws KBasePhenotypes.PhenotypeSet.phenotypes.[*].id
 */
 typedef string phenotype_ref;
 
