@@ -900,26 +900,42 @@ module KBaseFBA {
 		list<ReactionSensitivityAnalysisCorrectedReaction> corrected_reactions;
     } ReactionSensitivityAnalysis;
 
-
-    /* 
-        ETCStep object
+    /*
+      	ETCProducts object
     */
+    typedef structure {
+        string name;
+        list<string> compound_refs;
+    } ETCProducts;
 
+    /*
+      	ETCSubstrates object
+    */
+    typedef structure {
+        string name;
+        list<string> compound_refs;
+    } ETCSubstrates;
+
+    /*
+      	ETCSteps object
+    */
     typedef structure {
         list<string> reactions;
-    } ETCStep;
+        ETCSubstrates substrates;
+        ETCProducts products;
+    } ETCSteps;
 
-    /* 
-        ETCPathwayObj object
+    /*
+      	ETCPathwayObj object
     */
-
     typedef structure {
-        string electron_acceptor;
-        list<ETCStep> steps;
+        string type;
+        string name;
+        list<ETCSteps> steps;
     } ETCPathwayObj;
 
-    /* 
-        ElectronTransportChains (ETC) object
+    /*
+      	ElectronTransportChains (ETC) object
     */
     typedef structure {
         list<ETCPathwayObj> pathways;
@@ -979,7 +995,7 @@ module KBaseFBA {
     annotation namespace) to a group of regulatory target genes.
     
         string transcriptionFactor_uuid                       - id of the TF in the annotation object namespace
-        list <regulatory_target> transcriptionFactorMapTarget - collection of regulatory target genes for the TF
+        list<regulatory_target> transcriptionFactorMapTarget - collection of regulatory target genes for the TF
                                                                 along with associated joint probabilities for each
                                                                 target to be on given that the TF is on or off.
     
@@ -987,7 +1003,7 @@ module KBaseFBA {
     */
     typedef structure {
         string transcriptionFactor_ref;
-        list <RegulatoryTarget> transcriptionFactorMapTargets;
+        list<RegulatoryTarget> transcriptionFactorMapTargets;
     } TFMap;
     
     /*
@@ -1001,7 +1017,7 @@ module KBaseFBA {
                                                                         workspace
         annotation_uuid annotation_uuid                               - the id of the annotation object in the workspace
                                                                         which specfies how TFs and targets are named
-        list <TFMap> transcriptionFactorMaps                          - the list of TFMaps which specifies both the
+        list<TFMap> transcriptionFactorMaps                          - the list of TFMaps which specifies both the
                                                                         regulatory network and interaction probabilities
                                                                         between TF and target genes
         expression_data_collection_id expression_data_collection_id   - the id of the expresion_data_collection object in
@@ -1013,7 +1029,7 @@ module KBaseFBA {
     typedef structure {
         prom_constraints_id id;
         genome_ref genome_ref;
-        list <TFMap> transcriptionFactorMaps;
+        list<TFMap> transcriptionFactorMaps;
         expression_data_collection_id expression_data_collection_id;
     } PromConstraint;
     
