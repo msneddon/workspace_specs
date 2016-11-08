@@ -11,7 +11,7 @@ Reference to a Genome object in the workspace
 typedef string Genome_ref;
 
 /*
-Genome feature ID
+KBase Feature ID
 @id external
 */
 typedef string Feature_id;
@@ -26,9 +26,9 @@ typedef tuple<string, float> function_probability;
 Object to carry alternative functions and probabilities for genes in a genome    
 
         probanno_id id - ID of the probabilistic annotation object    
-        genome_ref genome_ref - reference to genome probabilistic annotation was built for
-        mapping<feature_id, list<function_probability>> roleset_probabilities - mapping of features to list of alternative function_probability objects
-        list<feature_id> skipped_features - list of features in genome with no probability
+        Genome_ref genome_ref - reference to genome probabilistic annotation was built for
+        mapping<Feature_id, list<function_probability>> roleset_probabilities - mapping of features to list of alternative function_probability objects
+        list<Feature_id> skipped_features - list of features in genome with no probability
         
             @searchable ws_subset id genome_ref skipped_features
 */
