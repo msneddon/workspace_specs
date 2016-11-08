@@ -69,12 +69,14 @@ typedef string feature_ref;
 /*
 GapFillingReaction object holds data on a reaction added by gapfilling analysis
 
+@optional compartmentIndex
 @searchable ws_subset reaction_ref compartment_ref direction candidateFeature_refs
 */
 typedef structure {
   reaction_ref reaction_ref;
   compartment_ref compartment_ref;
   string direction;
+  int compartmentIndex;
   list<feature_ref> candidateFeature_refs;
 } GapfillingReaction;
 
