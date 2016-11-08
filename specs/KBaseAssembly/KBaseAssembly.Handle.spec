@@ -1,15 +1,13 @@
 /*
 @id handle
 */
-typedef string handle_id;
+typedef string HandleId;
 
 /*
-Note: the underlying data will not be shared correctly in the Workspace unless
-the hid field is properly set.
 @optional hid file_name type url remote_md5 remote_sha1
 */
 typedef structure {
-  handle_id hid;
+  HandleId hid;
   string file_name;
   string id;
   string type;
