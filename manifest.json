@@ -13,9 +13,9 @@
             ]
         },
         "KBaseAssembly": {
-            "_chsum": "bd0487cb3a37d7302dc92bd7b1cf42e6",
-            "_timestamp": "2015-01-11 13:49:32",
-            "_version": 1421012972504,
+            "_chsum": "87aa331b5dca0736cbbafa134904bd05",
+            "_timestamp": "2015-02-10 14:32:08",
+            "_version": 1423607528052,
             "owners": [
                 "fangfang"
             ],
@@ -25,7 +25,7 @@
                 "KBaseAssembly.AssemblyInput-2.0",
                 "KBaseAssembly.AssemblyReport-1.0",
                 "KBaseAssembly.Handle-2.0",
-                "KBaseAssembly.SingleEndLibrary-2.0"
+                "KBaseAssembly.SingleEndLibrary-2.1"
             ]
         }
     }

@@ -27,6 +27,10 @@ module KBaseAssembly {
 	string reference_name;
     } ReferenceAssembly;
 
+    /*
+       @metadata ws handle.file_name
+       @metadata ws handle.type
+    */
     typedef structure {
 	Handle handle;
     } SingleEndLibrary;
@@ -67,3 +71,4 @@ module KBaseAssembly {
 	string job_id;
     } AssemblyReport;
 };
+
