@@ -226,15 +226,15 @@
         },
         "KBaseTrees": {
             "_chsum": "eae3e9a824a904cf79baaf5df3065c30",
-            "_timestamp": "2014-07-16 12:38:10",
-            "_version": 1405539490165,
+            "_timestamp": "2014-07-16 12:38:35",
+            "_version": 1405539515755,
             "owners": [
                 "msneddon"
             ],
             "types": [
-                "KBaseTrees.MSASet-0.1",
-                "KBaseTrees.Tree-0.1",
-                "KBaseTrees.MSA-0.1"
+                "KBaseTrees.Tree-1.0",
+                "KBaseTrees.MSA-1.0",
+                "KBaseTrees.MSASet-1.0"
             ]
         }
     }
