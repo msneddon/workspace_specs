@@ -43,6 +43,12 @@ Reference to PROM constraints
 typedef string promconstraint_ref;
 
 /*
+Reference to expression data
+@id ws KBaseExpression.ExpressionSample
+*/
+typedef string expression_sample_ref;
+
+/*
 Reference to a model template
 @id ws KBaseBiochem.Media
 */
@@ -74,8 +80,6 @@ typedef string modelcompound_ref;
 
 /*
 FBAConstraint object
-
-@searchable ws_subset name rhs sign compound_terms reaction_terms
 */
 typedef structure {
   string name;
@@ -88,8 +92,6 @@ typedef structure {
 
 /*
 FBAReactionBound object
-
-@searchable ws_subset modelreaction_ref variableType upperBound lowerBound
 */
 typedef structure {
   modelreaction_ref modelreaction_ref;
@@ -100,8 +102,6 @@ typedef structure {
 
 /*
 FBACompoundBound object
-
-@searchable ws_subset modelcompound_ref variableType upperBound lowerBound
 */
 typedef structure {
   modelcompound_ref modelcompound_ref;
@@ -111,23 +111,6 @@ typedef structure {
 } FBACompoundBound;
 
 /*
-Genome feature ID
-@id external
-*/
-typedef string feature_id;
-
-typedef float probability;
-
-/*
-collection of tintle probability scores for each feature in a genome,
-representing a single gene probability sample
-*/
-typedef structure {
-  mapping<feature_id, probability> tintle_probability;
-  string expression_sample_ref;
-} TintleProbabilitySample;
-
-/*
 Reference to a phenotype simulation set object
 @id ws KBasePhenotypes.PhenotypeSimulationSet
 */
@@ -135,8 +118,6 @@ typedef string phenotypesimulationset_ref;
 
 /*
 FBACompoundVariable object
-
-@searchable ws_subset modelcompound_ref variableType upperBound lowerBound class min max value
 */
 typedef structure {
   modelcompound_ref modelcompound_ref;
@@ -151,8 +132,6 @@ typedef structure {
 
 /*
 FBAReactionVariable object
-
-@searchable ws_subset modelreaction_ref variableType upperBound lowerBound class min max value
 */
 typedef structure {
   modelreaction_ref modelreaction_ref;
@@ -173,8 +152,6 @@ typedef string biomass_ref;
 
 /*
 FBABiomassVariable object
-
-@searchable ws_subset biomass_ref variableType upperBound lowerBound class min max value
 */
 typedef structure {
   biomass_ref biomass_ref;
@@ -189,8 +166,6 @@ typedef structure {
 
 /*
 FBAPromResult object
-
-@searchable ws_subset objectFraction alpha beta
 */
 typedef structure {
   float objectFraction;
@@ -206,9 +181,13 @@ Either of two values:
 typedef string conflict_state;
 
 /*
-FBATintleResult object
+Genome feature ID
+@id external
+*/
+typedef string feature_id;
 
-@searchable ws_subset growth
+/*
+FBATintleResult object
 */
 typedef structure {
   float originalGrowth;
@@ -220,8 +199,6 @@ typedef structure {
 
 /*
 FBADeletionResult object
-
-@searchable ws_subset feature_refs growthFraction
 */
 typedef structure {
   list<feature_ref> feature_refs;
@@ -236,8 +213,6 @@ typedef string compound_ref;
 
 /*
 FBAMinimalMediaResult object
-
-@searchable ws_subset essentialNutrient_refs optionalNutrient_refs
 */
 typedef structure {
   list<compound_ref> essentialNutrient_refs;
@@ -246,8 +221,6 @@ typedef structure {
 
 /*
 FBAMetaboliteProductionResult object
-
-@searchable ws_subset modelcompound_ref maximumProduction
 */
 typedef structure {
   modelcompound_ref modelcompound_ref;
@@ -256,8 +229,6 @@ typedef structure {
 
 /*
 FBAMinimalReactionsResult object
-
-@searchable ws_subset reaction_refs id
 */
 typedef structure {
   string id;
@@ -270,16 +241,9 @@ typedef structure {
 /*
 FBA object holds the formulation and results of a flux balance analysis study
 
-@optional minimize_reactions minimize_reaction_costs tintleSamples FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regmodel_ref tintleW tintleKappa
+@optional minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regmodel_ref tintlesample_ref tintleW tintleKappa
 @searchable ws_subset comboDeletions id fva fluxMinimization findMinimalMedia allReversible simpleThermoConstraints thermodynamicConstraints noErrorThermodynamicConstraints minimizeErrorThermodynamicConstraints
 @searchable ws_subset regmodel_ref fbamodel_ref promconstraint_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
-@searchable ws_subset FBAConstraints.[*].(name,rhs,sign,compound_terms,reaction_terms) 
-@searchable ws_subset FBAReactionBounds.[*].(modelreaction_ref,variableType,upperBound,lowerBound)
-@searchable ws_subset FBACompoundBounds.[*].(modelcompound_ref,variableType,upperBound,lowerBound)
-@searchable ws_subset FBACompoundVariables.[*].(modelcompound_ref,variableType,upperBound,lowerBound,class,min,max,value)
-    @searchable ws_subset FBAReactionVariables.[*].(modelreaction_ref,variableType,upperBound,lowerBound,class,min,max,value)
-    @searchable ws_subset FBABiomassVariables.[*].(biomass_ref,variableType,upperBound,lowerBound,class,min,max,value)
-    @searchable ws_subset FBAPromResults.[*].(objectFraction,alpha,beta)
 */
 typedef structure {
   fba_id id;
@@ -312,6 +276,7 @@ typedef structure {
   regmodel_ref regmodel_ref;
   fbamodel_ref fbamodel_ref;
   promconstraint_ref promconstraint_ref;
+  expression_sample_ref tintlesample_ref;
   media_ref media_ref;
   phenotypeset_ref phenotypeset_ref;
   list<feature_ref> geneKO_refs;
@@ -324,7 +289,6 @@ typedef structure {
   list<FBAConstraint> FBAConstraints;
   list<FBAReactionBound> FBAReactionBounds;
   list<FBACompoundBound> FBACompoundBounds;
-  list<TintleProbabilitySample> tintleSamples;
   float objectiveValue;
   mapping<string, list<string>> outputfiles;
   phenotypesimulationset_ref phenotypesimulationset_ref;
