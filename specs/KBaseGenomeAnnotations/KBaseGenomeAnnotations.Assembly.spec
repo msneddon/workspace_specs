@@ -68,4 +68,5 @@ typedef structure {
   int num_contigs;
   string notes;
   taxon_ref taxon_ref;
+  mapping<string, int> base_counts;
 } Assembly;
