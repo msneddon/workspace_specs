@@ -41,6 +41,19 @@
                 "KBaseBiochem.Biochemistry-4.0",
                 "KBaseBiochem.MetabolicMap-6.0"
             ]
+        },
+        "KBaseCommon": {
+            "_chsum": "311910194900521c74f4dc65c10be450",
+            "_timestamp": "2014-10-06 15:29:07",
+            "_version": 1412634547863,
+            "owners": [
+                "gaprice"
+            ],
+            "types": [
+                "KBaseCommon.SourceInfo-1.0",
+                "KBaseCommon.Location-1.0",
+                "KBaseCommon.StrainInfo-1.0"
+            ]
         }
     }
 }
