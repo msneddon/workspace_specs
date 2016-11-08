@@ -67,7 +67,11 @@ Type spec for the "ContigSet" object
                 fasta_ref fasta_ref - reference to fasta file from which contig set were read
 
                 @optional name type reads_ref fasta_ref
-            @searchable ws_subset contigs.[*].(id,md5) md5 id name source_id source type
+            @metadata ws type as Type
+                @metadata ws source_id as Source ID
+                @metadata ws source as Source
+                @metadata ws name as Name
+                @metadata ws length(contigs) as Number contigs
 */
 typedef structure {
   ContigSet_id id;
