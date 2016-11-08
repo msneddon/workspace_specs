@@ -70,7 +70,7 @@ FBAComparison object: this object holds information about a comparison of multip
 
 @metadata ws id as ID
 @metadata ws common_reactions as Common reactions
-@metadata ws common_reactions as Common compounds
+@metadata ws common_compounds as Common compounds
 @metadata ws length(fbas) as Number FBAs
 @metadata ws length(reactions) as Number reactions
 @metadata ws length(compounds) as Number compounds
