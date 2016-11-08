@@ -18,6 +18,7 @@ MapReactionReactant object
 @optional waypoints
 */
 typedef structure {
+  int id;
   mapcompound_ref compound_ref;
   list<tuple<int, int>> waypoints;
 } MapReactionReactant;
