@@ -27,6 +27,19 @@
                 "KBaseAssembly.Handle-2.0",
                 "KBaseAssembly.SingleEndLibrary-2.1"
             ]
+        },
+        "KBaseBiochem": {
+            "_chsum": "38892c5f4c3262fdcc5d03f5414774cf",
+            "_timestamp": "2014-01-13 23:28:16",
+            "_version": 1389684496657,
+            "owners": [
+                "chenry"
+            ],
+            "types": [
+                "KBaseBiochem.BiochemistryStructures-1.0",
+                "KBaseBiochem.Biochemistry-1.0",
+                "KBaseBiochem.Media-1.0"
+            ]
         }
     }
 }
