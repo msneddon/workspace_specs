@@ -182,14 +182,15 @@
         },
         "KBaseOntology": {
             "_chsum": "bee0ca9bdbbea98ef32b9a731c3a10cf",
-            "_timestamp": "2014-06-25 23:03:30",
-            "_version": 1403762610641,
+            "_timestamp": "2014-06-26 15:01:13",
+            "_version": 1403820073679,
             "owners": [
                 "chenry"
             ],
             "types": [
                 "KBaseOntology.Ontology-2.0",
-                "KBaseOntology.Mapping-2.0"
+                "KBaseOntology.Mapping-2.0",
+                "KBaseOntology.gene_enrichment_annotations-1.0"
             ]
         }
     }
