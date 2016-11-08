@@ -70,4 +70,5 @@ typedef structure {
   genome_ref genome_ref;
   list<Phenotype> phenotypes;
   string importErrors;
+  string type;
 } PhenotypeSet;
