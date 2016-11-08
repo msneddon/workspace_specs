@@ -4,6 +4,12 @@ Reference to a model template
 */
 typedef string genome_ref;
 
+typedef tuple<genome_ref, string, list<string>> WorkspaceGenomeClassData;
+
+typedef tuple<string, string, string, list<string>> ExternalGenomeClassData;
+
+typedef tuple<string, string> ClassData;
+
 /*
 @optional attribute_type source description
 */
@@ -12,7 +18,7 @@ typedef structure {
   string description;
   string source;
   string attribute_type;
-  list<tuple<genome_ref, string, list<string>>> workspace_training_set;
-  list<tuple<string, string, string, list<string>>> external_training_set;
-  list<tuple<string, string>> class_data;
+  list<WorkspaceGenomeClassData> workspace_training_set;
+  list<ExternalGenomeClassData> external_training_set;
+  list<ClassData> class_data;
 } ClassifierTrainingSet;
