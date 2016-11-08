@@ -42,19 +42,19 @@ contig_L50 - the L50 value for the contigs
 @optional scaffold_gap_pct
 @optional scaffold_N50 scaffold_L50 contig_N50 contig_L50
 
-@meta ws strain.genus
-@meta ws strain.species
-@meta ws strain.strain
-@meta ws strain.ncbi_taxid
-@meta ws source.source
-@meta ws source.source_id
-@meta ws source.project_id
-@meta ws size
-@meta ws contigs
-@meta ws gc_content
+@metadata ws strain.genus
+@metadata ws strain.species
+@metadata ws strain.strain
+@metadata ws strain.ncbi_taxid
+@metadata ws source.source
+@metadata ws source.source_id
+@metadata ws source.project_id
+@metadata ws size
+@metadata ws contigs
+@metadata ws gc_content
 */
 typedef structure {
-  #KBaseFile.FileRef-1.0# assembly_file;
+  #KBaseFile.FileRef-1.1# assembly_file;
   #KBaseCommon.StrainInfo-1.0# strain;
   #KBaseCommon.SourceInfo-1.0# source;
   int size;
