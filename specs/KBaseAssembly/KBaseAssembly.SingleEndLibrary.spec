@@ -1,3 +1,3 @@
 typedef structure {
-  #KBaseAssembly.Handle-1.1# handle;
+  #KBaseAssembly.Handle-2.0# handle;
 } SingleEndLibrary;
