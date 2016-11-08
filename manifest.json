@@ -100,18 +100,18 @@
             ]
         },
         "KBaseFile": {
-            "_chsum": "e4e4574737c66d16287742fd0b42044e",
-            "_timestamp": "2014-10-06 15:37:25",
-            "_version": 1412635045084,
+            "_chsum": "49cd6c3c0b86b02aca35550883362c31",
+            "_timestamp": "2014-10-23 10:12:51",
+            "_version": 1414084371874,
             "owners": [
                 "gaprice"
             ],
             "types": [
-                "KBaseFile.FileRef-1.0",
-                "KBaseFile.AssemblyFile-1.0",
-                "KBaseFile.SingleEndLibrary-1.0",
-                "KBaseFile.PairedEndLibrary-1.0",
-                "KBaseFile.AnnotationFile-1.0"
+                "KBaseFile.AnnotationFile-1.1",
+                "KBaseFile.FileRef-1.1",
+                "KBaseFile.SingleEndLibrary-1.1",
+                "KBaseFile.PairedEndLibrary-1.1",
+                "KBaseFile.AssemblyFile-1.1"
             ]
         }
     }
