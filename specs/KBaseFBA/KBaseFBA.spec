@@ -1199,7 +1199,7 @@ module KBaseFBA {
 	typedef structure {
 		string id;
 		string name;
-		list<tuple<float coefficient,string name,string compound,string compartment>> stoichiometry;
+		list<tuple<float coefficient,string name,string compound>> stoichiometry;
 		string direction;
 		mapping<Conserved_state,tuple<int count,float fraction,float flux_mean, float flux_stddev>> state_conservation;
 		Conserved_state most_common_state;
@@ -1214,7 +1214,7 @@ module KBaseFBA {
 		string name;
 		float charge;
 		string formula;
-		mapping<Conserved_state,tuple<int count,float fraction,float stddev>> state_conservation;
+		mapping<Conserved_state,tuple<int count,float fraction,float flux_mean,float stddev>> state_conservation;
 		Conserved_state most_common_state;
 		mapping<string fba_id,tuple<Conserved_state,float UpperBound,float LowerBound,float Max,float Min,float Flux,string class>> exchanges;
 	} FBAComparisonCompound;
