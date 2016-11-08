@@ -22,7 +22,7 @@ BASEDIR = '../'
 
 def main():
 
-    endpoint = 'ci'
+    endpoint = 'prod'
 
     ws = Workspace(WS_URL[endpoint])
     target_dir = os.path.abspath('../specs')
