@@ -44,7 +44,6 @@ typedef string complex_ref;
 TemplateReaction object holds data on reaction in template
 
 @optional base_cost forward_penalty reverse_penalty
-@searchable ws_subset id direction type reaction_ref compartment_ref complex_refs
 */
 typedef structure {
   templatereaction_id id;
@@ -78,8 +77,6 @@ typedef string compound_ref;
 
 /*
 TemplateBiomassComponent object holds data on a compound of biomass in template
-
-@searchable ws_subset id coefficientType class compound_ref compartment_ref
 */
 typedef structure {
   templatebiomasscomponent_id id;
@@ -96,7 +93,6 @@ typedef structure {
 TemplateBiomass object holds data on biomass in template
 
 @searchable ws_subset id name type other dna rna protein lipid cellwall cofactor energy
-@searchable ws_subset templateBiomassComponents.[*].(id,coefficientType,class,compound_ref,compartment_ref)
 */
 typedef structure {
   templatebiomass_id id;
@@ -118,8 +114,6 @@ ModelTemplate object holds data on how a model is constructed from an annotation
             
 @optional name
 @searchable ws_subset id name modelType domain mapping_ref
-@searchable ws_subset templateReactions.[*].(id,reaction_ref,compartment_ref,complex_refs,direction,type) 
-@searchable ws_subset templateBiomasses.[*].(id,name,type,other,dna,rna,protein,lipid,cellwall,cofactor,energy,templateBiomassComponents.[*].(id,coefficientType,class,compound_ref,compartment_ref))
 */
 typedef structure {
   modeltemplate_id id;
