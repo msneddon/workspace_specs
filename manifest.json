@@ -56,9 +56,9 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "b0cc863f8d8a4e255565921538b19d25",
-            "_timestamp": "2015-08-05 13:11:29",
-            "_version": 1438805489414,
+            "_chsum": "497a6093f8ef4f9dd4c2c7c9044af49f",
+            "_timestamp": "2015-08-05 20:52:53",
+            "_version": 1438833173207,
             "owners": [
                 "chenry"
             ],
@@ -73,7 +73,7 @@
                 "KBaseFBA.Gapfilling-6.1",
                 "KBaseFBA.FBAModel-7.1",
                 "KBaseFBA.ClassifierTrainingSet-2.1",
-                "KBaseFBA.FBAComparison-3.1",
+                "KBaseFBA.FBAComparison-4.0",
                 "KBaseFBA.Gapgeneration-4.0",
                 "KBaseFBA.PromConstraint-3.1"
             ]
