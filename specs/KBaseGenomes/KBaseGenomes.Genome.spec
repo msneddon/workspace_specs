@@ -55,6 +55,30 @@ Reference to a ContigSet object containing the contigs for this genome in the wo
 typedef string ContigSet_ref;
 
 /*
+Reference to an Assembly object in the workspace
+@id ws KBaseGenomeAnnotations.Assembly
+*/
+typedef string Assembly_ref;
+
+/*
+Reference to a taxon object 
+    @id ws KBaseGenomeAnnotations.Taxon
+*/
+typedef string Taxon_ref;
+
+/*
+Reference to a handle to the Genbank file on shock
+    @id handle
+*/
+typedef string genbank_handle_ref;
+
+/*
+Reference to a handle to the GFF file on shock 
+    @id handle
+*/
+typedef string gff_handle_ref;
+
+/*
 @optional frameshift_error_rate sequence_error_rate
 */
 typedef structure {
@@ -92,7 +116,8 @@ Genome object holds much of the data relevant for a genome in KBase
         addition to having a list of feature_refs)
         Should the Genome object contain a list of contig_ids too?
 
-@optional quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
+@optional assembly_ref quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
+@optional taxon_ref assembly_ref gff_handle_ref genbank_handle_ref external_source_origination_date release original_source_file_name notes environmental_comments reference_annotation quality_score methodology type
 @metadata ws gc_content as GC content
 @metadata ws taxonomy as Taxonomy
 @metadata ws md5 as MD5
@@ -123,8 +148,21 @@ typedef structure {
   float gc_content;
   int complete;
   list<publication> publications;
-  list<#KBaseGenomes.Feature-2.1#> features;
+  list<#KBaseGenomes.Feature-2.2#> features;
   ContigSet_ref contigset_ref;
+  Assembly_ref assembly_ref;
+  Taxon_ref taxon_ref;
+  genbank_handle_ref genbank_handle_ref;
+  gff_handle_ref gff_handle_ref;
+  string external_source_origination_date;
+  string release;
+  string original_source_file_name;
+  string notes;
+  string environmental_comments;
+  int reference_annotation;
+  float quality_score;
+  string methodology;
+  string type;
   Genome_quality_measure quality;
   list<Close_genome> close_genomes;
   list<Analysis_event> analysis_events;

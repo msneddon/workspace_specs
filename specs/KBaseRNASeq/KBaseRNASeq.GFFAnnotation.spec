@@ -18,16 +18,15 @@ typedef structure {
 } Handle;
 
 /*
-@optional genome_scientific_name handle ftp_url
+@optional genome_scientific_name
 @metadata ws handle.file_name
 @metadata ws handle.type
-@metadata ws genome_id
 @metadata ws genome_scientific_name
+@metadata ws genome_id
 */
 typedef structure {
   Handle handle;
   int size;
   string genome_id;
-  string ftp_url;
   string genome_scientific_name;
-} Bowtie2Indexes;
+} GFFAnnotation;

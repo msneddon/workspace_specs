@@ -24,9 +24,33 @@ module KBaseGenomes {
     typedef string Feature_ref;
     /*
 		Reference to a Genome object in the workspace
-		@id ws KBaseGenomes.Genome
+		@id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
 	*/
     typedef string Genome_ref;
+    /*
+		Reference to an Assembly object in the workspace
+		@id ws KBaseGenomeAnnotations.Assembly
+	*/
+    typedef string Assembly_ref;
+    
+    /*
+	Reference to a taxon object 
+    	@id ws KBaseGenomeAnnotations.Taxon
+	*/
+	typedef string Taxon_ref;
+	
+	/*
+	Reference to a handle to the Genbank file on shock
+	    @id handle
+	*/
+	typedef string genbank_handle_ref;
+	
+	/*
+	Reference to a handle to the GFF file on shock 
+	    @id handle
+	*/
+	typedef string gff_handle_ref;
+	
     /*
 		Reference to a Pangenome object in the workspace
 		@id ws KBaseGenomes.Pangenome
@@ -290,6 +314,25 @@ module KBaseGenomes {
     } Feature_quality_measure;
 	
 	/*
+		@optional translation_provenance alignment_evidence
+	*/
+	typedef structure {
+		string method;
+		string method_version;
+		string timestamp;
+		tuple<string ontologytranslation_ref, string namespace, string source_term> translation_provenance;
+		list<tuple<int start,int stop, int align_length, float identify>> alignment_evidence;
+	} OntologyEvidence;
+
+	typedef structure {
+		string id;
+		string ontology_ref;
+		list<string> term_lineage;
+		string term_name;
+		list<OntologyEvidence> evidence;
+	} OntologyData;
+
+	/*
     	Structure for a single feature of a genome
 		
 		Should genome_id contain the genome_id in the Genome object,
@@ -299,13 +342,14 @@ module KBaseGenomes {
 		We may want to add additional fields for other CDM functions
 		(e.g., atomic regulons, coexpressed fids, co_occurring fids,...)
 
-		@optional orthologs quality feature_creation_event md5 location function protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
+		@optional orthologs quality feature_creation_event md5 location function ontology_terms protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
     */
     typedef structure {
 		Feature_id id;
 		list<tuple<Contig_id,int,string,int>> location;
 		string type;
 		string function;
+		mapping<string namespace, mapping<string ontology_term, OntologyData > > ontology_terms;
 		string md5;
 		string protein_translation;
 		string dna_sequence;
@@ -351,7 +395,8 @@ module KBaseGenomes {
 	addition to having a list of feature_refs)
 	Should the Genome object contain a list of contig_ids too?
 
-    	@optional quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
+    	@optional assembly_ref quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
+    	@optional taxon_ref assembly_ref gff_handle_ref genbank_handle_ref external_source_origination_date release original_source_file_name notes environmental_comments reference_annotation quality_score methodology type
     	@metadata ws gc_content as GC content
     	@metadata ws taxonomy as Taxonomy
     	@metadata ws md5 as MD5
@@ -384,7 +429,21 @@ module KBaseGenomes {
 		list<publication> publications;
 		list<Feature> features;
 		ContigSet_ref contigset_ref;
+		Assembly_ref assembly_ref;
+		Taxon_ref taxon_ref;
+		genbank_handle_ref genbank_handle_ref;
+  		gff_handle_ref gff_handle_ref;
 		
+		string external_source_origination_date;
+  		string release;
+  		string original_source_file_name;
+  		string notes;
+  		string environmental_comments;
+  		int reference_annotation;
+  		float quality_score;
+  		string methodology;
+  		string type;
+  		
 		Genome_quality_measure quality;
 		list<Close_genome> close_genomes;
 		list <Analysis_event> analysis_events;
@@ -446,9 +505,9 @@ module KBaseGenomes {
     */
     typedef tuple<string annotation, float probability> function_probability;
 
-    /* Object to carry alternative functions and probabilities for genes in a genome    
+    /* Object to carry alternative functions and probabilities for genes in a genome
 
-        probanno_id id - ID of the probabilistic annotation object    
+        probanno_id id - ID of the probabilistic annotation object
         Genome_ref genome_ref - reference to genome probabilistic annotation was built for
         mapping<Feature_id, list<function_probability>> roleset_probabilities - mapping of features to list of alternative function_probability objects
         list<Feature_id> skipped_features - list of features in genome with no probability
@@ -489,8 +548,8 @@ module KBaseGenomes {
 		string source_id - ID used for OTU in metagenome source
 		string source - source OTU ID
 		list<MetagenomeAnnotationOTUFunction> functions - list of functions in OTU
-		
-    	@searchable ws_subset id name source_id source functions.[*].(id,abundance,confidence,functional_role) 
+
+    	@searchable ws_subset id name source_id source functions.[*].(id,abundance,confidence,functional_role)
 
 	*/
     typedef structure {
@@ -536,7 +595,7 @@ module KBaseGenomes {
 		string source_id - assession ID from CDD database;
 		string type - type of CDD, possible values are cd, pfam, smart, COG, PRK, CHL
 		string name - name of CDD
-		string description - description of CDD		
+		string description - description of CDD
     */
     typedef structure {
 		string id;
@@ -620,7 +679,7 @@ module KBaseGenomes {
     typedef structure {
 		string id;
 		Genome_ref genome_ref;
-		mapping<string genome_id,tuple<int commonfamilies,int commonfunctions> > genome_similarity; 
+		mapping<string genome_id,tuple<int commonfamilies,int commonfunctions> > genome_similarity;
 		string name;
 		string taxonomy;
 		int features;

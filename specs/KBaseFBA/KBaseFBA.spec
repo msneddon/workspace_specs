@@ -55,7 +55,7 @@ module KBaseFBA {
     typedef string media_ref;
     /*
 		Reference to a model template
-		@id ws
+		@id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
 	*/
     typedef string genome_ref;
     /*
