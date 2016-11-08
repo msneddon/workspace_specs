@@ -56,18 +56,18 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "890b4e32ea15b0fe7ad2765559ba9d0f",
-            "_timestamp": "2014-01-13 23:36:36",
-            "_version": 1389684996236,
+            "_chsum": "55863b0817fff810af011d1fa19ec563",
+            "_timestamp": "2014-02-01 10:08:58",
+            "_version": 1391278138255,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBaseFBA.ModelTemplate-1.0",
-                "KBaseFBA.Gapfilling-1.0",
-                "KBaseFBA.FBAModel-1.0",
-                "KBaseFBA.FBA-1.0",
-                "KBaseFBA.Gapgeneration-1.0"
+                "KBaseFBA.Gapgeneration-2.0",
+                "KBaseFBA.FBA-2.0",
+                "KBaseFBA.ModelTemplate-2.0",
+                "KBaseFBA.FBAModel-2.0",
+                "KBaseFBA.Gapfilling-2.0"
             ]
         }
     }
