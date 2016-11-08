@@ -7,22 +7,22 @@ typedef string fba_id;
 typedef int bool;
 
 /*
-Reference to a compound object in a model
-@id subws KBaseFBA.FBAModel.modelcompounds.[*].id
+Model compound ID
+@id external
 */
-typedef string modelcompound_ref;
+typedef string modelcompound_id;
 
 /*
-Reference to a reaction object in a model
-@id subws KBaseFBA.FBAModel.modelreactions.[*].id
+Model reaction ID
+@id external
 */
-typedef string modelreaction_ref;
+typedef string modelreaction_id;
 
 /*
-Reference to a biomass object in a model
-@id subws KBaseFBA.FBAModel.biomasses.[*].id
+Biomass reaction ID
+@id external
 */
-typedef string biomass_ref;
+typedef string biomass_id;
 
 /*
 Reference to regulatory model
@@ -61,10 +61,16 @@ Reference to a feature of a genome object
 typedef string feature_ref;
 
 /*
-Reference to a compound object
-@id subws KBaseBiochem.Biochemistry.compounds.[*].id
+Reference to a reaction object in a model
+@id subws KBaseFBA.FBAModel.modelreactions.[*].id
 */
-typedef string compound_ref;
+typedef string modelreaction_ref;
+
+/*
+Reference to a compound object in a model
+@id subws KBaseFBA.FBAModel.modelcompounds.[*].id
+*/
+typedef string modelcompound_ref;
 
 /*
 FBAConstraint object
@@ -75,8 +81,9 @@ typedef structure {
   string name;
   float rhs;
   string sign;
-  mapping<modelcompound_ref, float> compound_terms;
-  mapping<modelreaction_ref, float> reaction_terms;
+  mapping<modelcompound_id, float> compound_terms;
+  mapping<modelreaction_id, float> reaction_terms;
+  mapping<biomass_id, float> biomass_terms;
 } FBAConstraint;
 
 /*
@@ -142,6 +149,12 @@ typedef structure {
 } FBAReactionVariable;
 
 /*
+Reference to a biomass object in a model
+@id subws KBaseFBA.FBAModel.biomasses.[*].id
+*/
+typedef string biomass_ref;
+
+/*
 FBABiomassVariable object
 
 @searchable ws_subset biomass_ref variableType upperBound lowerBound class min max value
@@ -179,6 +192,12 @@ typedef structure {
 } FBADeletionResult;
 
 /*
+Reference to a compound object
+@id subws KBaseBiochem.Biochemistry.compounds.[*].id
+*/
+typedef string compound_ref;
+
+/*
 FBAMinimalMediaResult object
 
 @searchable ws_subset essentialNutrient_refs optionalNutrient_refs
@@ -201,6 +220,7 @@ typedef structure {
 /*
 FBA object holds the formulation and results of a flux balance analysis study
 
+@optional PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref prommodel_ref regmodel_ref
 @searchable ws_subset comboDeletions id fva fluxMinimization findMinimalMedia allReversible simpleThermoConstraints thermodynamicConstraints noErrorThermodynamicConstraints minimizeErrorThermodynamicConstraints
 @searchable ws_subset regmodel_ref fbamodel_ref prommodel_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
 @searchable ws_subset FBAConstraints.[*].(name,rhs,sign,compound_terms,reaction_terms) 
@@ -225,9 +245,9 @@ typedef structure {
   bool noErrorThermodynamicConstraints;
   bool minimizeErrorThermodynamicConstraints;
   bool maximizeObjective;
-  mapping<modelcompound_ref, float> compoundflux_objterms;
-  mapping<modelreaction_ref, float> reactionflux_objterms;
-  mapping<biomass_ref, float> biomassflux_objterms;
+  mapping<modelcompound_id, float> compoundflux_objterms;
+  mapping<modelreaction_id, float> reactionflux_objterms;
+  mapping<biomass_id, float> biomassflux_objterms;
   int comboDeletions;
   int numberOfSolutions;
   float objectiveConstraintFraction;
@@ -246,15 +266,15 @@ typedef structure {
   phenotypeset_ref phenotypeset_ref;
   list<feature_ref> geneKO_refs;
   list<modelreaction_ref> reactionKO_refs;
-  list<compound_ref> additionalCpd_refs;
+  list<modelcompound_ref> additionalCpd_refs;
   mapping<string, float> uptakeLimits;
   mapping<string, string> parameters;
-  mapping<string, string> inputfiles;
+  mapping<string, list<string>> inputfiles;
   list<FBAConstraint> FBAConstraints;
   list<FBAReactionBound> FBAReactionBounds;
   list<FBACompoundBound> FBACompoundBounds;
   float objectiveValue;
-  mapping<string, string> outputfiles;
+  mapping<string, list<string>> outputfiles;
   phenotypesimulationset_ref phenotypesimulationset_ref;
   list<FBACompoundVariable> FBACompoundVariables;
   list<FBAReactionVariable> FBAReactionVariables;
