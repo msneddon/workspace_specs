@@ -193,14 +193,14 @@
             ]
         },
         "KBasePhenotypes": {
-            "_chsum": "dd46b764e52e1ea1da9d76e5f988fe92",
-            "_timestamp": "2014-03-12 07:29:33",
-            "_version": 1394634573914,
+            "_chsum": "d866f576605847d0e14dd5cfd25d9093",
+            "_timestamp": "2014-03-15 21:48:20",
+            "_version": 1394945300097,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBasePhenotypes.PhenotypeSet-2.1",
+                "KBasePhenotypes.PhenotypeSet-2.2",
                 "KBasePhenotypes.PhenotypeSimulationSet-1.1"
             ]
         }
