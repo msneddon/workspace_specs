@@ -266,6 +266,7 @@ module KBaseFBA {
     typedef structure {
 		modelcompound_id id;
 		compound_ref compound_ref;
+		list<string> aliases;
 		string name;
 		float charge;
 		string formula;
@@ -309,6 +310,7 @@ module KBaseFBA {
     /* 
     	ModelReaction object
     	
+    	@optional name pathway reference
 		@searchable ws_subset id reaction_ref direction protons modelcompartment_ref probability
 		@searchable ws_subset modelReactionReagents.[*].(modelcompound_ref,coefficient)
 		@searchable ws_subset modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs))
@@ -317,6 +319,9 @@ module KBaseFBA {
 		modelreaction_id id;
 		reaction_ref reaction_ref;
 		string name;
+		list<string> aliases;
+		string pathway;
+		string reference;
 		string direction;
 		float protons;
 		modelcompartment_ref modelcompartment_ref;
@@ -364,8 +369,8 @@ module KBaseFBA {
     	@searchable ws_subset gapgens.[*].(gapgen_id,gapgen_ref,integrated,media_ref,integrated_solution) 
     	@searchable ws_subset biomasses.[*].(id,name,other,dna,rna,protein,cellwall,lipid,cofactor,energy,biomasscompounds.[*].(modelcompound_ref,coefficient)) 
     	@searchable ws_subset modelcompartments.[*].(id,compartment_ref,compartmentIndex,label,pH,potential) 
-    	@searchable ws_subset modelcompounds.[*].(id,compound_ref,name,charge,formula,modelcompartment_ref)
-    	@searchable ws_subset modelreactions.[*].(id,reaction_ref,direction,protons,modelcompartment_ref,probability,modelReactionReagents.[*].(modelcompound_ref,coefficient),modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs))) 
+    	@searchable ws_subset modelcompounds.[*].(id,name)
+    	@searchable ws_subset modelreactions.[*].(id,modelReactionReagents.[*].(modelcompound_ref,coefficient),modelReactionProteins.[*].(modelReactionProteinSubunits.[*].(feature_refs))) 
     */
     typedef structure {
 		fbamodel_id id;
@@ -798,12 +803,11 @@ module KBaseFBA {
 		float normalized_required_reaction_count - Normalized count of reactions required for this reaction to function
 		list<ws_sub_id> required_reactions - list of reactions required for this reaction to function
 		
-		@searchable ws_subset id modelreaction_ref required_reactions normalized_required_reaction_count
+		@searchable ws_subset modelreaction_ref required_reactions normalized_required_reaction_count
 		@optional
 		
 	*/
 	typedef structure {
-		string id;
 		modelreaction_ref modelreaction_ref;
 		float normalized_required_reaction_count;
 		list<modelreaction_id> required_reactions;
@@ -830,6 +834,7 @@ module KBaseFBA {
 		float growth_fraction;
 		bool delete;
 		bool deleted;
+		string direction;
 		float normalized_activated_reaction_count;
 		list<modelcompound_id> biomass_compounds;
 		list<modelreaction_id> new_inactive_rxns;
@@ -848,7 +853,7 @@ module KBaseFBA {
 		
 		@searchable ws_subset id fbamodel_ref type deleted_noncontributing_reactions integrated_deletions_in_model
 		@searchable ws_subset reactions.[*].(id,new_essentials,new_inactive_rxns,biomass_compounds,modelreaction_ref,delete,growth_fraction,deleted,normalized_activated_reaction_count)
-		@searchable ws_subset corrected_reactions.[*].(id,modelreaction_ref,required_reactions,normalized_required_reaction_count)
+		@searchable ws_subset corrected_reactions.[*].(modelreaction_ref,required_reactions,normalized_required_reaction_count)
 		@optional	
 	*/
     typedef structure {
