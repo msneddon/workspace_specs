@@ -12,7 +12,7 @@ typedef string source_id;
 
 /*
 Reference to a feature of a genome object
-@id subws KBaseGenomes.Genome
+@id ws KBaseGenomes.Genome
 */
 typedef string genome_ref;
 
@@ -59,7 +59,11 @@ typedef structure {
 PhenotypeSet object contains a set of phenotype objects
             
 @optional name
-@searchable ws_subset id source_id source name genome_ref
+    @metadata ws source_id as Source ID
+    @metadata ws source as Source
+    @metadata ws name as Name
+    @metadata ws length(phenotypes) as Number phenotypes
+    @metadata ws type as Type
 */
 typedef structure {
   phenotypeset_id id;
