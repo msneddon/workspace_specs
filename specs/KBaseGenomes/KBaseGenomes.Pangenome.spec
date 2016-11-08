@@ -15,7 +15,7 @@ typedef structure {
   string function;
   string md5;
   string protein_translation;
-  list<tuple<string, float>> orthologs;
+  list<tuple<string, float, string>> orthologs;
 } OrthologFamily;
 
 /*
