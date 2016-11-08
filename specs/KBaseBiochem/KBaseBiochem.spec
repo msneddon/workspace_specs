@@ -245,7 +245,7 @@ module KBaseBiochem {
 		float concentration;
 		string concentration_units;
 		float molecular_weight;
-		mapping<mediacompound_ref,int> associated_compounds;
+		mapping<string,float> associated_compounds;
 	} MediaReagent;
 	
 	/* 
