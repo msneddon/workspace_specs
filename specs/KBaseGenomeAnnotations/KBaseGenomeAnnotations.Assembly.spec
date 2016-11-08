@@ -51,6 +51,11 @@ reads_handle_ref and fasta_handle_ref are handle service references to shock.
 
 assembly_stats assembly_stats; - should be in there, but needs to be flushed out by Fang Fang
 
+@metadata ws gc_content as GC content
+@metadata ws md5 as MD5
+@metadata ws name as Name
+@metadata ws dna_size as Size
+
 @optional name external_source external_source_id external_source_origination_date reads_handle_ref notes taxon_ref
 */
 typedef structure {
