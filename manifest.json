@@ -13,16 +13,16 @@
             ]
         },
         "KBaseAssembly": {
-            "_chsum": "87aa331b5dca0736cbbafa134904bd05",
-            "_timestamp": "2015-02-10 14:32:08",
-            "_version": 1423607528052,
+            "_chsum": "12fcfb09068bc13af810f8555f641f6a",
+            "_timestamp": "2015-02-10 14:55:58",
+            "_version": 1423608958397,
             "owners": [
                 "fangfang"
             ],
             "types": [
-                "KBaseAssembly.PairedEndLibrary-2.0",
-                "KBaseAssembly.ReferenceAssembly-2.0",
-                "KBaseAssembly.AssemblyInput-2.0",
+                "KBaseAssembly.ReferenceAssembly-2.1",
+                "KBaseAssembly.PairedEndLibrary-2.1",
+                "KBaseAssembly.AssemblyInput-2.1",
                 "KBaseAssembly.AssemblyReport-1.0",
                 "KBaseAssembly.Handle-2.0",
                 "KBaseAssembly.SingleEndLibrary-2.1"

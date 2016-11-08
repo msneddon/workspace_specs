@@ -21,6 +21,9 @@ module KBaseAssembly {
 
     /*
        @optional reference_name
+       @metadata ws handle.file_name
+       @metadata ws handle.type
+       @metadata ws reference_name
     */
     typedef structure {
 	Handle handle;
@@ -37,6 +40,14 @@ module KBaseAssembly {
 
     /*
        @optional handle_2 insert_size_mean insert_size_std_dev interleaved read_orientation_outward
+       @metadata ws handle_1.file_name
+       @metadata ws handle_1.type
+       @metadata ws handle_2.file_name
+       @metadata ws handle_2.type
+       @metadata ws insert_size_mean
+       @metadata ws insert_size_std_dev
+       @metadata ws interleaved
+       @metadata ws read_orientation_outward
     */
     typedef structure {
 	Handle handle_1;
@@ -49,6 +60,7 @@ module KBaseAssembly {
 
     /*
        @optional paired_end_libs single_end_libs references expected_coverage expected_coverage estimated_genome_size dataset_prefix dataset_description
+       @metadata ws dataset_description
     */
     typedef structure {
         list<PairedEndLibrary> paired_end_libs;
