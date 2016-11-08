@@ -120,6 +120,17 @@ typedef structure {
 typedef string Analysis_event_id;
 
 /*
+@optional tool_name execution_time parameters hostname
+*/
+typedef structure {
+  Analysis_event_id id;
+  string tool_name;
+  float execution_time;
+  list<string> parameters;
+  string hostname;
+} Analysis_event;
+
+/*
 Structure for a single feature of a genome
     
     Should genome_id contain the genome_id in the Genome object,
@@ -153,7 +164,7 @@ typedef structure {
   list<coexpressed_fid> coexpressed_fids;
   list<co_occurring_fid> co_occurring_fids;
   Feature_quality_measure quality;
-  Analysis_event_id feature_creation_event;
+  Analysis_event feature_creation_event;
 } Feature;
 
 /*
@@ -177,17 +188,6 @@ typedef structure {
   Genome_id genome;
   float closeness_measure;
 } Close_genome;
-
-/*
-@optional tool_name execution_time parameters hostname
-*/
-typedef structure {
-  Analysis_event_id id;
-  string tool_name;
-  float execution_time;
-  list<string> parameters;
-  string hostname;
-} Analysis_event;
 
 /*
 Genome object holds much of the data relevant for a genome in KBase
