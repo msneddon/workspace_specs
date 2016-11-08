@@ -1,16 +1,35 @@
 /*
-ETCStep object
+ETCSubstrates object
+*/
+typedef structure {
+  string name;
+  list<string> compound_refs;
+} ETCSubstrates;
+
+/*
+ETCProducts object
+*/
+typedef structure {
+  string name;
+  list<string> compound_refs;
+} ETCProducts;
+
+/*
+ETCSteps object
 */
 typedef structure {
   list<string> reactions;
-} ETCStep;
+  ETCSubstrates substrates;
+  ETCProducts products;
+} ETCSteps;
 
 /*
 ETCPathwayObj object
 */
 typedef structure {
-  string electron_acceptor;
-  list<ETCStep> steps;
+  string type;
+  string name;
+  list<ETCSteps> steps;
 } ETCPathwayObj;
 
 /*
