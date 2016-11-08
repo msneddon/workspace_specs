@@ -58,7 +58,6 @@ typedef string media_ref;
 ModelGapfill object
  
 @optional integrated_solution
-    @searchable ws_subset id gapfill_id gapfill_ref integrated_solution integrated media_ref
 */
 typedef structure {
   gapfill_id id;
@@ -85,7 +84,6 @@ typedef string gapgen_ref;
 ModelGapgen object
 
 @optional integrated_solution
-    @searchable ws_subset id gapgen_id gapgen_ref integrated media_ref integrated_solution
 */
 typedef structure {
   gapgen_id id;
@@ -120,9 +118,6 @@ typedef structure {
 
 /*
 Biomass object
-
-    @searchable ws_subset id name other dna rna protein cellwall lipid cofactor energy
-    @searchable ws_subset biomasscompounds.[*].(modelcompound_ref,coefficient)
 */
 typedef structure {
   biomass_id id;
@@ -152,8 +147,6 @@ typedef string compartment_ref;
 
 /*
 ModelCompartment object
-
-    @searchable ws_subset id compartment_ref compartmentIndex label pH potential
 */
 typedef structure {
   modelcompartment_id id;
@@ -186,7 +179,6 @@ typedef string modelcompartment_ref;
 ModelCompound object
 
 @optional aliases
-    @searchable ws_subset id compound_ref name charge formula modelcompartment_ref
 */
 typedef structure {
   modelcompound_id id;
@@ -247,8 +239,6 @@ typedef structure {
 
 /*
 ModelReactionProtein object
- 
-    @searchable ws_subset complex_ref modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs)
 */
 typedef structure {
   complex_ref complex_ref;
@@ -260,9 +250,6 @@ typedef structure {
 ModelReaction object
 
 @optional name pathway reference aliases
-    @searchable ws_subset id reaction_ref direction protons modelcompartment_ref probability
-    @searchable ws_subset modelReactionReagents.[*].(modelcompound_ref,coefficient)
-    @searchable ws_subset modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs))
 */
 typedef structure {
   modelreaction_id id;
@@ -284,12 +271,6 @@ FBAModel object
 
 @optional metagenome_otu_ref metagenome_ref genome_ref template_refs
 @searchable ws_subset id source_id source name type genome_ref metagenome_ref metagenome_otu_ref template_ref
-@searchable ws_subset gapfillings.[*].(gapfill_id,gapfill_ref,integrated,media_ref,integrated_solution) 
-@searchable ws_subset gapgens.[*].(gapgen_id,gapgen_ref,integrated,media_ref,integrated_solution) 
-@searchable ws_subset biomasses.[*].(id,name,other,dna,rna,protein,cellwall,lipid,cofactor,energy,biomasscompounds.[*].(modelcompound_ref,coefficient)) 
-@searchable ws_subset modelcompartments.[*].(id,compartment_ref,compartmentIndex,label,pH,potential) 
-@searchable ws_subset modelcompounds.[*].(id,name)
-@searchable ws_subset modelreactions.[*].(id,modelReactionReagents.[*].(modelcompound_ref,coefficient),modelReactionProteins.[*].(modelReactionProteinSubunits.[*].(feature_refs)))
 */
 typedef structure {
   fbamodel_id id;
