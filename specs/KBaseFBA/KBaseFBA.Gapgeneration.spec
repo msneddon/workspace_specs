@@ -68,7 +68,9 @@ typedef structure {
 GapGeneration object holds data on formulation and solutions from gapgen analysis
 
 @optional fba_ref totalTimeLimit timePerSolution media_ref referenceMedia_ref gprHypothesis reactionRemovalHypothesis biomassHypothesis mediaHypothesis
-@searchable ws_subset id totalTimeLimit timePerSolution referenceMedia_ref fbamodel_ref fba_ref reactionRemovalHypothesis gprHypothesis biomassHypothesis mediaHypothesis
+    @metadata ws fba_ref as FBA
+    @metadata ws fbamodel_ref as Model
+    @metadata ws length(gapgenSolutions) as Number solutions
 */
 typedef structure {
   gapgen_id id;
