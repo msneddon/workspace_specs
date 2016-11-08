@@ -1,1 +1,3 @@
-typedef UnspecifiedObject Metadata;
+typedef structure {
+  string description;
+} Metadata;
