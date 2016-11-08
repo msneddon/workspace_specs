@@ -56,24 +56,24 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "c93e52693bfe4a25924f775fedb14536",
-            "_timestamp": "2014-09-18 12:12:40",
-            "_version": 1411067560718,
+            "_chsum": "9dbde6ac71de0130b4c0472b9ca5af37",
+            "_timestamp": "2014-11-10 08:55:48",
+            "_version": 1415638548891,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBaseFBA.FBAModel-5.0",
-                "KBaseFBA.ClassifierResult-2.0",
-                "KBaseFBA.Classifier-1.0",
-                "KBaseFBA.ReactionSensitivityAnalysis-4.0",
+                "KBaseFBA.ClassifierResult-2.1",
+                "KBaseFBA.ReactionSensitivityAnalysis-5.0",
+                "KBaseFBA.Classifier-1.1",
+                "KBaseFBA.FBA-10.0",
+                "KBaseFBA.ModelTemplate-4.0",
                 "KBaseFBA.ETC-6.0",
-                "KBaseFBA.Gapfilling-5.0",
-                "KBaseFBA.Gapgeneration-3.0",
-                "KBaseFBA.ClassifierTrainingSet-2.0",
-                "KBaseFBA.FBA-9.0",
-                "KBaseFBA.ModelTemplate-3.0",
-                "KBaseFBA.PromConstraint-3.0"
+                "KBaseFBA.Gapfilling-6.0",
+                "KBaseFBA.ClassifierTrainingSet-2.1",
+                "KBaseFBA.Gapgeneration-4.0",
+                "KBaseFBA.PromConstraint-3.1",
+                "KBaseFBA.FBAModel-6.0"
             ]
         }
     }

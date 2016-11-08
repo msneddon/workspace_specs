@@ -280,7 +280,7 @@ module KBaseFBA {
     /* 
     	ModelCompound object
     	
-    	@optional aliases
+    	@optional aliases maxuptake
     */
     typedef structure {
 		modelcompound_id id;
@@ -288,6 +288,7 @@ module KBaseFBA {
 		list<string> aliases;
 		string name;
 		float charge;
+		float maxuptake;
 		string formula;
 		modelcompartment_ref modelcompartment_ref;
     } ModelCompound;
@@ -327,7 +328,7 @@ module KBaseFBA {
     /* 
     	ModelReaction object
     	
-    	@optional name pathway reference aliases
+    	@optional name pathway reference aliases maxforflux maxrevflux
     */
     typedef structure {
 		modelreaction_id id;
@@ -338,6 +339,8 @@ module KBaseFBA {
 		string reference;
 		string direction;
 		float protons;
+		float maxforflux;
+		float maxrevflux;
 		modelcompartment_ref modelcompartment_ref;
 		float probability;
 		list<ModelReactionReagent> modelReactionReagents;
@@ -372,11 +375,43 @@ module KBaseFBA {
 		media_ref media_ref;
     } ModelGapgen;
     
+    
+    typedef structure {
+    	bool integrated;
+    	list<tuple<string rxnid,float maxbound,bool forward>> ReactionMaxBounds;
+    	list<tuple<string cpdid,float maxbound>> UptakeMaxBounds;
+    	list<tuple<string bioid,string biocpd,float modifiedcoef>> BiomassChanges; 
+    	float ATPSynthase;
+    	float ATPMaintenance;
+    } QuantOptSolution;
+    
+    /* 
+    	ModelQuantOpt object
+    */
+    typedef structure {
+    	string id;
+		fba_ref fba_ref;
+		media_ref media_ref;
+		bool integrated;
+		int integrated_solution;
+		list<QuantOptSolution> solutions;
+    } ModelQuantOpt;
+    
     /* 
     	FBAModel object
     	
-    	@optional metagenome_otu_ref metagenome_ref genome_ref template_refs
-    	@searchable ws_subset id source_id source name type genome_ref metagenome_ref metagenome_otu_ref template_ref
+    	@optional metagenome_otu_ref metagenome_ref genome_ref template_refs ATPSynthaseStoichiometry ATPMaintenance quantopts
+		@metadata ws source_id as Source ID
+		@metadata ws source as Source
+		@metadata ws name as Name
+		@metadata ws type as Type
+		@metadata ws genome_ref as Genome
+		@metadata ws length(biomasses) as Number biomasses
+		@metadata ws length(modelcompartments) as Number compartments
+		@metadata ws length(modelcompounds) as Number compounds
+		@metadata ws length(modelreactions) as Number reactions
+		@metadata ws length(gapgens) as Number gapgens
+		@metadata ws length(gapfillings) as Number gapfills
     */
     typedef structure {
 		fbamodel_id id;
@@ -388,10 +423,13 @@ module KBaseFBA {
 		metagenome_ref metagenome_ref;
 		metagenome_otu_ref metagenome_otu_ref;
 		template_ref template_ref;
+		float ATPSynthaseStoichiometry;
+		float ATPMaintenance;
 		
 		list<template_ref> template_refs;
 		list<ModelGapfill> gapfillings;
 		list<ModelGapgen> gapgens;
+		list<ModelQuantOpt> quantopts;
 		
 		list<Biomass> biomasses;
 		list<ModelCompartment> modelcompartments;
@@ -546,12 +584,48 @@ module KBaseFBA {
 	    string expression_sample_ref;	    
     } TintleProbabilitySample;
 
+	
+	typedef structure {
+		string biomass_component;
+		float mod_coefficient;
+	} QuantOptBiomassMod;
+	
+	typedef structure {
+		modelreaction_ref modelreaction_ref;
+		modelcompound_ref modelcompound_ref;
+		bool reaction;
+		float mod_upperbound;
+	} QuantOptBoundMod;
+	
+	typedef structure {
+		float atp_synthase;
+		float atp_maintenance;
+		list<QuantOptBiomassMod> QuantOptBiomassMods;
+		list<QuantOptBoundMod> QuantOptBoundMods;
+	} QuantitativeOptimizationSolution;
+
     /* 
     	FBA object holds the formulation and results of a flux balance analysis study
     	
-    	@optional minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
-    	@searchable ws_subset comboDeletions id fva fluxMinimization findMinimalMedia allReversible simpleThermoConstraints thermodynamicConstraints noErrorThermodynamicConstraints minimizeErrorThermodynamicConstraints
-    	@searchable ws_subset regulome_ref fbamodel_ref promconstraint_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
+    	@optional QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
+    	@metadata ws maximizeObjective as Maximized
+		@metadata ws comboDeletions as Combination deletions
+		@metadata ws minimize_reactions as Minimize reactions
+		@metadata ws regulome_ref as Regulome
+		@metadata ws fbamodel_ref as Model
+		@metadata ws promconstraint_ref as PromConstraint
+		@metadata ws media_ref as Media
+		@metadata ws objectiveValue as Objective
+		@metadata ws length(biomassflux_objterms) as Number biomass objectives
+		@metadata ws length(geneKO_refs) as Number gene KO
+		@metadata ws length(reactionKO_refs) as Number reaction KO
+		@metadata ws length(additionalCpd_refs) as Number additional compounds
+		@metadata ws length(FBAConstraints) as Number constraints
+		@metadata ws length(FBAReactionBounds) as Number reaction bounds
+		@metadata ws length(FBACompoundBounds) as Number compound bounds
+		@metadata ws length(FBACompoundVariables) as Number compound variables
+		@metadata ws length(FBAReactionVariables) as Number reaction variables
+		
     */
     typedef structure {
 		fba_id id;
@@ -563,6 +637,7 @@ module KBaseFBA {
 		bool thermodynamicConstraints;
 		bool noErrorThermodynamicConstraints;
 		bool minimizeErrorThermodynamicConstraints;
+		bool quantitativeOptimization;
 		
 		bool maximizeObjective;
 		mapping<modelcompound_id,float> compoundflux_objterms;
@@ -618,6 +693,7 @@ module KBaseFBA {
 		list<FBAMinimalMediaResult> FBAMinimalMediaResults;
 		list<FBAMetaboliteProductionResult> FBAMetaboliteProductionResults;
 		list<FBAMinimalReactionsResult> FBAMinimalReactionsResults;
+		list<QuantitativeOptimizationSolution> QuantitativeOptimizationSolutions;
     } FBA;
     
     /* 
@@ -646,7 +722,9 @@ module KBaseFBA {
     	GapGeneration object holds data on formulation and solutions from gapgen analysis
     	
     	@optional fba_ref totalTimeLimit timePerSolution media_ref referenceMedia_ref gprHypothesis reactionRemovalHypothesis biomassHypothesis mediaHypothesis
-    	@searchable ws_subset id totalTimeLimit timePerSolution referenceMedia_ref fbamodel_ref fba_ref reactionRemovalHypothesis gprHypothesis biomassHypothesis mediaHypothesis
+		@metadata ws fba_ref as FBA
+		@metadata ws fbamodel_ref as Model
+		@metadata ws length(gapgenSolutions) as Number solutions
     */
     typedef structure {
     	gapgen_id id;
@@ -716,7 +794,11 @@ module KBaseFBA {
     	GapFilling object holds data on the formulations and solutions of a gapfilling analysis
     	
     	@optional simultaneousGapfill totalTimeLimit timePerSolution transporterMultiplier singleTransporterMultiplier biomassTransporterMultiplier noDeltaGMultiplier noStructureMultiplier deltaGMultiplier directionalityMultiplier drainFluxMultiplier reactionActivationBonus allowableCompartment_refs blacklistedReaction_refs targetedreaction_refs guaranteedReaction_refs completeGapfill balancedReactionsOnly reactionAdditionHypothesis gprHypothesis biomassHypothesis mediaHypothesis fba_ref media_ref probanno_ref
-    	@searchable ws_subset id totalTimeLimit timePerSolution transporterMultiplier singleTransporterMultiplier biomassTransporterMultiplier noDeltaGMultiplier noStructureMultiplier deltaGMultiplier directionalityMultiplier drainFluxMultiplier reactionActivationBonus allowableCompartment_refs blacklistedReaction_refs targetedreaction_refs guaranteedReaction_refs completeGapfill balancedReactionsOnly reactionAdditionHypothesis gprHypothesis biomassHypothesis fba_ref fbamodel_ref probanno_ref mediaHypothesis
+    	@metadata ws fba_ref as FBA
+		@metadata ws fbamodel_ref as Model
+		@metadata ws media_ref as Media
+		@metadata ws length(gapfillingSolutions) as Number solutions
+    
     */
     typedef structure {
     	gapfill_id id;
