@@ -56,9 +56,9 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "cf9a498c4a3d0e29e95571444ad3b197",
-            "_timestamp": "2015-08-30 19:29:37",
-            "_version": 1440988177314,
+            "_chsum": "d4bdb0478e80fffc920b22bc6c4492d0",
+            "_timestamp": "2016-01-05 22:07:40",
+            "_version": 1452060460685,
             "owners": [
                 "chenry"
             ],
@@ -74,6 +74,7 @@
                 "KBaseFBA.FBAModel-7.1",
                 "KBaseFBA.ClassifierTrainingSet-2.1",
                 "KBaseFBA.FBA-12.0",
+                "KBaseFBA.SubsystemAnnotation-1.0",
                 "KBaseFBA.Gapgeneration-4.0",
                 "KBaseFBA.PromConstraint-3.1"
             ]
