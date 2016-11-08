@@ -4,6 +4,21 @@ Metabolic map ID
 */
 typedef string map_id;
 
+/*
+ReactionGroup object
+
+@optional substrate_path product_path spline dasharray
+*/
+typedef structure {
+  list<string> rxn_ids;
+  int x;
+  int y;
+  list<tuple<int, int>> substrate_path;
+  list<tuple<int, int>> product_path;
+  string spline;
+  string dasharray;
+} ReactionGroup;
+
 typedef int bool;
 
 /*
@@ -14,13 +29,10 @@ typedef string mapcompound_ref;
 
 /*
 MapReactionReactant object
-
-@optional waypoints
 */
 typedef structure {
   int id;
   mapcompound_ref compound_ref;
-  list<tuple<int, int>> waypoints;
 } MapReactionReactant;
 
 /*
@@ -104,6 +116,7 @@ typedef structure {
   string description;
   list<string> reaction_ids;
   list<string> compound_ids;
+  list<ReactionGroup> groups;
   list<MapReaction> reactions;
   list<MapCompound> compounds;
   list<MapLink> linkedmaps;
