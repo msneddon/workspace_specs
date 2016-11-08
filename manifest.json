@@ -167,18 +167,18 @@
             ]
         },
         "KBaseNarrative": {
-            "_chsum": "83fe4013e9dd5ce748abd66651d3bc3f",
-            "_timestamp": "2014-02-05 12:03:43",
-            "_version": 1391630623434,
+            "_chsum": "e15b3cc38c01ea445a2c4c000b2cde5c",
+            "_timestamp": "2014-07-14 13:17:17",
+            "_version": 1405369037133,
             "owners": [
                 "kkeller",
                 "wjriehl"
             ],
             "types": [
-                "KBaseNarrative.Cell-2.0",
-                "KBaseNarrative.Metadata-1.0",
-                "KBaseNarrative.Narrative-2.0",
-                "KBaseNarrative.Worksheet-2.0"
+                "KBaseNarrative.Narrative-3.0",
+                "KBaseNarrative.Worksheet-3.0",
+                "KBaseNarrative.Metadata-2.0",
+                "KBaseNarrative.Cell-3.0"
             ]
         }
     }
