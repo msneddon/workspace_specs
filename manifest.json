@@ -115,19 +115,16 @@
             ]
         },
         "KBaseGeneFamilies": {
-            "_chsum": "e60c40dc16f697b454aec6ae6d1829d4",
-            "_timestamp": "2014-12-10 14:13:26",
-            "_version": 1418249606026,
+            "_chsum": "05781a758e7732f4f3cffabb35b8ea51",
+            "_timestamp": "2015-01-14 13:40:05",
+            "_version": 1421271605897,
             "owners": [
                 "rsutormin"
             ],
             "types": [
-                "KBaseGeneFamilies.DomainAlignments-1.0",
+                "KBaseGeneFamilies.DomainAnnotation-2.0",
                 "KBaseGeneFamilies.DomainLibrary-1.0",
-                "KBaseGeneFamilies.DomainCluster-1.0",
-                "KBaseGeneFamilies.DomainModelSet-1.0",
-                "KBaseGeneFamilies.DomainClusterSearchResult-1.0",
-                "KBaseGeneFamilies.DomainAnnotation-1.0"
+                "KBaseGeneFamilies.DomainModelSet-1.0"
             ]
         }
     }
