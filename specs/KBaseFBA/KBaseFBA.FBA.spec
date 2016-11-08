@@ -37,10 +37,10 @@ Reference to metabolic model
 typedef string fbamodel_ref;
 
 /*
-Reference to PROM model
+Reference to PROM constraints
 @id ws KBaseFBA.PromConstraint
 */
-typedef string prommodel_ref;
+typedef string promconstraint_ref;
 
 /*
 Reference to a model template
@@ -109,6 +109,23 @@ typedef structure {
   float upperBound;
   float lowerBound;
 } FBACompoundBound;
+
+/*
+Genome feature ID
+@id external
+*/
+typedef string feature_id;
+
+typedef float probability;
+
+/*
+collection of tintle probability scores for each feature in a genome,
+representing a single gene probability sample
+*/
+typedef structure {
+  mapping<feature_id, probability> tintle_probability;
+  string expression_sample_ref;
+} TintleProbabilitySample;
 
 /*
 Reference to a phenotype simulation set object
@@ -182,6 +199,26 @@ typedef structure {
 } FBAPromResult;
 
 /*
+Either of two values: 
+ - InactiveOn: specified as on, but turns out as inactive
+ - ActiveOff: specified as off, but turns out as active
+*/
+typedef string conflict_state;
+
+/*
+FBATintleResult object
+
+@searchable ws_subset growth
+*/
+typedef structure {
+  float originalGrowth;
+  float growth;
+  float originalObjective;
+  float objective;
+  mapping<conflict_state, feature_id> conflicts;
+} FBATintleResult;
+
+/*
 FBADeletionResult object
 
 @searchable ws_subset feature_refs growthFraction
@@ -233,9 +270,9 @@ typedef structure {
 /*
 FBA object holds the formulation and results of a flux balance analysis study
 
-@optional minimize_reactions minimize_reaction_costs FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref prommodel_ref regmodel_ref
+@optional minimize_reactions minimize_reaction_costs FBAMinimalReactionsResults PROMKappa tintleW phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regmodel_ref
 @searchable ws_subset comboDeletions id fva fluxMinimization findMinimalMedia allReversible simpleThermoConstraints thermodynamicConstraints noErrorThermodynamicConstraints minimizeErrorThermodynamicConstraints
-@searchable ws_subset regmodel_ref fbamodel_ref prommodel_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
+@searchable ws_subset regmodel_ref fbamodel_ref promconstraint_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
 @searchable ws_subset FBAConstraints.[*].(name,rhs,sign,compound_terms,reaction_terms) 
 @searchable ws_subset FBAReactionBounds.[*].(modelreaction_ref,variableType,upperBound,lowerBound)
 @searchable ws_subset FBACompoundBounds.[*].(modelcompound_ref,variableType,upperBound,lowerBound)
@@ -243,9 +280,6 @@ FBA object holds the formulation and results of a flux balance analysis study
     @searchable ws_subset FBAReactionVariables.[*].(modelreaction_ref,variableType,upperBound,lowerBound,class,min,max,value)
     @searchable ws_subset FBABiomassVariables.[*].(biomass_ref,variableType,upperBound,lowerBound,class,min,max,value)
     @searchable ws_subset FBAPromResults.[*].(objectFraction,alpha,beta)
-    @searchable ws_subset FBADeletionResults.[*].(feature_refs,growthFraction)
-    @searchable ws_subset FBAMinimalMediaResults.[*].(essentialNutrient_refs,optionalNutrient_refs)
-    @searchable ws_subset FBAMetaboliteProductionResults.[*].(modelcompound_ref,maximumProduction)
 */
 typedef structure {
   fba_id id;
@@ -268,6 +302,8 @@ typedef structure {
   float defaultMaxDrainFlux;
   float defaultMinDrainFlux;
   float PROMKappa;
+  float tintleW;
+  float tintleKappa;
   bool decomposeReversibleFlux;
   bool decomposeReversibleDrainFlux;
   bool fluxUseVariables;
@@ -275,7 +311,7 @@ typedef structure {
   bool minimize_reactions;
   regmodel_ref regmodel_ref;
   fbamodel_ref fbamodel_ref;
-  prommodel_ref prommodel_ref;
+  promconstraint_ref promconstraint_ref;
   media_ref media_ref;
   phenotypeset_ref phenotypeset_ref;
   list<feature_ref> geneKO_refs;
@@ -288,6 +324,7 @@ typedef structure {
   list<FBAConstraint> FBAConstraints;
   list<FBAReactionBound> FBAReactionBounds;
   list<FBACompoundBound> FBACompoundBounds;
+  list<TintleProbabilitySample> tintleSamples;
   float objectiveValue;
   mapping<string, list<string>> outputfiles;
   phenotypesimulationset_ref phenotypesimulationset_ref;
@@ -295,6 +332,7 @@ typedef structure {
   list<FBAReactionVariable> FBAReactionVariables;
   list<FBABiomassVariable> FBABiomassVariables;
   list<FBAPromResult> FBAPromResults;
+  list<FBATintleResult> FBATintleResults;
   list<FBADeletionResult> FBADeletionResults;
   list<FBAMinimalMediaResult> FBAMinimalMediaResults;
   list<FBAMetaboliteProductionResult> FBAMetaboliteProductionResults;
