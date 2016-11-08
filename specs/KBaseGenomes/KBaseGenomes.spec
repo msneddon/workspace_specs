@@ -280,7 +280,7 @@ module KBaseGenomes {
 		We may want to add additional fields for other CDM functions
 		(e.g., atomic regulons, coexpressed fids, co_occurring fids,...)
 
-		@optional quality feature_creation_event md5 location function protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
+		@optional orthologs quality feature_creation_event md5 location function protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
     */
     typedef structure {
 		Feature_id id;
