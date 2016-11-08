@@ -23,21 +23,21 @@ or absent.
       @optional lib2
       @optional insert_size_mean insert_size_std_dev interleaved
       @optional read_orientation_outward gc_content source
-      @meta ws strain.genus
-      @meta ws strain.species
-      @meta ws strain.strain
-      @meta ws strain.ncbi_taxid
-      @meta ws source.source
-      @meta ws source.source_id
-      @meta ws source.project_id
-      @meta ws read_count
-      @meta ws read_size
-      @meta ws gc_content
-      @meta ws sequencing_tech
+      @metadata ws strain.genus
+      @metadata ws strain.species
+      @metadata ws strain.strain
+      @metadata ws strain.ncbi_taxid
+      @metadata ws source.source
+      @metadata ws source.source_id
+      @metadata ws source.project_id
+      @metadata ws read_count
+      @metadata ws read_size
+      @metadata ws gc_content
+      @metadata ws sequencing_tech
 */
 typedef structure {
-  #KBaseFile.FileRef-1.0# lib1;
-  #KBaseFile.FileRef-1.0# lib2;
+  #KBaseFile.FileRef-1.1# lib1;
+  #KBaseFile.FileRef-1.1# lib2;
   #KBaseCommon.StrainInfo-1.0# strain;
   #KBaseCommon.SourceInfo-1.0# source;
   float insert_size_mean;
