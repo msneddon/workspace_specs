@@ -18,13 +18,13 @@ typedef string genome_ref;
 
 /*
 Reference to a metagenome object
-@id ws KBaseMetagenomes.Metagenome
+@id ws KBaseGenomes.MetagenomeAnnotation
 */
 typedef string metagenome_ref;
 
 /*
 Reference to an OTU in a metagenome
-@id subws KBaseMetagenomes.Metagenome.otus.[*].id
+@id subws KBaseGenomes.MetagenomeAnnotation.otus.[*].id
 */
 typedef string metagenome_otu_ref;
 
@@ -42,7 +42,7 @@ typedef string gapfill_id;
 
 /*
 Reference to a gapfilling object
-@id ws KBaseFBA.GapfillingFormulation
+@id ws KBaseFBA.Gapfilling
 */
 typedef string gapfill_ref;
 
@@ -55,23 +55,18 @@ Reference to a model template
 typedef string media_ref;
 
 /*
-Reference to a feature of a genome object
-@id subws KBaseGenomes.Genome.features.[*].id
-*/
-typedef string feature_ref;
-
-/*
 ModelGapfill object
  
-    @searchable ws_subset gapfill_id gapfill_ref integrated media_ref ko_refs
+@optional integrated_solution
+    @searchable ws_subset id gapfill_id gapfill_ref integrated_solution integrated media_ref
 */
 typedef structure {
+  gapfill_id id;
   gapfill_id gapfill_id;
   gapfill_ref gapfill_ref;
   bool integrated;
-  int integrated_solution;
+  string integrated_solution;
   media_ref media_ref;
-  list<feature_ref> ko_refs;
 } ModelGapfill;
 
 /*
@@ -82,22 +77,23 @@ typedef string gapgen_id;
 
 /*
 Reference to a gapgen object
-@id ws KBaseFBA.GapgenFormulation
+@id ws KBaseFBA.Gapgeneration
 */
 typedef string gapgen_ref;
 
 /*
 ModelGapgen object
 
-    @searchable ws_subset gapgen_id gapgen_ref integrated media_ref ko_refs
+@optional integrated_solution
+    @searchable ws_subset id gapgen_id gapgen_ref integrated media_ref integrated_solution
 */
 typedef structure {
+  gapgen_id id;
   gapgen_id gapgen_id;
   gapgen_ref gapgen_ref;
   bool integrated;
-  int integrated_solution;
+  string integrated_solution;
   media_ref media_ref;
-  list<feature_ref> ko_refs;
 } ModelGapgen;
 
 /*
@@ -229,6 +225,12 @@ Reference to a complex object
 typedef string complex_ref;
 
 /*
+Reference to a feature of a genome object
+@id subws KBaseGenomes.Genome.features.[*].id
+*/
+typedef string feature_ref;
+
+/*
 ModelReactionProteinSubunit object
 
     @searchable ws_subset role triggering optionalSubunit feature_refs
@@ -262,6 +264,7 @@ ModelReaction object
 typedef structure {
   modelreaction_id id;
   reaction_ref reaction_ref;
+  string name;
   string direction;
   float protons;
   modelcompartment_ref modelcompartment_ref;
@@ -275,10 +278,10 @@ FBAModel object
 
 @optional metagenome_otu_ref metagenome_ref genome_ref
 @searchable ws_subset id source_id source name type genome_ref metagenome_ref metagenome_otu_ref template_ref
-@searchable ws_subset gapfillings.[*].(gapfill_id,gapfill_ref,integrated,media_ref,integrated_solution,ko_refs) 
-@searchable ws_subset gapgens.[*].(gapgen_id,gapgen_ref,integrated,media_ref,integrated_solution,ko_refs) 
+@searchable ws_subset gapfillings.[*].(gapfill_id,gapfill_ref,integrated,media_ref,integrated_solution) 
+@searchable ws_subset gapgens.[*].(gapgen_id,gapgen_ref,integrated,media_ref,integrated_solution) 
 @searchable ws_subset biomasses.[*].(id,name,other,dna,rna,protein,cellwall,lipid,cofactor,energy,biomasscompounds.[*].(modelcompound_ref,coefficient)) 
-@searchable ws_subset compartments.[*].(id,compartment_ref,compartmentIndex,label,pH,potential) 
+@searchable ws_subset modelcompartments.[*].(id,compartment_ref,compartmentIndex,label,pH,potential) 
 @searchable ws_subset modelcompounds.[*].(id,compound_ref,name,charge,formula,modelcompartment_ref)
 @searchable ws_subset modelreactions.[*].(id,reaction_ref,direction,protons,modelcompartment_ref,probability,modelReactionReagents.[*].(modelcompound_ref,coefficient),modelReactionProteins.[*].(complex_ref,modelReactionProteinSubunits.[*].(role,triggering,optionalSubunit,feature_refs)))
 */
@@ -295,7 +298,7 @@ typedef structure {
   list<ModelGapfill> gapfillings;
   list<ModelGapgen> gapgens;
   list<Biomass> biomasses;
-  list<ModelCompartment> compartments;
+  list<ModelCompartment> modelcompartments;
   list<ModelCompound> modelcompounds;
   list<ModelReaction> modelreactions;
 } FBAModel;
