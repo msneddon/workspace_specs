@@ -549,9 +549,9 @@ module KBaseFBA {
     /* 
     	FBA object holds the formulation and results of a flux balance analysis study
     	
-    	@optional minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regmodel_ref tintlesample_ref tintleW tintleKappa
+    	@optional minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
     	@searchable ws_subset comboDeletions id fva fluxMinimization findMinimalMedia allReversible simpleThermoConstraints thermodynamicConstraints noErrorThermodynamicConstraints minimizeErrorThermodynamicConstraints
-    	@searchable ws_subset regmodel_ref fbamodel_ref promconstraint_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
+    	@searchable ws_subset regulome_ref fbamodel_ref promconstraint_ref media_ref phenotypeset_ref geneKO_refs reactionKO_refs additionalCpd_refs objectiveValue phenotypesimulationset_ref
     */
     typedef structure {
 		fba_id id;
@@ -586,7 +586,7 @@ module KBaseFBA {
 		bool drainfluxUseVariables;
 		bool minimize_reactions;
 		
-		regmodel_ref regmodel_ref;
+		regulome_ref regulome_ref;
 		fbamodel_ref fbamodel_ref;
 		promconstraint_ref promconstraint_ref;
 		expression_sample_ref tintlesample_ref;
@@ -1015,6 +1015,13 @@ module KBaseFBA {
         list<ClassifierClasses> classes;
     } Classifier;
     
+    typedef tuple<genome_ref genome,string class,list<string> attributes> WorkspaceGenomeClassData;
+    typedef tuple<string database,string genome_id,string class,list<string> attributes> ExternalGenomeClassData;
+	typedef tuple<string,string> ClassData;
+    typedef tuple<genome_ref genome,string class,float probability> WorkspaceGenomeClassPrediction;
+    typedef tuple<string database,string genome,string class,float probability> ExternalGenomeClassPrediction;
+
+	    
     /*
         @optional attribute_type source description
     */
@@ -1023,9 +1030,9 @@ module KBaseFBA {
         string description;
         string source;
         string attribute_type;
-        list<tuple<genome_ref,string class,list<string> attributes>> workspace_training_set; 
-		list<tuple<string database,string genome_id,string class,list<string> attributes>> external_training_set;
-		list<tuple<string class,string description>> class_data;
+        list<WorkspaceGenomeClassData> workspace_training_set; 
+		list<ExternalGenomeClassData> external_training_set;
+		list<ClassData> class_data;
     } ClassifierTrainingSet;
     
     /*
@@ -1033,7 +1040,7 @@ module KBaseFBA {
     typedef structure {
         string id;
         Classifier_ref classifier_ref;
-        list<tuple<genome_ref,string class,float probability>> workspace_genomes; 
-		list<tuple<string database,string genome_id,string class,float probability>> external_genomes;
+        list<WorkspaceGenomeClassPrediction> workspace_genomes; 
+		list<ExternalGenomeClassPrediction> external_genomes;
     } ClassifierResult;
 };
