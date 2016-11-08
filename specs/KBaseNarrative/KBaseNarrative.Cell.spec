@@ -1,6 +1,4 @@
-typedef UnspecifiedObject Metadata;
-
 typedef structure {
-  Metadata metadata;
+  UnspecifiedObject metadata;
   string cell_type;
 } Cell;
