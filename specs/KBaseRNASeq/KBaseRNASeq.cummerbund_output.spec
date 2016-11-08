@@ -1,7 +1,7 @@
 /*
 List of cummerbundplot
 */
-typedef list<#KBaseRNASeq.cummerbundplot-1.0#> cummerbundplotSet;
+typedef list<#KBaseRNASeq.cummerbundplot-2.0#> cummerbundplotSet;
 
 /*
 Object type for the cummerbund_output

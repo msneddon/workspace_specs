@@ -111,4 +111,3 @@ module KBaseNarrative {
         Metadata metadata;
     } Narrative;
 };
-

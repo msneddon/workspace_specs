@@ -18,7 +18,7 @@ module KBaseFeatureValues {
 
     /* 
         The workspace ID for a Genome data object.
-        @id ws KBaseGenomes.Genome
+        @id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
     */
     typedef string ws_genome_id;
 
@@ -776,4 +776,5 @@ module KBaseFeatureValues {
     funcdef get_submatrix_stat(GetSubmatrixStatParams)
     	returns (SubmatrixStat) authentication required;
 };
+
 

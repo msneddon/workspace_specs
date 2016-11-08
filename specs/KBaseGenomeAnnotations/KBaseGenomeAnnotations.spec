@@ -270,7 +270,7 @@ The inner list is to accommodate domains that are non-continuous sequence.
 What about the following?
 INTERACTIONS? ACTIVE SITE? ALLOSTERIC SITE? Folding pattern?
 
-@optional function domain_locations
+@optional function domain_locations aliases
 */
 typedef structure {
   string protein_id;
@@ -279,6 +279,7 @@ typedef structure {
   string function;
   mapping<string alias, list<string> sources> aliases;
   string md5;
+  int translation_derived;
 } protein;
 
 
@@ -543,5 +544,46 @@ typedef structure {
   alias_source_counts_map alias_source_counts_map;  
   interfeature_relationship_counts_map interfeature_relationship_counts_map;
 } GenomeAnnotation; 
+
+
+
+/* 
+Reference to an GenomeAnnotation object 
+    @id ws KBaseGenomeAnnotations.GenomeAnnotation
+*/ 
+typedef string genome_annotation_ref;
+
+
+/* 
+The GenomeAnnotationSummary is a hidden object that's purpose is to optimize landing page performance. 
+This object needs to be generated every time a new version of the genome annotation is generated.
+All fields are required.
+
+*/ 
+typedef structure { 
+  genome_annotation_ref genome_annotation_ref; 
+  string scientific_name; 
+  int taxonomy_id; 
+  string kingdom; 
+  string scientific_lineage;
+  int genetic_code;
+  list<string> organism_aliases;
+  string assembly_source;
+  string assembly_source_id; 
+  string assembly_source_origination_date;
+  float gc_content;
+  int dna_size;
+  int num_contigs; 
+  list<string> contig_ids;
+  string external_source; 
+  string external_source_origination_date; 
+  string release; 
+  string original_source_file_name; 
+  counts_map feature_counts_map;
+  list<string> alias_sources;
+  taxon_ref taxon_ref;
+  assembly_ref assembly_ref;
+  int cds_coding_for_proteins_count;
+}GenomeAnnotationSummary;
 
 };
