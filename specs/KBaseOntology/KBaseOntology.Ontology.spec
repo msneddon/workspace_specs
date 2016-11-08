@@ -1,7 +1,7 @@
 /*
 A ontology id is a string (usually GO:NNNN)
 */
-typedef string ontology_id;
+typedef string ontology_acc;
 
 /*
 A code for evidence
@@ -26,13 +26,12 @@ typedef list<gene_id> gene_list;
 /*
 Structure for Ontology object
 
-@optional evidence_codes
+@optional evidence_codes gene_list
 */
 typedef structure {
-  ontology_id id;
-  string ontology_type;
-  string ontology_domain;
-  string ontology_description;
+  ontology_acc acc;
+  string type;
+  string name;
   list<evidence_code> evidence_codes;
   mapping<genome_id, gene_list> gene_list;
 } Ontology;
