@@ -1181,11 +1181,11 @@ module KBaseFBA {
 	typedef structure {
 		string id;
 		fba_ref fba_ref;
-		fbamodel_ref model_ref;
+		fbamodel_ref fbamodel_ref;
 		mapping<string fba_id,tuple<int common_reactions,int common_active_reactions,int common_reaction_states,int common_exchange_compounds,int common_active_exchanges,int common_exchange_states> > fba_similarity;
 
 		float objective;
-		media_ref media;
+		media_ref media_ref;
 		int reactions;
 		int compounds;
 		int active_reactions;
