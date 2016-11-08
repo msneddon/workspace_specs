@@ -2,14 +2,14 @@
     "_url": "https://kbase.us/services/ws",
     "modules": {
         "GenomeComparison": {
-            "_chsum": "08c1d0f41cfd986b5cc849e12afdf523",
-            "_timestamp": "2014-02-07 13:42:09",
-            "_version": 1391809329710,
+            "_chsum": "252e419eb96023b9848c00c3e8e6e583",
+            "_timestamp": "2014-07-16 15:48:29",
+            "_version": 1405550909132,
             "owners": [
                 "rsutormin"
             ],
             "types": [
-                "GenomeComparison.ProteomeComparison-1.0"
+                "GenomeComparison.ProteomeComparison-2.0"
             ]
         }
     }
