@@ -45,16 +45,16 @@ assembly_id - a reference to the assembly used to construct this
 @optional source
 @optional assembly
 @optional features_by_type
-@meta ws strain.genus
-@meta ws strain.species
-@meta ws strain.strain
-@meta ws strain.ncbi_taxid
-@meta ws source.source
-@meta ws source.source_id
-@meta ws source.project_id
+@metadata ws strain.genus
+@metadata ws strain.species
+@metadata ws strain.strain
+@metadata ws strain.ncbi_taxid
+@metadata ws source.source
+@metadata ws source.source_id
+@metadata ws source.project_id
 */
 typedef structure {
-  #KBaseFile.FileRef-1.0# annotation_file;
+  #KBaseFile.FileRef-1.1# annotation_file;
   #KBaseCommon.StrainInfo-1.0# strain;
   #KBaseCommon.SourceInfo-1.0# source;
   mapping<dna_feature_type, int> features_by_type;
