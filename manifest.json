@@ -83,6 +83,21 @@
                 "KBaseFBA.MissingRoleData-1.0",
                 "KBaseFBA.PromConstraint-6.0"
             ]
+        },
+        "KBaseFeatureValues": {
+            "_chsum": "a1d5d900ad66e862bd0af5e0936b5254",
+            "_timestamp": "2015-08-21 14:09:17",
+            "_version": 1440191357130,
+            "owners": [
+                "rsutormin"
+            ],
+            "types": [
+                "KBaseFeatureValues.AnalysisReport-1.0",
+                "KBaseFeatureValues.FeatureClusters-1.0",
+                "KBaseFeatureValues.ExpressionMatrix-1.0",
+                "KBaseFeatureValues.EstimateKResult-1.0",
+                "KBaseFeatureValues.SingleKnockoutFitnessMatrix-1.0"
+            ]
         }
     }
 }
