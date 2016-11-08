@@ -1,4 +1,16 @@
 /*
+Reference to a handle to the Reads file on shock
+    @id handle
+*/
+typedef string reads_handle_ref;
+
+/*
+Reference to a handle to the Assembly Fasta file on shock
+    @id handle
+*/
+typedef string fasta_handle_ref;
+
+/*
 The Contig is an individual contiguous sequence.
 This is the result of an assembly, it can be complete (ex: full chromosome or circular DNA), it can also be partial
 due to the limitations of the assembly itself.
@@ -49,8 +61,8 @@ typedef structure {
   string external_source_origination_date;
   float gc_content;
   string type;
-  string reads_handle_ref;
-  string fasta_handle_ref;
+  reads_handle_ref reads_handle_ref;
+  fasta_handle_ref fasta_handle_ref;
   mapping<string, contig> contigs;
   int dna_size;
   int num_contigs;
