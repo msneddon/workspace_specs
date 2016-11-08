@@ -56,20 +56,20 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "ac6f9130eb1b9018ae973b3be222ef22",
-            "_timestamp": "2014-04-23 15:23:42",
-            "_version": 1398291822162,
+            "_chsum": "4e08ae571cf91f366d56ef9bd9ceca2c",
+            "_timestamp": "2014-05-01 21:37:34",
+            "_version": 1399005454845,
             "owners": [
                 "chenry"
             ],
             "types": [
                 "KBaseFBA.Gapfilling-4.0",
                 "KBaseFBA.FBAModel-4.1",
+                "KBaseFBA.ETC-2.0",
                 "KBaseFBA.Gapgeneration-2.0",
                 "KBaseFBA.ReactionSensitivityAnalysis-3.0",
                 "KBaseFBA.ModelTemplate-2.1",
-                "KBaseFBA.FBA-3.0",
-                "KBaseFBA.ETC-1.0"
+                "KBaseFBA.FBA-3.0"
             ]
         }
     }

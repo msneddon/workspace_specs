@@ -891,12 +891,24 @@ module KBaseFBA {
     } ReactionSensitivityAnalysis;
 
 
+
+    /* 
+        ETCCompound object
+    */
+
+    typedef structure {
+        string compound_ref;
+        string name;
+    } ETCCompound;
+
     /* 
         ETCStep object
     */
 
     typedef structure {
         list<string> reactions;
+        list<ETCCompound> substrates;
+        list<ETCCompound> products;
     } ETCStep;
 
     /* 
@@ -915,5 +927,5 @@ module KBaseFBA {
         list<ETCPathwayObj> pathways;
     } ETC;
 
-
+    
 };
