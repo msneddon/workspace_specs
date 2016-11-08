@@ -203,6 +203,26 @@
                 "KBasePhenotypes.PhenotypeSimulationSet-3.0",
                 "KBasePhenotypes.PhenotypeSet-3.0"
             ]
+        },
+        "KBaseRNASeq": {
+            "_chsum": "abba24b9cc2fb6222e561a209df4a2d5",
+            "_timestamp": "2016-02-26 13:51:51",
+            "_version": 1456523511114,
+            "owners": [
+                "srividya22"
+            ],
+            "types": [
+                "KBaseRNASeq.RNASeqSample-1.0",
+                "KBaseRNASeq.RNASeqCuffdiffdifferentialExpression-1.0",
+                "KBaseRNASeq.ReferenceAnnotation-1.0",
+                "KBaseRNASeq.cummerbundplot-1.0",
+                "KBaseRNASeq.RNASeqAnalysis-1.0",
+                "KBaseRNASeq.cummerbund_output-1.0",
+                "KBaseRNASeq.RNASeqCuffmergetranscriptome-1.0",
+                "KBaseRNASeq.RNASeqSampleAlignment-1.0",
+                "KBaseRNASeq.Bowtie2Indexes-1.0",
+                "KBaseRNASeq.AlignmentStatsResults-1.0"
+            ]
         }
     }
 }
