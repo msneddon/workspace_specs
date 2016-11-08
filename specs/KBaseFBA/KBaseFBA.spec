@@ -352,7 +352,7 @@ module KBaseFBA {
     	 
     	@optional integrated_solution
     	@optional fba_ref
-    	@optional gapfill_ref
+    	@optional gapfill_ref jobnode
     */
     typedef structure {
 		gapfill_id id;
@@ -362,6 +362,7 @@ module KBaseFBA {
 		bool integrated;
 		string integrated_solution;
 		media_ref media_ref;
+		string jobnode;
     } ModelGapfill;
     
     /* 
@@ -369,7 +370,7 @@ module KBaseFBA {
     	
     	@optional integrated_solution
     	@optional fba_ref
-    	@optional gapgen_ref
+    	@optional gapgen_ref jobnode
     */
     typedef structure {
     	gapgen_id id;
@@ -379,6 +380,7 @@ module KBaseFBA {
 		bool integrated;
 		string integrated_solution;
 		media_ref media_ref;
+		string jobnode;
     } ModelGapgen;
     
     
@@ -491,6 +493,9 @@ module KBaseFBA {
 	
 	/* 
     	FBAReactionVariable object
+    	
+    	@optional exp_state expression scaled_exp
+    	
     */
 	typedef structure {
     	modelreaction_ref modelreaction_ref;
@@ -501,6 +506,9 @@ module KBaseFBA {
     	float min;
     	float max;
     	float value;
+		string exp_state;
+		float expression;
+		float scaled_exp;
 	} FBAReactionVariable;
 	
 	/* 
@@ -666,7 +674,7 @@ module KBaseFBA {
     /* 
     	FBA object holds the formulation and results of a flux balance analysis study
     	
-    	@optional gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
+    	@optional jobnode gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintlesample_ref tintleW tintleKappa
     	@metadata ws maximizeObjective as Maximized
 		@metadata ws comboDeletions as Combination deletions
 		@metadata ws minimize_reactions as Minimize reactions
@@ -720,6 +728,7 @@ module KBaseFBA {
 		bool drainfluxUseVariables;
 		bool minimize_reactions;
 		
+		string jobnode;
 		regulome_ref regulome_ref;
 		fbamodel_ref fbamodel_ref;
 		promconstraint_ref promconstraint_ref;
@@ -1152,12 +1161,80 @@ module KBaseFBA {
 	} FBAModelSetElement;
 
 	/*
-	A type describing a set of FBAModels, where each element of the set 
-	is an FBAModel object reference.
+		A type describing a set of FBAModels, where each element of the set 
+		is an FBAModel object reference.
 	*/
 	typedef structure {
 	  string description;
 	  mapping<string, FBAModelSetElement> elements;
 	} FBAModelSet;
-};
+	
+	/*
+		Conserved state - indicates a possible state of reaction/compound in FBA with values:
+			<NOT_IN_MODEL,INACTIVE,FORWARD,REVERSE,UPTAKE,EXCRETION>
+	*/
+    typedef string Conserved_state; 
+	
+	/*
+		FBAComparisonFBA object: this object holds information about an FBA in a FBA comparison
+	*/
+	typedef structure {
+		string id;
+		fba_ref fba_ref;
+		fbamodel_ref model_ref;
+		mapping<string fba_id,tuple<int common_reactions,int common_active_reactions,int common_reaction_states,int common_exchange_compounds,int common_active_exchanges,int common_exchange_states> > fba_similarity;
 
+		float objective;
+		media_ref media;
+		int reactions;
+		int compounds;
+		int active_reactions;
+		int uptake_compounds;
+		int excretion_compounds;
+	} FBAComparisonFBA;
+
+	/*
+		FBAComparisonReaction object: this object holds information about a reaction across all compared models
+	*/
+	typedef structure {
+		string id;
+		string name;
+		list<tuple<float coefficient,string name,string compound,string compartment>> stoichiometry;
+		string direction;
+		mapping<Conserved_state,tuple<int count,float fraction,float flux_mean, float flux_stddev>> state_conservation;
+		Conserved_state most_common_state;
+		mapping<string fba_id,tuple<Conserved_state,float UpperBound,float LowerBound,float Max,float Min,float flux,float expression_score,string expression_class,string fva_class>> reaction_fluxes;
+	} FBAComparisonReaction;
+
+	/*
+		FBAComparisonCompound object: this object holds information about a compound across a set of FBA simulations
+	*/
+	typedef structure {
+		string id;
+		string name;
+		float charge;
+		string formula;
+		mapping<Conserved_state,tuple<int count,float fraction,float stddev>> state_conservation;
+		Conserved_state most_common_state;
+		mapping<string fba_id,tuple<Conserved_state,float UpperBound,float LowerBound,float Max,float Min,float Flux,string class>> exchanges;
+	} FBAComparisonCompound;
+
+	/*
+		FBAComparison object: this object holds information about a comparison of multiple FBA simulations
+
+		@metadata ws id as ID
+		@metadata ws common_reactions as Common reactions
+		@metadata ws common_reactions as Common compounds
+		@metadata ws length(fbas) as Number FBAs
+		@metadata ws length(reactions) as Number reactions
+		@metadata ws length(compounds) as Number compounds
+	*/
+	typedef structure {
+		string id;
+		int common_reactions;
+		int common_compounds;
+		list<FBAComparisonFBA> fbas;
+		list<FBAComparisonReaction> reactions;
+		list<FBAComparisonCompound> compounds;
+	} FBAComparison;
+};
