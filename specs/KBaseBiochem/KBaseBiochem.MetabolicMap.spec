@@ -13,6 +13,16 @@ Reference to a compound object in a metabolic map
 typedef string mapcompound_ref;
 
 /*
+MapReactionReactant object
+
+@optional waypoints
+*/
+typedef structure {
+  mapcompound_ref compound_ref;
+  list<tuple<int, int>> waypoints;
+} MapReactionReactant;
+
+/*
 MapReaction object
 
 @optional link
@@ -29,8 +39,8 @@ typedef structure {
   int y;
   int x;
   list<string> rxns;
-  list<mapcompound_ref> substrate_refs;
-  list<mapcompound_ref> product_refs;
+  list<MapReactionReactant> substrate_refs;
+  list<MapReactionReactant> product_refs;
 } MapReaction;
 
 /*
@@ -42,12 +52,14 @@ typedef string maplink_ref;
 /*
 MapCompound object
 
-@optional link
+@optional link label_x label_y
 */
 typedef structure {
   string id;
+  string label;
+  int label_x;
+  int label_y;
   string name;
-  string ec;
   string shape;
   string link;
   int h;
