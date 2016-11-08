@@ -45,6 +45,12 @@ Reference to expression data
 typedef string expression_series_ref;
 
 /*
+Reference to regulome
+@id ws KBaseRegulation.Regulome
+*/
+typedef string regulome_ref;
+
+/*
 An object that encapsulates the information necessary to apply PROM-based constraints to an FBA model. This
 includes a regulatory network consisting of a set of regulatory interactions (implied by the set of TFtoTGmap
 objects) and interaction probabilities as defined in each TargetGeneProbabilities object.  A link the the annotation
@@ -67,4 +73,5 @@ typedef structure {
   genome_ref genome_ref;
   list<TFtoTGmap> transcriptionFactorMaps;
   expression_series_ref expression_series_ref;
+  regulome_ref regulome_ref;
 } PromConstraint;
