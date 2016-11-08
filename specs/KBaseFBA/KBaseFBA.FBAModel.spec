@@ -65,7 +65,7 @@ ModelGapfill object
  
 @optional integrated_solution
 @optional fba_ref
-@optional gapfill_ref
+@optional gapfill_ref jobnode
 */
 typedef structure {
   gapfill_id id;
@@ -75,6 +75,7 @@ typedef structure {
   bool integrated;
   string integrated_solution;
   media_ref media_ref;
+  string jobnode;
 } ModelGapfill;
 
 /*
@@ -94,7 +95,7 @@ ModelGapgen object
 
 @optional integrated_solution
 @optional fba_ref
-@optional gapgen_ref
+@optional gapgen_ref jobnode
 */
 typedef structure {
   gapgen_id id;
@@ -104,6 +105,7 @@ typedef structure {
   bool integrated;
   string integrated_solution;
   media_ref media_ref;
+  string jobnode;
 } ModelGapgen;
 
 typedef structure {
