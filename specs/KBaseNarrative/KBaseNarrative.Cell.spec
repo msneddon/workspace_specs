@@ -1,7 +1,6 @@
+typedef UnspecifiedObject Metadata;
+
 typedef structure {
-  string input;
-  list<string> outputs;
-  string language;
-  mapping<string, UnspecifiedObject> metadata;
+  Metadata metadata;
   string cell_type;
 } Cell;
