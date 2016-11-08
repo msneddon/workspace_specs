@@ -12,7 +12,7 @@ typedef string source_id;
 
 /*
 Reference to a model template
-@id ws KBaseGenomes.Genome
+@id ws
 */
 typedef string genome_ref;
 
