@@ -56,32 +56,32 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "394c4789862cd501eff5a3cad4dfc733",
-            "_timestamp": "2016-03-02 00:27:55",
-            "_version": 1456907275066,
+            "_chsum": "49822ce81c1d7ce8ab33b30cba28e94e",
+            "_timestamp": "2016-07-18 08:35:38",
+            "_version": 1468856138595,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBaseFBA.ClassifierResult-2.1",
+                "KBaseFBA.FBAComparison-5.0",
                 "KBaseFBA.NewModelTemplate-1.0",
                 "KBaseFBA.Classifier-1.1",
+                "KBaseFBA.ClassifierResult-3.0",
                 "KBaseFBA.FBAPathwayAnalysis-1.0",
+                "KBaseFBA.PromConstraint-4.0",
                 "KBaseFBA.FBAModelSet-1.0",
                 "KBaseFBA.ModelTemplate-4.1",
                 "KBaseFBA.ETC-6.0",
-                "KBaseFBA.ModelComparison-1.0",
                 "KBaseFBA.FBA-13.0",
                 "KBaseFBA.Gapfilling-6.1",
-                "KBaseFBA.FBAComparison-5.0",
-                "KBaseFBA.ClassifierTrainingSet-2.1",
+                "KBaseFBA.ClassifierTrainingSet-3.0",
                 "KBaseFBA.FBAPathwayAnalysisMultiple-1.0",
                 "KBaseFBA.ReactionSensitivityAnalysis-5.0",
-                "KBaseFBA.FBAModel-8.0",
+                "KBaseFBA.ModelComparison-2.0",
                 "KBaseFBA.SubsystemAnnotation-1.0",
                 "KBaseFBA.Gapgeneration-4.0",
                 "KBaseFBA.MissingRoleData-1.0",
-                "KBaseFBA.PromConstraint-3.1"
+                "KBaseFBA.FBAModel-9.0"
             ]
         }
     }
