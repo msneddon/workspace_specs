@@ -29,16 +29,16 @@
             ]
         },
         "KBaseBiochem": {
-            "_chsum": "ee91640c81fc0b4ac2ace9a81f357dd5",
-            "_timestamp": "2014-01-16 23:00:50",
-            "_version": 1389942050255,
+            "_chsum": "b851ec9db1302c8111e6edd49243e1ab",
+            "_timestamp": "2014-02-09 21:48:01",
+            "_version": 1392011281096,
             "owners": [
                 "chenry"
             ],
             "types": [
                 "KBaseBiochem.BiochemistryStructures-1.0",
-                "KBaseBiochem.Biochemistry-2.0",
-                "KBaseBiochem.Media-1.0"
+                "KBaseBiochem.Media-1.0",
+                "KBaseBiochem.Biochemistry-3.0"
             ]
         }
     }
