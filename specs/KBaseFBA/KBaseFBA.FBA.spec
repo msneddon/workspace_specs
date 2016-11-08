@@ -38,7 +38,7 @@ typedef string fbamodel_ref;
 
 /*
 Reference to PROM model
-@id ws KBaseRegulation.PROMModel
+@id ws KBaseFBA.PromConstraint
 */
 typedef string prommodel_ref;
 
