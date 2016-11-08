@@ -44,8 +44,6 @@ typedef string modelreaction_ref;
 
 /*
 GapGenerationSolutionReaction object holds data a reaction proposed to be removed from the model
-
-@searchable ws_subset modelreaction_ref direction
 */
 typedef structure {
   modelreaction_ref modelreaction_ref;
@@ -54,8 +52,6 @@ typedef structure {
 
 /*
 GapGenerationSolution object holds data on a solution proposed by the gapgeneration command
-
-@searchable ws_subset id suboptimal gapgenSolutionReactions.[*].(modelreaction_ref,direction) integrated biomassSuppplement_refs mediaRemoval_refs additionalKO_refs
 */
 typedef structure {
   gapgensol_id id;
@@ -73,7 +69,6 @@ GapGeneration object holds data on formulation and solutions from gapgen analysi
 
 @optional fba_ref totalTimeLimit timePerSolution media_ref referenceMedia_ref gprHypothesis reactionRemovalHypothesis biomassHypothesis mediaHypothesis
 @searchable ws_subset id totalTimeLimit timePerSolution referenceMedia_ref fbamodel_ref fba_ref reactionRemovalHypothesis gprHypothesis biomassHypothesis mediaHypothesis
-@searchable ws_subset gapgenSolutions.[*].(id,suboptimal,gapgenSolutionReactions.[*].(modelreaction_ref,direction),integrated,biomassSuppplement_refs,mediaRemoval_refs,additionalKO_refs)
 */
 typedef structure {
   gapgen_id id;
