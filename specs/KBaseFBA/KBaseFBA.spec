@@ -897,7 +897,7 @@ module KBaseFBA {
     */
 
     typedef structure {
-        string compound_ref;
+        list<string> compound_refs;
         string name;
     } ETCCompound;
 
@@ -907,8 +907,8 @@ module KBaseFBA {
 
     typedef structure {
         list<string> reactions;
-        list<ETCCompound> substrates;
-        list<ETCCompound> products;
+        ETCCompound substrates;
+        ETCCompound products;
     } ETCStep;
 
     /* 
