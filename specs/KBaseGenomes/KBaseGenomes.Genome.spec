@@ -93,7 +93,18 @@ Genome object holds much of the data relevant for a genome in KBase
         Should the Genome object contain a list of contig_ids too?
 
 @optional quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
-@searchable ws_subset taxonomy num_contigs source_id source genetic_code id scientific_name domain contigset_ref
+@metadata ws gc_content as GC content
+@metadata ws taxonomy as Taxonomy
+@metadata ws md5 as MD5
+@metadata ws dna_size as Size
+@metadata ws genetic_code as Genetic code
+@metadata ws domain as Domain
+    @metadata ws source_id as Source ID
+    @metadata ws source as Source
+    @metadata ws scientific_name as Name
+    @metadata ws length(close_genomes) as Close genomes
+    @metadata ws length(features) as Number features
+    @metadata ws num_contigs as Number contigs
 */
 typedef structure {
   Genome_id id;
@@ -112,7 +123,7 @@ typedef structure {
   float gc_content;
   int complete;
   list<publication> publications;
-  list<#KBaseGenomes.Feature-2.0#> features;
+  list<#KBaseGenomes.Feature-2.1#> features;
   ContigSet_ref contigset_ref;
   Genome_quality_measure quality;
   list<Close_genome> close_genomes;
