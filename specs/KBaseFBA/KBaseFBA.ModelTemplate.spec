@@ -43,6 +43,7 @@ typedef string complex_ref;
 /*
 TemplateReaction object holds data on reaction in template
 
+@optional base_cost forward_penalty reverse_penalty
 @searchable ws_subset id direction type reaction_ref compartment_ref complex_refs
 */
 typedef structure {
@@ -52,6 +53,9 @@ typedef structure {
   list<complex_ref> complex_refs;
   string direction;
   string type;
+  float base_cost;
+  float forward_penalty;
+  float reverse_penalty;
 } TemplateReaction;
 
 /*
