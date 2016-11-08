@@ -3,10 +3,18 @@ module KBaseAssembly {
 
     typedef int bool;
 
-    /* 
-       @optional file_name type url remote_md5 remote_sha1
+    /*
+       @id handle
+    */
+    typedef string handle_id;
+
+    /*
+       Note: the underlying data will not be shared correctly in the Workspace unless
+       the hid field is properly set.
+       @optional hid file_name type url remote_md5 remote_sha1
     */
     typedef structure {
+        handle_id hid;
         string file_name;
         string id;
         string type;
@@ -40,7 +48,7 @@ module KBaseAssembly {
     } PairedEndLibrary;
 
     /* 
-       @optional paired_end_libs single_end_libs references expected_coverage expected_coverage estimated_genome_size dataset_prefix dataset_description
+       @optional paired_end_libs single_end_libs references expected_coverage estimated_genome_size dataset_prefix dataset_description
     */
     typedef structure {
         list<PairedEndLibrary> paired_end_libs;
@@ -52,3 +60,4 @@ module KBaseAssembly {
 	string dataset_description;
     } AssemblyInput;
 };
+
