@@ -1,5 +1,5 @@
 /*
-Genome feature ID
+KBase Feature ID
 @id external
 */
 typedef string Feature_id;
@@ -36,7 +36,7 @@ typedef structure {
 /*
 a notation by a curator of the genome object
 */
-typedef tuple<string, string, int> annotation;
+typedef tuple<string, string, float> annotation;
 
 /*
 Structure for subsystem data (from CDMI API)
