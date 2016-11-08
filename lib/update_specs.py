@@ -22,7 +22,7 @@ BASEDIR = '../'
 
 def main():
 
-    endpoint = 'ci'
+    endpoint = 'prod'
 
     ws = Workspace(WS_URL[endpoint])
     target_dir = os.path.abspath('../specs')
@@ -230,7 +230,7 @@ class ModuleUpdater:
     def add_files_and_commit(self, filepaths, commit_message):
         log(' --- committing - ' + commit_message)
         self.repo.index.add(filepaths)
-        self.repo.index.commit(commit_message)
+        #self.repo.index.commit(commit_message)
 
 
 
