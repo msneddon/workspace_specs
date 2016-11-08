@@ -95,6 +95,33 @@ typedef structure {
 } ModelGapgen;
 
 /*
+Reference to a FBA object
+@id ws KBaseFBA.FBA
+*/
+typedef string fba_ref;
+
+typedef structure {
+  bool integrated;
+  list<tuple<string, float, bool>> ReactionMaxBounds;
+  list<tuple<string, float>> UptakeMaxBounds;
+  list<tuple<string, string, float>> BiomassChanges;
+  float ATPSynthase;
+  float ATPMaintenance;
+} QuantOptSolution;
+
+/*
+ModelQuantOpt object
+*/
+typedef structure {
+  string id;
+  fba_ref fba_ref;
+  media_ref media_ref;
+  bool integrated;
+  int integrated_solution;
+  list<QuantOptSolution> solutions;
+} ModelQuantOpt;
+
+/*
 Biomass reaction ID
 @id external
 */
@@ -178,7 +205,7 @@ typedef string modelcompartment_ref;
 /*
 ModelCompound object
 
-@optional aliases
+@optional aliases maxuptake
 */
 typedef structure {
   modelcompound_id id;
@@ -186,6 +213,7 @@ typedef structure {
   list<string> aliases;
   string name;
   float charge;
+  float maxuptake;
   string formula;
   modelcompartment_ref modelcompartment_ref;
 } ModelCompound;
@@ -249,7 +277,7 @@ typedef structure {
 /*
 ModelReaction object
 
-@optional name pathway reference aliases
+@optional name pathway reference aliases maxforflux maxrevflux
 */
 typedef structure {
   modelreaction_id id;
@@ -260,6 +288,8 @@ typedef structure {
   string reference;
   string direction;
   float protons;
+  float maxforflux;
+  float maxrevflux;
   modelcompartment_ref modelcompartment_ref;
   float probability;
   list<ModelReactionReagent> modelReactionReagents;
@@ -269,8 +299,18 @@ typedef structure {
 /*
 FBAModel object
 
-@optional metagenome_otu_ref metagenome_ref genome_ref template_refs
-@searchable ws_subset id source_id source name type genome_ref metagenome_ref metagenome_otu_ref template_ref
+@optional metagenome_otu_ref metagenome_ref genome_ref template_refs ATPSynthaseStoichiometry ATPMaintenance quantopts
+    @metadata ws source_id as Source ID
+    @metadata ws source as Source
+    @metadata ws name as Name
+    @metadata ws type as Type
+    @metadata ws genome_ref as Genome
+    @metadata ws length(biomasses) as Number biomasses
+    @metadata ws length(modelcompartments) as Number compartments
+    @metadata ws length(modelcompounds) as Number compounds
+    @metadata ws length(modelreactions) as Number reactions
+    @metadata ws length(gapgens) as Number gapgens
+    @metadata ws length(gapfillings) as Number gapfills
 */
 typedef structure {
   fbamodel_id id;
@@ -282,9 +322,12 @@ typedef structure {
   metagenome_ref metagenome_ref;
   metagenome_otu_ref metagenome_otu_ref;
   template_ref template_ref;
+  float ATPSynthaseStoichiometry;
+  float ATPMaintenance;
   list<template_ref> template_refs;
   list<ModelGapfill> gapfillings;
   list<ModelGapgen> gapgens;
+  list<ModelQuantOpt> quantopts;
   list<Biomass> biomasses;
   list<ModelCompartment> modelcompartments;
   list<ModelCompound> modelcompounds;
