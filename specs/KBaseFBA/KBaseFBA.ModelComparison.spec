@@ -18,7 +18,7 @@ typedef string fbamodel_ref;
 
 /*
 Reference to a model template
-@id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
+@id ws
 */
 typedef string genome_ref;
 
