@@ -45,7 +45,7 @@ FBAComparisonReaction object: this object holds information about a reaction acr
 typedef structure {
   string id;
   string name;
-  list<tuple<float, string, string, string>> stoichiometry;
+  list<tuple<float, string, string>> stoichiometry;
   string direction;
   mapping<Conserved_state, tuple<int, float, float, float>> state_conservation;
   Conserved_state most_common_state;
@@ -60,7 +60,7 @@ typedef structure {
   string name;
   float charge;
   string formula;
-  mapping<Conserved_state, tuple<int, float, float>> state_conservation;
+  mapping<Conserved_state, tuple<int, float, float, float>> state_conservation;
   Conserved_state most_common_state;
   mapping<string, tuple<Conserved_state, float, float, float, float, float, string>> exchanges;
 } FBAComparisonCompound;
