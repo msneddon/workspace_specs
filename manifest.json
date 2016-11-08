@@ -98,6 +98,21 @@
                 "KBaseFeatureValues.EstimateKResult-1.0",
                 "KBaseFeatureValues.SingleKnockoutFitnessMatrix-1.0"
             ]
+        },
+        "KBaseFile": {
+            "_chsum": "e4e4574737c66d16287742fd0b42044e",
+            "_timestamp": "2014-10-06 15:37:25",
+            "_version": 1412635045084,
+            "owners": [
+                "gaprice"
+            ],
+            "types": [
+                "KBaseFile.FileRef-1.0",
+                "KBaseFile.AssemblyFile-1.0",
+                "KBaseFile.SingleEndLibrary-1.0",
+                "KBaseFile.PairedEndLibrary-1.0",
+                "KBaseFile.AnnotationFile-1.0"
+            ]
         }
     }
 }
