@@ -36,11 +36,10 @@ size - the file size in bytes.
 description - a description of the file
 
 @optional description
-@meta ws encoding
-@meta ws name
-@meta ws description
-@meta ws size
-@meta ws type
+@metadata ws encoding
+@metadata ws description
+@metadata ws size
+@metadata ws type
 */
 typedef structure {
   Handle file;
