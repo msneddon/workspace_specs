@@ -53,7 +53,7 @@ Type spec for the "ContigSet" object
 
                 contigset_id id - unique kbase ID of the contig set
                 string name - name of the contig set
-                string type - type of the contig set (values are: Organism,Environment,Collection)
+                string type - type of the contig set (values are: Genome,Transcripts,Environment,Collection)
                 source_id source_id - source ID of the contig set
                 string source - source of the contig set
                 list<Contig> contigs - list of contigs in the contig set
