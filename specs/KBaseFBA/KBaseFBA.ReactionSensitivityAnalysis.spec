@@ -52,6 +52,7 @@ typedef structure {
   float growth_fraction;
   bool delete;
   bool deleted;
+  string direction;
   float normalized_activated_reaction_count;
   list<modelcompound_id> biomass_compounds;
   list<modelreaction_id> new_inactive_rxns;
@@ -66,11 +67,10 @@ ws_sub_id model_reaction_wsid - ID of model reaction
 float normalized_required_reaction_count - Normalized count of reactions required for this reaction to function
 list<ws_sub_id> required_reactions - list of reactions required for this reaction to function
 
-@searchable ws_subset id modelreaction_ref required_reactions normalized_required_reaction_count
+@searchable ws_subset modelreaction_ref required_reactions normalized_required_reaction_count
 @optional
 */
 typedef structure {
-  string id;
   modelreaction_ref modelreaction_ref;
   float normalized_required_reaction_count;
   list<modelreaction_id> required_reactions;
@@ -89,7 +89,7 @@ Object for holding reaction knockout sensitivity results
         
         @searchable ws_subset id fbamodel_ref type deleted_noncontributing_reactions integrated_deletions_in_model
         @searchable ws_subset reactions.[*].(id,new_essentials,new_inactive_rxns,biomass_compounds,modelreaction_ref,delete,growth_fraction,deleted,normalized_activated_reaction_count)
-        @searchable ws_subset corrected_reactions.[*].(id,modelreaction_ref,required_reactions,normalized_required_reaction_count)
+        @searchable ws_subset corrected_reactions.[*].(modelreaction_ref,required_reactions,normalized_required_reaction_count)
         @optional
 */
 typedef structure {
