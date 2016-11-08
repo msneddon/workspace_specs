@@ -28,6 +28,8 @@ ContigSet contig ID
 */
 typedef string Contig_id;
 
+typedef int Bool;
+
 /*
 Type spec for a "Contig" subobject in the "ContigSet" object
 
@@ -36,16 +38,20 @@ Type spec for a "Contig" subobject in the "ContigSet" object
                 string sequence - sequence of the contig
                 string description - Description of the contig (e.g. everything after the ID in a FASTA file)
 
-                @optional length name description
-                @searchable ws_subset id md5
+                @optional length md5 genetic_code cell_compartment replicon_geometry replicon_type name description complete
 */
 typedef structure {
   Contig_id id;
   int length;
   string md5;
   string sequence;
+  int genetic_code;
+  string cell_compartment;
+  string replicon_type;
+  string replicon_geometry;
   string name;
   string description;
+  Bool complete;
 } Contig;
 
 /*
