@@ -285,7 +285,7 @@ module KBaseGenomes {
     typedef structure {
 		Feature_id id;
 		list<tuple<Contig_id,int,string,int>> location;
-		Feature_type type;
+		string type;
 		string function;
 		string md5;
 		string protein_translation;
@@ -547,4 +547,31 @@ module KBaseGenomes {
 		list<Domain> domains;
 		list<FeatureDomainData> featuredomains;
 	} GenomeDomainData;
+	
+	/*
+    	OrthologFamily object: this object holds all data for a single ortholog family in a metagenome
+
+    	@searchable ws_subset id type function md5 protein_translation
+    */
+	typedef structure {
+    	string id;
+		string type;
+		string function;
+		string md5;
+		string protein_translation;
+		list<tuple<string,float>> orthologs;
+	} OrthologFamily;
+	
+	/*
+    	Pangenome object: this object holds all data regarding a pangenome
+
+    	@searchable ws_subset id name
+    */
+    typedef structure {
+    	string id;
+    	string name;
+    	string type;
+    	list<Genome_ref> genome_refs;
+    	list<OrthologFamily> orthologs;
+	} Pangenome;
 };
