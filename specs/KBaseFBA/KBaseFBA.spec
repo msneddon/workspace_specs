@@ -1194,7 +1194,7 @@ module KBaseFBA {
 		string id;
 		fba_ref fba_ref;
 		fbamodel_ref fbamodel_ref;
-		mapping<string fba_id,tuple<int common_reactions,int common_forward,int common_reverse,int common_exchange_compounds,int common_uptake,int common_excretion> > fba_similarity;
+		mapping<string fba_id,tuple<int common_reactions,int common_forward,int common_reverse,int common_inactive,int common_exchange_compounds,int common_uptake,int common_excretion,int common_inactive> > fba_similarity;
 		float objective;
 		media_ref media_ref;
 		int reactions;
