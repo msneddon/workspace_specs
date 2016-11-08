@@ -128,9 +128,9 @@
             ]
         },
         "KBaseGenomeAnnotations": {
-            "_chsum": "583901dd80c4f7be15597bd30a24c12b",
-            "_timestamp": "2016-02-24 23:20:58",
-            "_version": 1456384858664,
+            "_chsum": "9de385511568efd334fd4907730cce1b",
+            "_timestamp": "2016-06-14 15:48:20",
+            "_version": 1465944500296,
             "owners": [
                 "kbasedata"
             ],
@@ -140,12 +140,12 @@
                 "KBaseGenomeAnnotations.FeatureContainer-1.0",
                 "KBaseGenomeAnnotations.ProteinContainer-1.0",
                 "KBaseGenomeAnnotations.AnnotationQuality-1.0",
+                "KBaseGenomeAnnotations.GenomeAnnotation-3.0",
+                "KBaseGenomeAnnotations.Assembly-4.1",
                 "KBaseGenomeAnnotations.Taxon-1.0",
-                "KBaseGenomeAnnotations.GenomeAnnotation-2.1",
                 "KBaseGenomeAnnotations.TaxonSet-1.0",
                 "KBaseGenomeAnnotations.TaxonLookup-1.0",
-                "KBaseGenomeAnnotations.GenomeAnnotationSet-1.0",
-                "KBaseGenomeAnnotations.Assembly-4.0"
+                "KBaseGenomeAnnotations.GenomeAnnotationSet-1.0"
             ]
         }
     }
