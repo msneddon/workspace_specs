@@ -6,7 +6,7 @@ typedef string ProbabilisticAnnotation_id;
 
 /*
 Reference to a Genome object in the workspace
-@id ws KBaseGenomes.Genome
+@id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
 */
 typedef string Genome_ref;
 
@@ -23,9 +23,9 @@ An annotation is a "///"-delimited list of roles that could be associated with t
 typedef tuple<string, float> function_probability;
 
 /*
-Object to carry alternative functions and probabilities for genes in a genome    
+Object to carry alternative functions and probabilities for genes in a genome
 
-        probanno_id id - ID of the probabilistic annotation object    
+        probanno_id id - ID of the probabilistic annotation object
         Genome_ref genome_ref - reference to genome probabilistic annotation was built for
         mapping<Feature_id, list<function_probability>> roleset_probabilities - mapping of features to list of alternative function_probability objects
         list<Feature_id> skipped_features - list of features in genome with no probability
