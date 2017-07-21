@@ -81,6 +81,16 @@ module KBaseGenomes {
 		@id external
 	*/
 	typedef string Feature_id;
+	/*
+		KBase CDS ID
+		@id external
+	*/
+	typedef string cds_id;
+	/*
+		KBase mRNA ID
+		@id external
+	*/
+	typedef string mrna_id;
     /*
 		KBase ProteinSet ID
 		@id kb
@@ -332,6 +342,27 @@ module KBaseGenomes {
 		list<OntologyEvidence> evidence;
 	} OntologyData;
 
+	typedef structure {
+		mrna_id id;
+		list<tuple<Contig_id,int,string,int>> location;
+		string md5;
+		Feature_id parent_gene;
+		cds_id cds;
+	} mRNA;
+	
+	typedef structure {
+		cds_id id;
+		list<tuple<Contig_id,int,string,int>> location;
+		string md5;
+		Feature_id parent_gene;
+		mrna_id parent_mrna;
+		string function;
+		mapping<string namespace, mapping<string ontology_term, OntologyData > > ontology_terms;
+		string protein_translation;
+		int protein_translation_length;
+		list<string> aliases;
+	} CDS;
+
 	/*
     	Structure for a single feature of a genome
 		
@@ -342,7 +373,7 @@ module KBaseGenomes {
 		We may want to add additional fields for other CDM functions
 		(e.g., atomic regulons, coexpressed fids, co_occurring fids,...)
 
-		@optional orthologs quality feature_creation_event md5 location function ontology_terms protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
+		@optional cdss mrnas orthologs quality feature_creation_event md5 location function ontology_terms protein_translation protein_families subsystems publications subsystem_data aliases annotations regulon_data atomic_regulons coexpressed_fids co_occurring_fids dna_sequence protein_translation_length dna_sequence_length
     */
     typedef structure {
 		Feature_id id;
@@ -352,6 +383,8 @@ module KBaseGenomes {
 		mapping<string namespace, mapping<string ontology_term, OntologyData > > ontology_terms;
 		string md5;
 		string protein_translation;
+		list<cds_id> cdss;
+		list<mrna_id> mrnas;
 		string dna_sequence;
 		int protein_translation_length;
 		int dna_sequence_length;
@@ -395,7 +428,7 @@ module KBaseGenomes {
 	addition to having a list of feature_refs)
 	Should the Genome object contain a list of contig_ids too?
 
-    	@optional assembly_ref quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
+    	@optional cdss mrnas assembly_ref quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
     	@optional taxon_ref assembly_ref gff_handle_ref genbank_handle_ref external_source_origination_date release original_source_file_name notes environmental_comments reference_annotation quality_score methodology type
     	@metadata ws gc_content as GC content
     	@metadata ws taxonomy as Taxonomy
@@ -428,6 +461,8 @@ module KBaseGenomes {
 		int complete;
 		list<publication> publications;
 		list<Feature> features;
+		list<CDS> cdss;
+		list<mRNA> mrnas;
 		ContigSet_ref contigset_ref;
 		Assembly_ref assembly_ref;
 		Taxon_ref taxon_ref;

@@ -18,7 +18,7 @@ module KBaseFeatureValues {
 
     /* 
         The workspace ID for a Genome data object.
-        @id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
+        @id ws KBaseGenomes.Genome
     */
     typedef string ws_genome_id;
 
@@ -114,6 +114,55 @@ module KBaseFeatureValues {
         FloatMatrix2D data;
         AnalysisReport report;
     } ExpressionMatrix;
+
+
+    /*
+        A wrapper around a FloatMatrix2D designed for simple matricies of Differential
+        Expression data.  Rows map to features, and columns map to conditions.  The 
+        data type includes some information about normalization factors and contains
+        mappings from row ids to features and col ids to conditions.
+
+        description - short optional description of the dataset
+        type - ? level, ratio, log-ratio
+        scale - ? probably: raw, ln, log2, log10
+        col_normalization - mean_center, median_center, mode_center, zscore
+        row_normalization - mean_center, median_center, mode_center, zscore
+        feature_mapping - map from row_id to feature id in the genome
+        data - contains values for (feature,condition) pairs, where 
+            features correspond to rows and conditions are columns
+            (ie data.values[feature][condition])
+
+        @optional description row_normalization col_normalization
+        @optional genome_ref feature_mapping conditionset_ref condition_mapping report
+
+        @metadata ws type
+        @metadata ws scale
+        @metadata ws row_normalization
+        @metadata ws col_normalization
+        @metadata ws genome_ref as Genome
+        @metadata ws conditionset_ref as ConditionSet
+        @metadata ws length(data.row_ids) as feature_count
+        @metadata ws length(data.col_ids) as condition_count
+    */
+    typedef structure {
+
+        string description;
+
+        string type;
+        string scale;
+        string row_normalization;
+        string col_normalization;
+
+        ws_genome_id genome_ref;
+        mapping<string, string> feature_mapping;
+
+        ws_conditionset_id conditionset_ref;
+        mapping<string, string> condition_mapping;
+
+        FloatMatrix2D data;
+        AnalysisReport report;
+    } DifferentialExpressionMatrix;
+
 
     /*
         A wrapper around a FloatMatrix2D designed for simple matricies of Fitness data
@@ -237,7 +286,7 @@ module KBaseFeatureValues {
         provides an estimate of K by [...]
     */
     funcdef estimate_k(EstimateKParams params)
-        returns (string job_id) authentication required;
+        returns () authentication required;
 
      typedef structure {
         ws_matrix_id input_matrix;
@@ -257,7 +306,7 @@ module KBaseFeatureValues {
         provides an estimate of K by [...]
     */
     funcdef estimate_k_new(EstimateKParamsNew params)
-        returns (string job_id) authentication required;
+        returns () authentication required;
 
 
 
@@ -276,7 +325,7 @@ module KBaseFeatureValues {
         Clusters features by K-means clustering.
     */
     funcdef cluster_k_means(ClusterKMeansParams params)
-        returns (string job_id) authentication required;
+        returns () authentication required;
 
 
     typedef structure {
@@ -295,7 +344,7 @@ module KBaseFeatureValues {
         Clusters features by hierarchical clustering.
     */
     funcdef cluster_hierarchical(ClusterHierarchicalParams params)
-        returns (string job_id) authentication required;
+        returns () authentication required;
 
 
     typedef structure {
@@ -312,7 +361,7 @@ module KBaseFeatureValues {
         a specific hieght or by some other approach.
     */
     funcdef clusters_from_dendrogram(ClustersFromDendrogramParams params)
-        returns (string job_id) authentication required;
+        returns () authentication required;
 
 
     typedef structure {
@@ -327,7 +376,7 @@ module KBaseFeatureValues {
         a specific hieght or by some other approach.
     */
     funcdef evaluate_clusterset_quality(EvaluateClustersetQualityParams params)
-        returns (string job_id) authentication required;
+        returns () authentication required;
 
 
     /*
@@ -340,7 +389,7 @@ module KBaseFeatureValues {
     } ValidateMatrixParams;
 
     funcdef validate_matrix(ValidateMatrixParams params)
-        returns (string job_id) authentication optional;
+        returns () authentication optional;
 
     /*
         transform_type - type of matrix change (one of: add, multiply,
@@ -357,20 +406,7 @@ module KBaseFeatureValues {
     } CorrectMatrixParams;
 
     funcdef correct_matrix(CorrectMatrixParams params)
-        returns (string job_id) authentication required;
-
-    typedef structure {
-        string version;
-        string status;
-        string startup_time;
-        string giturl;
-        string branch;
-        string commit;
-        string deployment_cfg_path;
-        mapping<string, string> safe_configuration;
-    } ServiceStatus;
-
-    funcdef status() returns (ServiceStatus);
+        returns () authentication required;
 
     /*
         out_matrix_id - optional target matrix object name (if not specified 
@@ -384,7 +420,7 @@ module KBaseFeatureValues {
     } ReconnectMatrixToGenomeParams;
     
     funcdef reconnect_matrix_to_genome(ReconnectMatrixToGenomeParams params)
-        returns (string job_id) authentication required;
+        returns () authentication required;
 
     /* 
         The workspace ID of a FeatureSet data object.
@@ -406,7 +442,8 @@ module KBaseFeatureValues {
         string output_feature_set;
     } BuildFeatureSetParams;
 
-    funcdef build_feature_set(BuildFeatureSetParams params) returns (string job_id) authentication required;
+    funcdef build_feature_set(BuildFeatureSetParams params) 
+        returns () authentication required;
 
 
 	/*******************************************
@@ -775,6 +812,100 @@ module KBaseFeatureValues {
      
     funcdef get_submatrix_stat(GetSubmatrixStatParams)
     	returns (SubmatrixStat) authentication required;
-};
 
+    /*
+        input_shock_id and input_file_path - alternative intput params,
+        genome_ref - optional reference to a Genome object that will be
+            used for mapping feature IDs to,
+        fill_missing_values - optional flag for filling in missing 
+            values in matrix (default value is false),
+        data_type - optional filed, value is one of 'untransformed',
+            'log2_level', 'log10_level', 'log2_ratio', 'log10_ratio' or
+            'unknown' (last one is default value),
+        data_scale - optional parameter (default value is '1.0').
+    */
+    typedef structure {
+        string input_shock_id;
+        string input_file_path;
+        ws_genome_id genome_ref; 
+        boolean fill_missing_values;
+        string data_type;
+        string data_scale;
+        string output_ws_name;
+        string output_obj_name;
+    } TsvFileToMatrixParams;
+
+    typedef structure {
+        ws_matrix_id output_matrix_ref;
+    } TsvFileToMatrixOutput;
+
+    funcdef tsv_file_to_matrix(TsvFileToMatrixParams params)
+        returns (TsvFileToMatrixOutput) authentication required;
+
+    typedef structure {
+        ws_matrix_id input_ref;
+        boolean to_shock;
+        string file_path;
+    } MatrixToTsvFileParams;
+
+    typedef structure {
+        string file_path;
+        string shock_id;
+    } MatrixToTsvFileOutput;
+
+    funcdef matrix_to_tsv_file(MatrixToTsvFileParams params)
+        returns (MatrixToTsvFileOutput) authentication required;
+
+    typedef structure {
+        ws_matrix_id input_ref;
+    } ExportMatrixParams;
+
+    typedef structure {
+        string shock_id;
+    } ExportMatrixOutput;
+
+    funcdef export_matrix(ExportMatrixParams params)
+        returns (ExportMatrixOutput) authentication required;
+
+    /*
+        format - optional field, can be one of "TSV" or "SIF" ("TSV" is default value).
+    */
+    typedef structure {
+        ws_featureclusters_id input_ref;
+        boolean to_shock;
+        string file_path;
+        string format;
+    } ClustersToFileParams;
+
+    typedef structure {
+        string file_path;
+        string shock_id;
+    } ClustersToFileOutput;
+
+    funcdef clusters_to_file(ClustersToFileParams params)
+        returns (ClustersToFileOutput) authentication required;
+
+    typedef structure {
+        ws_featureclusters_id input_ref;
+    } ExportClustersTsvParams;
+
+    typedef structure {
+        string shock_id;
+    } ExportClustersTsvOutput;
+
+    funcdef export_clusters_tsv(ExportClustersTsvParams params)
+        returns (ExportClustersTsvOutput) authentication required;
+
+    typedef structure {
+        ws_featureclusters_id input_ref;
+    } ExportClustersSifParams;
+
+    typedef structure {
+        string shock_id;
+    } ExportClustersSifOutput;
+
+    funcdef export_clusters_sif(ExportClustersSifParams params)
+        returns (ExportClustersSifOutput) authentication required;
+
+};
 

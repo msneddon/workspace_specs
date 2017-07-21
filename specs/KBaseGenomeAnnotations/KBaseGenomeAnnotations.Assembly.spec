@@ -17,9 +17,9 @@ due to the limitations of the assembly itself.
 
 is_complete - is an indication of complete chromosome, plasmid, etc.
 
-is_circular - True, False and Unknown are viable values, could make an int(bool). If field not present viewed as unknown.
+is_circ - int value, 0=false, 1=true; If field not present viewed as unknown.
 
-@optional name description is_complete
+@optional name description is_complete is_circ Ncount
 */
 typedef structure {
   string contig_id;
@@ -28,9 +28,7 @@ typedef structure {
   string name;
   string description;
   int is_complete;
-  string is_circular;
-  int start_position;
-  int num_bytes;
+  int is_circ;
   float gc_content;
   int Ncount;
 } contig;
@@ -55,6 +53,7 @@ assembly_stats assembly_stats; - should be in there, but needs to be flushed out
 @metadata ws md5 as MD5
 @metadata ws name as Name
 @metadata ws dna_size as Size
+@metadata ws length(contigs) as N Contigs
 
 @optional name external_source external_source_id external_source_origination_date reads_handle_ref notes taxon_ref
 */

@@ -95,19 +95,23 @@
             ]
         },
         "KBaseFeatureValues": {
-            "_chsum": "c038ebbb0e63ce565bcbc3df6d4ef24c",
-            "_timestamp": "2016-07-11 14:31:48",
-            "_version": 1468272708433,
+            "_chsum": "f10fde42136839c8b1483dde70bd2ef5",
+            "_timestamp": "2017-07-12 13:41:07",
+            "_version": 1499892067219,
             "owners": [
+                "arfath",
                 "msneddon",
                 "psnovichkov",
-                "rsutormin"
+                "rsutormin",
+                "umaganapathyswork",
+                "wjriehl"
             ],
             "types": [
+                "KBaseFeatureValues.SingleKnockoutFitnessMatrix-3.0",
                 "KBaseFeatureValues.FeatureClusters-1.0",
-                "KBaseFeatureValues.SingleKnockoutFitnessMatrix-2.0",
                 "KBaseFeatureValues.EstimateKResult-2.0",
-                "KBaseFeatureValues.ExpressionMatrix-2.0",
+                "KBaseFeatureValues.ExpressionMatrix-3.0",
+                "KBaseFeatureValues.DifferentialExpressionMatrix-1.0",
                 "KBaseFeatureValues.AnalysisReport-1.0",
                 "KBaseFeatureValues.FloatMatrix2D-1.0"
             ]
@@ -141,31 +145,24 @@
             ]
         },
         "KBaseGenomeAnnotations": {
-            "_chsum": "7013b6751f2780701ffa58a41b503283",
-            "_timestamp": "2016-08-15 17:44:29",
-            "_version": 1471308269061,
+            "_chsum": "a83d38b50001cdd259b76ba35f3691fe",
+            "_timestamp": "2017-04-11 13:18:09",
+            "_version": 1491941889188,
             "owners": [
-                "kbasetest"
+                "kbasetest",
+                "msneddon"
             ],
             "types": [
-                "KBaseGenomeAnnotations.GenomeAnnotationSummary-6.0",
-                "KBaseGenomeAnnotations.EvidenceContainer-1.0",
-                "KBaseGenomeAnnotations.SeedRoles-1.0",
-                "KBaseGenomeAnnotations.AnnotationQuality-1.0",
-                "KBaseGenomeAnnotations.FeatureContainer-2.0",
-                "KBaseGenomeAnnotations.GenomeAnnotation-3.1",
-                "KBaseGenomeAnnotations.Assembly-4.1",
+                "KBaseGenomeAnnotations.TaxonSet-1.0",
                 "KBaseGenomeAnnotations.Taxon-1.0",
                 "KBaseGenomeAnnotations.TaxonLookup-2.0",
-                "KBaseGenomeAnnotations.TaxonSet-1.0",
-                "KBaseGenomeAnnotations.ProteinContainer-2.0",
-                "KBaseGenomeAnnotations.GenomeAnnotationSet-1.0"
+                "KBaseGenomeAnnotations.Assembly-6.0"
             ]
         },
         "KBaseGenomes": {
-            "_chsum": "cf142c0995a04609377bb97444ef1ddf",
-            "_timestamp": "2016-09-06 23:39:20",
-            "_version": 1473230360452,
+            "_chsum": "903bec264f775b95a92a3f444261bbc5",
+            "_timestamp": "2016-12-21 14:06:18",
+            "_version": 1482357978770,
             "owners": [
                 "chenry"
             ],
@@ -174,9 +171,9 @@
                 "KBaseGenomes.ContigSet-3.0",
                 "KBaseGenomes.ProbabilisticAnnotation-3.0",
                 "KBaseGenomes.MetagenomeAnnotation-1.3",
-                "KBaseGenomes.Genome-12.2",
+                "KBaseGenomes.Genome-12.3",
                 "KBaseGenomes.Pangenome-4.0",
-                "KBaseGenomes.Feature-6.0",
+                "KBaseGenomes.Feature-6.1",
                 "KBaseGenomes.GenomeComparison-2.0"
             ]
         },
@@ -222,38 +219,47 @@
             ]
         },
         "KBaseRNASeq": {
-            "_chsum": "f80fde5c76dc22a12b36d1a55ec1c4de",
-            "_timestamp": "2016-10-10 21:36:46",
-            "_version": 1476160606302,
+            "_chsum": "1f55325b91ae57950e12d22d3f110aae",
+            "_timestamp": "2017-05-30 14:57:04",
+            "_version": 1496181424629,
             "owners": [
-                "srividya22"
+                "arfath",
+                "msneddon",
+                "umaganapathyswork",
+                "wjriehl"
             ],
             "types": [
-                "KBaseRNASeq.Bowtie2Indexes-9.0",
-                "KBaseRNASeq.RNASeqDifferentialExpression-4.0",
+                "KBaseRNASeq.Bowtie2Indexes-9.1",
+                "KBaseRNASeq.Bowtie2IndexV2-1.0",
                 "KBaseRNASeq.AlignmentStatsResults-5.0",
-                "KBaseRNASeq.DifferentialExpressionStat-1.0",
-                "KBaseRNASeq.RNASeqExpressionSet-5.0",
-                "KBaseRNASeq.RNASeqAlignment-5.0",
-                "KBaseRNASeq.RNASeqAlignmentSet-8.0",
+                "KBaseRNASeq.RNASeqDifferentialExpression-5.0",
+                "KBaseRNASeq.RNASeqAlignmentSet-9.0",
+                "KBaseRNASeq.RNASeqAlignment-6.0",
                 "KBaseRNASeq.RNASeqSampleSet-4.0",
+                "KBaseRNASeq.RNASeqExpressionSet-6.0",
                 "KBaseRNASeq.cummerbundplot-2.0",
                 "KBaseRNASeq.RNASeqExpression-6.0",
                 "KBaseRNASeq.cummerbund_output-2.0",
-                "KBaseRNASeq.GFFAnnotation-3.0"
+                "KBaseRNASeq.GFFAnnotation-3.0",
+                "KBaseRNASeq.DifferentialExpressionStat-2.0"
             ]
         },
         "KBaseSets": {
-            "_chsum": "3a60a30d3cc449886c87531ca80a6b63",
-            "_timestamp": "2016-10-24 12:05:38",
-            "_version": 1477335938237,
+            "_chsum": "1c4947c605a869799c1c6614fce1b4d2",
+            "_timestamp": "2017-07-13 13:38:56",
+            "_version": 1499978336141,
             "owners": [
-                "msneddon"
+                "msneddon",
+                "wjriehl"
             ],
             "types": [
-                "KBaseSets.GenomeSet-2.0",
+                "KBaseSets.ReadsAlignmentSet-2.0",
                 "KBaseSets.ReadsSet-1.0",
-                "KBaseSets.AssemblySet-2.0"
+                "KBaseSets.DifferentialExpressionMatrixSet-2.1",
+                "KBaseSets.AssemblySet-2.0",
+                "KBaseSets.ExpressionSet-2.0",
+                "KBaseSets.GenomeSet-2.0",
+                "KBaseSets.FeatureSetSet-1.1"
             ]
         },
         "KBaseTrees": {

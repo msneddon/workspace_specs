@@ -12,10 +12,10 @@ do not yet exist - this is for now used as a placeholder).
 typedef string ws_conditionset_id;
 
 /*
-A wrapper around a FloatMatrix2D designed for simple matricies of Fitness data
-for single gene/feature knockouts.  Generally fitness is measured as growth rate
-for the knockout strain relative to wildtype.  This data type only supports
-single feature knockouts.
+A wrapper around a FloatMatrix2D designed for simple matricies of Differential
+Expression data.  Rows map to features, and columns map to conditions.  The 
+data type includes some information about normalization factors and contains
+mappings from row ids to features and col ids to conditions.
 
 description - short optional description of the dataset
 type - ? level, ratio, log-ratio
@@ -28,13 +28,14 @@ data - contains values for (feature,condition) pairs, where
     (ie data.values[feature][condition])
 
 @optional description row_normalization col_normalization
-@optional genome_ref feature_ko_mapping conditionset_ref condition_mapping report
+@optional genome_ref feature_mapping conditionset_ref condition_mapping report
 
 @metadata ws type
 @metadata ws scale
 @metadata ws row_normalization
 @metadata ws col_normalization
 @metadata ws genome_ref as Genome
+@metadata ws conditionset_ref as ConditionSet
 @metadata ws length(data.row_ids) as feature_count
 @metadata ws length(data.col_ids) as condition_count
 */
@@ -45,9 +46,9 @@ typedef structure {
   string row_normalization;
   string col_normalization;
   ws_genome_id genome_ref;
-  mapping<string, string> feature_ko_mapping;
+  mapping<string, string> feature_mapping;
   ws_conditionset_id conditionset_ref;
   mapping<string, string> condition_mapping;
   #KBaseFeatureValues.FloatMatrix2D-1.0# data;
   #KBaseFeatureValues.AnalysisReport-1.0# report;
-} SingleKnockoutFitnessMatrix;
+} DifferentialExpressionMatrix;
