@@ -1,6 +1,6 @@
 /*
 Reference to a Genome object in the workspace
-@id ws KBaseGenomes.Genome
+@id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
 */
 typedef string Genome_ref;
 
