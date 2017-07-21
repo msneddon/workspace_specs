@@ -29,8 +29,26 @@ module KBaseBiochem {
 	*/
     typedef string compound_ref;
     /*
+		Reference to a media object
+		@id ws KBaseBiochem.Media
+	*/
+    typedef string media_ref;
+    /*
+		Reference to a fbamodel object
+	*/
+    typedef string fbamodel_ref;
+    /*
+		Reference to a compound in a fbamodel  object
+	*/
+    typedef string modelcompound_ref;
+    /*
+		Reference to a Biochemistry object
+		@id ws KBaseBiochem.Biochemistry
+	*/
+    typedef string biochemistry_ref;
+    /*
 		Reference to a compound object in a biochemistry
-		@id subws KBaseBiochem.Media.mediacompounds.[*].id
+		@id subws KBaseBiochem.Biochemistry.compounds.[*].id
 	*/
     typedef string mediacompound_ref;
 	/*
@@ -226,13 +244,55 @@ module KBaseBiochem {
     
     /* 
     	MediaCompound object
+    	
+    	@optional id name smiles inchikey
     */
 	typedef structure {
 		compound_ref compound_ref;
+		string id;
+		string name;
+		string smiles;
+		string inchikey;
 		float concentration;
 		float maxFlux;
 		float minFlux;
 	} MediaCompound;
+
+	/* 
+    	ImportedCompound object
+    	
+    	@optional deltag deltagerr mass exactmass compound_ref modelcompound_ref charge name
+    */
+	typedef structure {
+		string id;
+		string name;
+		string smiles;
+		string inchikey;
+		float charge;
+		string formula;
+		float mass;
+		float exactmass;
+		compound_ref compound_ref;
+		modelcompound_ref modelcompound_ref;
+		mapping<string,list<string>> dblinks;
+		mapping<string type,mapping<string fingerprint,float value>> fingerprints;
+		float deltag;
+		float deltagerr;
+	} ImportedCompound;
+	
+	/* 
+    	CompoundSet object
+    	
+    	@optional description name fbamodel_ref biochemistry_ref
+    */ 
+	typedef structure {
+		list<ImportedCompound> compounds;
+		string id;
+		string name;
+		string description;
+		fbamodel_ref fbamodel_ref;
+		biochemistry_ref biochemistry_ref;
+	} CompoundSet;
 	
 	/* 
     	MediaReagent object
@@ -279,6 +339,22 @@ module KBaseBiochem {
 		list<MediaCompound> mediacompounds;
 	} Media;
 	
+	
+	typedef structure {
+		mapping<string,string> string_metadata;
+		mapping<string,float> numerial_metadata;
+		media_ref ref;
+	} MediaSetElement;
+
+	/* 
+    	Media set object
+
+    */
+	typedef structure {
+		string description;
+		list<MediaSetElement> elements;
+	} MediaSet;
+	
 	/* 
     	CompoundSet object
     	
@@ -290,7 +366,7 @@ module KBaseBiochem {
 		string class;
 		string type;
 		list<compound_ref> compound_refs;
-	} CompoundSet;
+	} SubCompoundSet;
 	
 	/* 
     	ReactionSet object
@@ -303,7 +379,7 @@ module KBaseBiochem {
 		string class;
 		string type;
 		list<reaction_ref> reaction_refs;
-	} ReactionSet;
+	} SubReactionSet;
     
     /* 
     	Biochemistry object
@@ -324,8 +400,8 @@ module KBaseBiochem {
 		list<Compartment> compartments;
 		list<Compound> compounds;
 		list<Reaction> reactions;
-		list<ReactionSet> reactionSets;
-		list<CompoundSet> compoundSets;
+		list<SubReactionSet> reactionSets;
+		list<SubCompoundSet> compoundSets;
 		list<Cue> cues;
 		
 		mapping<compound_id,mapping<string,list<string>>> compound_aliases;

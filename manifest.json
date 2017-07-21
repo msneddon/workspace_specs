@@ -45,17 +45,19 @@
             ]
         },
         "KBaseBiochem": {
-            "_chsum": "57f2bb1066eee24d81b336fe38c54836",
-            "_timestamp": "2014-11-10 10:24:36",
-            "_version": 1415643876678,
+            "_chsum": "461747336217ded8d98c469654a4280c",
+            "_timestamp": "2017-07-13 11:21:55",
+            "_version": 1499970115700,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBaseBiochem.BiochemistryStructures-1.1",
-                "KBaseBiochem.Media-4.0",
-                "KBaseBiochem.Biochemistry-4.0",
-                "KBaseBiochem.MetabolicMap-6.0"
+                "KBaseBiochem.Media-4.1",
+                "KBaseBiochem.Biochemistry-5.0",
+                "KBaseBiochem.CompoundSet-1.0",
+                "KBaseBiochem.MediaSet-1.0",
+                "KBaseBiochem.MetabolicMap-6.0",
+                "KBaseBiochem.BiochemistryStructures-1.1"
             ]
         },
         "KBaseCommon": {
