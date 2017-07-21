@@ -1,10 +1,22 @@
+/*
+object DifferentialExpressionStat structure
+This holds the output of differential expression statistics
+gene_function - gene description
+gene - gene id
+locus - chromosomal location
+log2fc_text - text version of log2 fold change to hold inf and -inf
+log2fc_f - floating point version of log2 fold change (for inf and -inf this has the max fold change in the given comparison
+p_value and p_value_f are
+significant - to capture significance from cummerbund output. Value has to be âyesâ or ânoâ
+value_1 - log2fpkm value of condition 1
+value_2 - log2fpkm value of condition 2
+*/
 typedef structure {
-  string function;
+  string gene_function;
   string gene;
   string locus;
-  float log2fc;
+  string log2fc_text;
   float log2fc_f;
-  float log2fc_fa;
   float p_value;
   float p_value_f;
   string significant;
@@ -14,6 +26,9 @@ typedef structure {
 
 typedef list<gene_expression_stat> voldata;
 
+/*
+condition_pair_unit holds value for each pair
+*/
 typedef structure {
   string condition_1;
   string condition_2;
