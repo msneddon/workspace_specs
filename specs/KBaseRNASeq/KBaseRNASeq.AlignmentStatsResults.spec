@@ -1,12 +1,15 @@
 /*
 Structure Read_mapping_sections
-@optional introns exons splice_junctions intergenic_regions
+@optional five_UTR three_UTR exons TSS TES introns intergenic_regions
 */
 typedef structure {
-  int introns;
-  int exons;
-  int splice_junctions;
-  int intergenic_regions;
+  float five_UTR;
+  float three_UTR;
+  float TSS;
+  float TES;
+  float exons;
+  float introns;
+  float intergenic_regions;
 } Read_mapping_sections;
 
 /*
@@ -14,7 +17,6 @@ Object - getAlignmentStats method
 @optional singletons multiple_alignments properly_paired alignment_rate unmapped_reads mapped_sections total_reads mapped_reads
 */
 typedef structure {
-  string alignment_id;
   int properly_paired;
   int multiple_alignments;
   int singletons;

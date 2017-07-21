@@ -31,5 +31,5 @@ Object for RNASeq Merged transcriptome assembly
 */
 typedef structure {
   Handle file;
-  #KBaseRNASeq.RNASeqAnalysis-1.0# analysis;
+  #KBaseRNASeq.RNASeqAnalysis-12.0# analysis;
 } RNASeqCuffmergetranscriptome;
