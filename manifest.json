@@ -217,23 +217,27 @@
             ]
         },
         "KBaseRNASeq": {
-            "_chsum": "abba24b9cc2fb6222e561a209df4a2d5",
-            "_timestamp": "2016-02-26 13:51:51",
-            "_version": 1456523511114,
+            "_chsum": "91d38a2dccb75b308f1ef98b34416a4b",
+            "_timestamp": "2016-12-16 09:13:40",
+            "_version": 1481908420104,
             "owners": [
+                "sjyoo",
                 "srividya22"
             ],
             "types": [
-                "KBaseRNASeq.RNASeqSample-1.0",
-                "KBaseRNASeq.RNASeqCuffdiffdifferentialExpression-1.0",
-                "KBaseRNASeq.ReferenceAnnotation-1.0",
-                "KBaseRNASeq.cummerbundplot-1.0",
-                "KBaseRNASeq.RNASeqAnalysis-1.0",
+                "KBaseRNASeq.RNASeqExpression-1.0",
+                "KBaseRNASeq.RNASeqAlignment-1.0",
+                "KBaseRNASeq.RNASeqExpressionSet-1.0",
+                "KBaseRNASeq.DifferentialExpressionStat-1.0",
+                "KBaseRNASeq.AlignmentStatsResults-2.0",
+                "KBaseRNASeq.Bowtie2Indexes-2.0",
                 "KBaseRNASeq.cummerbund_output-1.0",
-                "KBaseRNASeq.RNASeqCuffmergetranscriptome-1.0",
-                "KBaseRNASeq.RNASeqSampleAlignment-1.0",
-                "KBaseRNASeq.Bowtie2Indexes-1.0",
-                "KBaseRNASeq.AlignmentStatsResults-1.0"
+                "KBaseRNASeq.GFFAnnotation-1.0",
+                "KBaseRNASeq.RNASeqSampleSet-1.0",
+                "KBaseRNASeq.RNASeqAlignmentSet-1.0",
+                "KBaseRNASeq.cummerbundplot-1.0",
+                "KBaseRNASeq.RNASeqSample-2.0",
+                "KBaseRNASeq.RNASeqDifferentialExpression-1.0"
             ]
         },
         "KBaseTrees": {
