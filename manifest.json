@@ -1,6 +1,22 @@
 {
     "_url": "https://kbase.us/services/ws",
     "modules": {
+        "DataPalette": {
+            "_chsum": "4e4cf57dc2266f9167c67bd81ad992c3",
+            "_timestamp": "2017-01-26 15:56:59",
+            "_version": 1485475019286,
+            "owners": [
+                "dolson",
+                "kkeller",
+                "rsutormin",
+                "scanon",
+                "sychan"
+            ],
+            "types": [
+                "DataPalette.DataReference-1.0",
+                "DataPalette.DataPalette-1.0"
+            ]
+        },
         "GenomeComparison": {
             "_chsum": "252e419eb96023b9848c00c3e8e6e583",
             "_timestamp": "2014-07-16 15:48:29",
