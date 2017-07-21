@@ -55,6 +55,11 @@ module KBaseFBA {
     typedef string media_ref;
     /*
 		Reference to a model template
+		@id ws KBaseBiochem.MediaSet
+	*/
+    typedef string mediaset_ref;
+    /*
+		Reference to a model template
 		@id ws KBaseGenomes.Genome KBaseGenomeAnnotations.GenomeAnnotation
 	*/
     typedef string genome_ref;
@@ -309,16 +314,22 @@ module KBaseFBA {
     /* 
     	ModelCompound object
     	
-    	@optional aliases maxuptake
+    	@optional aliases maxuptake dblinks displayID smiles inchikey string_attributes numerical_attributes
     */
     typedef structure {
 		modelcompound_id id;
+		string displayID;
 		compound_ref compound_ref;
+		mapping<string,list<string>> dblinks;
+		mapping<string,string> string_attributes;
+		mapping<string,float> numerical_attributes;
 		list<string> aliases;
 		string name;
 		float charge;
 		float maxuptake;
 		string formula;
+		string smiles;
+		string inchikey;
 		modelcompartment_ref modelcompartment_ref;
     } ModelCompound;
     
@@ -360,12 +371,14 @@ module KBaseFBA {
     /* 
     	ModelReaction object
     	
-    	@optional gapfill_data name pathway reference aliases maxforflux maxrevflux 
+    	@optional gapfill_data name pathway reference aliases displayID dblinks maxforflux maxrevflux imported_gpr string_attributes numerical_attributes
     */
     typedef structure {
 		modelreaction_id id;
+		string displayID;
 		reaction_ref reaction_ref;
 		string name;
+		mapping<string,list<string>> dblinks;
 		list<string> aliases;
 		string pathway;
 		string reference;
@@ -373,10 +386,13 @@ module KBaseFBA {
 		float protons;
 		float maxforflux;
 		float maxrevflux;
+		string imported_gpr;
 		modelcompartment_ref modelcompartment_ref;
 		float probability;
 		list<ModelReactionReagent> modelReactionReagents;
 		list<ModelReactionProtein> modelReactionProteins;
+		mapping<string,string> string_attributes;
+		mapping<string,float> numerical_attributes;
 		mapping<string gapfill_id,mapping<int solution,tuple<string direction,bool integrated,list<ModelReactionProtein> candidateProteins>>> gapfill_data;
     } ModelReaction;
 
@@ -513,6 +529,9 @@ module KBaseFBA {
     
     /* 
     	FBACompoundVariable object
+    	
+    	@optional other_values other_max other_min
+    	
     */
     typedef structure {
     	modelcompound_ref modelcompound_ref;
@@ -523,12 +542,15 @@ module KBaseFBA {
     	float min;
     	float max;
     	float value;
+    	list<float> other_values;
+    	list<float> other_max;
+    	list<float> other_min;
 	} FBACompoundVariable;
 	
 	/* 
     	FBAReactionVariable object
     	
-    	@optional biomass_dependencies coupled_reactions exp_state expression scaled_exp
+    	@optional biomass_dependencies coupled_reactions exp_state expression scaled_exp other_values other_max other_min
     	
     */
 	typedef structure {
@@ -545,10 +567,16 @@ module KBaseFBA {
 		float scaled_exp;
 		list<tuple<string biomass_id,string compound_id>> biomass_dependencies;
 		list<string> coupled_reactions;
+		list<float> other_values;
+    	list<float> other_max;
+    	list<float> other_min;
 	} FBAReactionVariable;
 	
 	/* 
     	FBABiomassVariable object
+    	
+    	@optional other_values other_max other_min
+    	
     */
 	typedef structure {
     	biomass_ref biomass_ref;
@@ -559,6 +587,9 @@ module KBaseFBA {
     	float min;
     	float max;
     	float value;
+    	list<float> other_values;
+    	list<float> other_max;
+    	list<float> other_min;
 	} FBABiomassVariable;
 	
 	/* 
@@ -710,7 +741,7 @@ module KBaseFBA {
     /* 
     	FBA object holds the formulation and results of a flux balance analysis study
     	
-    	@optional MFALog maximizeActiveReactions calculateReactionKnockoutSensitivity biomassRemovals ExpressionKappa ExpressionOmega ExpressionAlpha expression_matrix_ref expression_matrix_column jobnode gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintleW tintleKappa massbalance
+    	@optional other_objectives mediaset_ref media_list_refs MFALog maximizeActiveReactions calculateReactionKnockoutSensitivity biomassRemovals ExpressionKappa ExpressionOmega ExpressionAlpha expression_matrix_ref expression_matrix_column jobnode gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintleW tintleKappa massbalance
     	@metadata ws maximizeObjective as Maximized
 		@metadata ws comboDeletions as Combination deletions
 		@metadata ws minimize_reactions as Minimize reactions
@@ -778,6 +809,8 @@ module KBaseFBA {
 		expression_matrix_ref expression_matrix_ref;
 		string expression_matrix_column;
 		media_ref media_ref;
+		list<media_ref> media_list_refs;
+		mediaset_ref mediaset_ref;
 		phenotypeset_ref phenotypeset_ref;
 		list<feature_ref> geneKO_refs;
 		list<modelreaction_ref> reactionKO_refs;
@@ -794,6 +827,7 @@ module KBaseFBA {
 		list<FBACompoundBound> FBACompoundBounds;
 			
 		float objectiveValue;
+		list<float> other_objectives;
 		mapping<string,list<string>> outputfiles;
 		string MFALog;
 		phenotypesimulationset_ref phenotypesimulationset_ref;

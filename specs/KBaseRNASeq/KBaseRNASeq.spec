@@ -1,13 +1,12 @@
-#include <KBaseAssembly.types>
 
- module KBaseRNASeq{
+module KBaseRNASeq{
 
    /* Importing datatype objects from other modules */
    /* indicates true or false values, false <= 0, true >=1 */
 	typedef int bool; 
    /*
       Create an analysis id RNASeq analysis object
-      @id KBaseRNASeq.RNASeqSampleSet 
+      @id KBaseRNASeq.RNASeqSampleSet KBaseSets.ReadsSet
    */
       
       typedef string ws_rnaseq_sampleset_id;
@@ -83,22 +82,44 @@
 
         typedef string ws_referenceAnnotation_id;
 
+
+    /*
+        Id for an assembly or contigset
+        @id ws KBaseGenomes.ContigSet KBaseGenomeAnnotations.Assembly
+    */
+        typedef string assembly_ref;
+        
+
   /*
-      @optional genome_scientific_name handle ftp_url
+      @optional genome_scientific_name handle ftp_url assembly_ref
       @metadata ws handle.file_name
       @metadata ws handle.type
       @metadata ws genome_id
       @metadata ws genome_scientific_name
+      @metadata ws assembly_ref
    */
 
         typedef structure {
                 Handle handle;
-		int size;
+                int size;
                 /*ws_genome_annotation_id genome_id;*/
                 string genome_id;
-		string ftp_url;
-		string genome_scientific_name;
+                string ftp_url;
+                string genome_scientific_name;
+                assembly_ref assembly_ref;
         }Bowtie2Indexes;
+
+    /*
+      @metadata ws assembly_ref
+      @metadata ws handle.hid
+      @metadata ws handle.id
+      @metadata ws handle.remote_md5
+      @metadata ws handle.remote_sha1
+    */
+    typedef structure {
+        Handle handle;
+        assembly_ref assembly_ref;
+    }Bowtie2IndexV2;
 
   /*
       Id for KBaseRNASeq.Bowtie2Indexes
@@ -133,45 +154,10 @@
         }RNASeqSampleSet;
 /*
       Id for KBaseRNASeq.RNASeqSampleSet
-      @id ws KBaseRNASeq.RNASeqSampleSet
+      @id ws KBaseRNASeq.RNASeqSampleSet KBaseSets.ReadsSet
    */
 
         typedef string ws_Sampleset_id;
-
-
-
-  /* Specification for the RNASeqFastq Metadata
-   
-    Object for the RNASeq Metadata
-    @optional library_type replicate_id platform custom*/
-   	
-    typedef structure {
-		string sample_id;
-       		string library_type;
-		string replicate_id;
-       		string platform;
-       		string condition;
-		string custom;
-    	}RNASeqSampleMetaData;
-
-/*
-     RNASeq fastq  object
-     @optional  singleend_sample pairedend_sample metadata 
-     @metadata ws singleend_sample.handle.file_name
-     @metadata ws pairedend_sample.handle_1.file_name
-     @metadata ws pairedend_sample.handle_2.file_name
-     @metadata ws metadata.replicate_id
-     @metadata ws metadata.library_type
-     @metadata ws metadata.platform
-     @metadata ws metadata.condition
-*/
-
-     typedef structure {
-	 KBaseAssembly.SingleEndLibrary singleend_sample;
-	 KBaseAssembly.PairedEndLibrary pairedend_sample;
-	 ws_rnaseq_sampleset_id  sampleset_id;
-	 RNASeqSampleMetaData metadata;  
-     }RNASeqSample;
 
 /*
   The workspace id of a RNASeqSample
@@ -409,33 +395,51 @@
     }ResultsToReport;
 
 
-    typedef structure {
-               string function;
-               string gene;
-               string locus;
-               float log2fc;
-               float log2fc_f;
-               float log2fc_fa;
-               float p_value;
-               float p_value_f;
-               string significant;
-               float value_1;
-               float value_2;
-                } gene_expression_stat;
+/*
+     object DifferentialExpressionStat structure
+     This holds the output of differential expression statistics
+     gene_function - gene description
+     gene - gene id
+     locus - chromosomal location
+     log2fc_text - text version of log2 fold change to hold inf and -inf
+     log2fc_f - floating point version of log2 fold change (for inf and -inf this has the max fold change in the given comparison
+     p_value and p_value_f are
+     significant - to capture significance from cummerbund output. Value has to be âyesâ or ânoâ
+     value_1 - log2fpkm value of condition 1
+     value_2 - log2fpkm value of condition 2
  
-    typedef list <gene_expression_stat> voldata;
-    typedef structure {
-               string condition_1;
-               string condition_2;
-               voldata voldata;
-                } condition_pair_unit;
+*/
+
+     typedef structure {
+          string gene_function;
+          string gene;
+          string locus;
+          string log2fc_text;
+          float log2fc_f;
+          float p_value;
+          float p_value_f;
+          string significant;
+          float value_1;
+          float value_2;
+     } gene_expression_stat;
+
+typedef list<gene_expression_stat> voldata;
  
- 
-    typedef structure {
-               list <condition_pair_unit> condition_pairs;
-               list <string> unique_conditions;
-                } DifferentialExpressionStat;
- 
+/* condition_pair_unit holds value for each pair */
+
+
+typedef structure {
+ string condition_1;
+ string condition_2;
+ voldata voldata;
+} condition_pair_unit;
+
+
+typedef structure {
+ list<condition_pair_unit> condition_pairs;
+ list<string> unique_conditions;
+} DifferentialExpressionStat; 
+
 /* FUNCTIONS used in the service */
  	
    typedef structure{
@@ -474,39 +478,6 @@
    funcdef GetFeaturesToGTF(GetFeaturesToGTFParams params)
      returns(ResultsToReport) authentication required;   
    
-   typedef structure{
-	int skip;
-	int upto;
-	int trim5;
-	int trim3;
-	string phred33;
-	string phred64;
-	string int-quals;
-	string local;
-	string end-to-end;
-	string very-fast;
-	string fast;
-	string very-sensitive;
-	string sensitive;
-	string very-fast-local;
-	string very-sensitive-local;
-	string fast-local;
-	string fast-sensitive;
-	int N;
-	int L;
-	int dpad;
-	int gbar;
-	int ma;
-	int mp;
-	int np;
-	int threads;
-	int offrate;
-	string qc-filter;
-	string seed;
-	string non-deterministic;
-	}b_opts;
-
-   typedef mapping<string Bowtie2_opts,b_opts opts_bowtie2> b_opts_str;
 	
    typedef structure{
 	string ws_id;
@@ -552,50 +523,6 @@
    funcdef Hisat2Call(Hisat2Params params)
      returns(ResultsToReport) authentication required;
 
-typedef structure{
-     string read-mismatches;
-     string read-gap-length;
-     int read-edit-dist;
-     int read-realign-edit-dist;
-     string bowtie1;
-     string output-dir;
-     int mate-inner-dist;
-     int mate-std-dev;
-     int min-anchor-length;
-     int splice-mismatches;
-     int min-intron-length;
-     int max-intron-length;
-     int max-insertion-length;
-     int num-threads;
-     int max-multihits;
-     string report-secondary-alignments;
-     string no-discordant;
-     string no-mixed;
-     string no-coverage-search;
-     string coverage-search;
-     string microexon-search;
-     string library-type;
-     int segment-mismatches;
-     int segment-length;
-     int min-segment-intron;
-     int max-segment-intron;
-     int min-coverage-intron;
-     int max-coverage-intron;
-     string b2-very-fast;
-     string b2-fast;
-     string b2-sensitive;
-     string b2-very-sensitive;
-     string fusion-search;
-     int fusion-anchor-length;
-     int fusion-min-dist;
-     int fusion-read-mismatches;
-     int fusion-multireads;
-     int fusion-multipairs;
-     string fusion-ignore-chromosomes;
-     }t_opts;
-
-typedef mapping<string Tophat_opts,t_opts opts_tophat> t_opts_str;
-
  typedef structure{
      string ws_id;
      string read_sample; 
@@ -635,33 +562,6 @@ typedef mapping<string Tophat_opts,t_opts opts_tophat> t_opts_str;
 
  funcdef StringTieCall(StringTieParams params)
     returns (ResultsToReport) authentication required;
-
- typedef structure{
-        int num_threads;
-        string library-type;
-        string library-norm-method;
-        int frag-len-mean;
-        int frag-len-std-dev;
-        string upper-quartile-norm;
-        string total-hits-norm;
-        string compatible-hits-norm;
-        int max-mle-iterations;
-        int max-bundle-frags;
-        string no-effective-length-correction;
-        string no-length-correction;
-        float min-isoform-fraction;
-        float pre-mrna-fraction;
-        int max-intron-length;
-        float junc-alpha;
-        string small-anchor-fraction;
-        int min-frags-per-transfrag;
-        int overhang-tolerance;
-        int max-bundle-length;
-        int min-intron-length;
-        int trim-3-avgcov-thresh;
-        int trim-3-dropoff-frac;
-        float max-multiread-fraction;
-        }opts_cufflinks;
 
 typedef structure{
 	string ws_id;
@@ -708,4 +608,37 @@ typedef structure{
    funcdef DiffExpCallforBallgown(DifferentialExpParams params)
    returns (RNASeqDifferentialExpression) authentication required;
 
+        typedef structure {
+
+            string        group_name1;
+            list<string>  expr_ids1;
+            string        group_name2;
+            list<string>  expr_ids2;
+
+        } ExperimentGroupIDsList;
+
+        typedef structure{
+
+            string                  ws_id;
+            RNASeqExpressionSet     expressionset_id;
+            string                  output_obj_name;
+            int                     num_threads;
+            ExperimentGroupIDsList  expr_ids_list;      
+            /* these next parameters filter the members of expression matrix.  good idea to have them here? */
+            string                  fold_scale_type;   /* "linear", "log2+1", "log10+1" */
+            float                   alpha_cutoff;      /* q value cutoff */
+            float                   fold_change_cutoff;
+            int                     maximum_num_genes;
+            string                  filtered_expr_matrix;  /* name of output object filtered expression matrix */
+
+        } BallgownDifferentialExpParams;
+
+  typedef structure {
+        string   diff_expr_object;                  /* RNASeqDifferetialExpression object name */
+        string   filtered_expression_maxtrix;       /* ExpressionMatrix objec name */
+        string   workspace;
+  }   BallgownResult;
+
+  funcdef DiffExpCallforBallgown( BallgownDifferentialExpParams params )
+     returns ( BallgownResult ) authentication required;
 };

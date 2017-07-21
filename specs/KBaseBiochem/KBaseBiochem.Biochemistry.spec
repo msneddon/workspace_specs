@@ -143,7 +143,7 @@ typedef structure {
   string class;
   string type;
   list<reaction_ref> reaction_refs;
-} ReactionSet;
+} SubReactionSet;
 
 /*
 Compound set ID
@@ -162,7 +162,7 @@ typedef structure {
   string class;
   string type;
   list<compound_ref> compound_refs;
-} CompoundSet;
+} SubCompoundSet;
 
 /*
 Reaction ID
@@ -211,8 +211,8 @@ typedef structure {
   list<Compartment> compartments;
   list<Compound> compounds;
   list<Reaction> reactions;
-  list<ReactionSet> reactionSets;
-  list<CompoundSet> compoundSets;
+  list<SubReactionSet> reactionSets;
+  list<SubCompoundSet> compoundSets;
   list<Cue> cues;
   mapping<compound_id, mapping<string, list<string>>> compound_aliases;
   mapping<reaction_id, mapping<string, list<string>>> reaction_aliases;

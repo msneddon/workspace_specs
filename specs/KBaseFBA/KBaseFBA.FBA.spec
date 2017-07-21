@@ -55,6 +55,12 @@ Reference to a model template
 typedef string media_ref;
 
 /*
+Reference to a model template
+@id ws KBaseBiochem.MediaSet
+*/
+typedef string mediaset_ref;
+
+/*
 Reference to a phenotype set object
 @id ws KBasePhenotypes.PhenotypeSet
 */
@@ -118,6 +124,8 @@ typedef string phenotypesimulationset_ref;
 
 /*
 FBACompoundVariable object
+
+@optional other_values other_max other_min
 */
 typedef structure {
   modelcompound_ref modelcompound_ref;
@@ -128,12 +136,15 @@ typedef structure {
   float min;
   float max;
   float value;
+  list<float> other_values;
+  list<float> other_max;
+  list<float> other_min;
 } FBACompoundVariable;
 
 /*
 FBAReactionVariable object
 
-@optional biomass_dependencies coupled_reactions exp_state expression scaled_exp
+@optional biomass_dependencies coupled_reactions exp_state expression scaled_exp other_values other_max other_min
 */
 typedef structure {
   modelreaction_ref modelreaction_ref;
@@ -149,6 +160,9 @@ typedef structure {
   float scaled_exp;
   list<tuple<string, string>> biomass_dependencies;
   list<string> coupled_reactions;
+  list<float> other_values;
+  list<float> other_max;
+  list<float> other_min;
 } FBAReactionVariable;
 
 /*
@@ -159,6 +173,8 @@ typedef string biomass_ref;
 
 /*
 FBABiomassVariable object
+
+@optional other_values other_max other_min
 */
 typedef structure {
   biomass_ref biomass_ref;
@@ -169,6 +185,9 @@ typedef structure {
   float min;
   float max;
   float value;
+  list<float> other_values;
+  list<float> other_max;
+  list<float> other_min;
 } FBABiomassVariable;
 
 /*
@@ -335,7 +354,7 @@ typedef structure {
 /*
 FBA object holds the formulation and results of a flux balance analysis study
 
-@optional MFALog maximizeActiveReactions calculateReactionKnockoutSensitivity biomassRemovals ExpressionKappa ExpressionOmega ExpressionAlpha expression_matrix_ref expression_matrix_column jobnode gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintleW tintleKappa massbalance
+@optional other_objectives mediaset_ref media_list_refs MFALog maximizeActiveReactions calculateReactionKnockoutSensitivity biomassRemovals ExpressionKappa ExpressionOmega ExpressionAlpha expression_matrix_ref expression_matrix_column jobnode gapfillingSolutions QuantitativeOptimizationSolutions quantitativeOptimization minimize_reactions minimize_reaction_costs FBATintleResults FBAMinimalReactionsResults PROMKappa phenotypesimulationset_ref objectiveValue phenotypeset_ref promconstraint_ref regulome_ref tintleW tintleKappa massbalance
 @metadata ws maximizeObjective as Maximized
     @metadata ws comboDeletions as Combination deletions
     @metadata ws minimize_reactions as Minimize reactions
@@ -397,6 +416,8 @@ typedef structure {
   expression_matrix_ref expression_matrix_ref;
   string expression_matrix_column;
   media_ref media_ref;
+  list<media_ref> media_list_refs;
+  mediaset_ref mediaset_ref;
   phenotypeset_ref phenotypeset_ref;
   list<feature_ref> geneKO_refs;
   list<modelreaction_ref> reactionKO_refs;
@@ -410,6 +431,7 @@ typedef structure {
   list<FBAReactionBound> FBAReactionBounds;
   list<FBACompoundBound> FBACompoundBounds;
   float objectiveValue;
+  list<float> other_objectives;
   mapping<string, list<string>> outputfiles;
   string MFALog;
   phenotypesimulationset_ref phenotypesimulationset_ref;

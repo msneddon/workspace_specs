@@ -1,6 +1,6 @@
 /*
 Id for KBaseRNASeq.RNASeqSampleSet
-@id ws KBaseRNASeq.RNASeqSampleSet
+@id ws KBaseRNASeq.RNASeqSampleSet KBaseSets.ReadsSet
 */
 typedef string ws_Sampleset_id;
 

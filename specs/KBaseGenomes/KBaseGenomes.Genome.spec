@@ -49,6 +49,64 @@ also want to capture authors, journal name (not in ER)
 typedef tuple<int, string, string, string, string, string, string> publication;
 
 /*
+KBase CDS ID
+@id external
+*/
+typedef string cds_id;
+
+/*
+KBase Feature ID
+@id external
+*/
+typedef string Feature_id;
+
+/*
+KBase mRNA ID
+@id external
+*/
+typedef string mrna_id;
+
+/*
+@optional translation_provenance alignment_evidence
+*/
+typedef structure {
+  string method;
+  string method_version;
+  string timestamp;
+  tuple<string, string, string> translation_provenance;
+  list<tuple<int, int, int, float>> alignment_evidence;
+} OntologyEvidence;
+
+typedef structure {
+  string id;
+  string ontology_ref;
+  list<string> term_lineage;
+  string term_name;
+  list<OntologyEvidence> evidence;
+} OntologyData;
+
+typedef structure {
+  cds_id id;
+  list<tuple<Contig_id, int, string, int>> location;
+  string md5;
+  Feature_id parent_gene;
+  mrna_id parent_mrna;
+  string function;
+  mapping<string, mapping<string, OntologyData>> ontology_terms;
+  string protein_translation;
+  int protein_translation_length;
+  list<string> aliases;
+} CDS;
+
+typedef structure {
+  mrna_id id;
+  list<tuple<Contig_id, int, string, int>> location;
+  string md5;
+  Feature_id parent_gene;
+  cds_id cds;
+} mRNA;
+
+/*
 Reference to a ContigSet object containing the contigs for this genome in the workspace
     @id ws KBaseGenomes.ContigSet
 */
@@ -116,7 +174,7 @@ Genome object holds much of the data relevant for a genome in KBase
         addition to having a list of feature_refs)
         Should the Genome object contain a list of contig_ids too?
 
-@optional assembly_ref quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
+@optional cdss mrnas assembly_ref quality close_genomes analysis_events features source_id source contigs contig_ids publications md5 taxonomy gc_content complete dna_size num_contigs contig_lengths contigset_ref
 @optional taxon_ref assembly_ref gff_handle_ref genbank_handle_ref external_source_origination_date release original_source_file_name notes environmental_comments reference_annotation quality_score methodology type
 @metadata ws gc_content as GC content
 @metadata ws taxonomy as Taxonomy
@@ -148,7 +206,9 @@ typedef structure {
   float gc_content;
   int complete;
   list<publication> publications;
-  list<#KBaseGenomes.Feature-2.2#> features;
+  list<#KBaseGenomes.Feature-2.3#> features;
+  list<CDS> cdss;
+  list<mRNA> mrnas;
   ContigSet_ref contigset_ref;
   Assembly_ref assembly_ref;
   Taxon_ref taxon_ref;

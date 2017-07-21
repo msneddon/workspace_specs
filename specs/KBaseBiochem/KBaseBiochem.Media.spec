@@ -34,9 +34,15 @@ typedef string compound_ref;
 
 /*
 MediaCompound object
+
+@optional id name smiles inchikey
 */
 typedef structure {
   compound_ref compound_ref;
+  string id;
+  string name;
+  string smiles;
+  string inchikey;
   float concentration;
   float maxFlux;
   float minFlux;

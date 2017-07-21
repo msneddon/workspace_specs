@@ -24,18 +24,13 @@ Id for an assembly or contigset
 typedef string assembly_ref;
 
 /*
-@optional genome_scientific_name handle ftp_url assembly_ref
-@metadata ws handle.file_name
-@metadata ws handle.type
-@metadata ws genome_id
-@metadata ws genome_scientific_name
 @metadata ws assembly_ref
+@metadata ws handle.hid
+@metadata ws handle.id
+@metadata ws handle.remote_md5
+@metadata ws handle.remote_sha1
 */
 typedef structure {
   Handle handle;
-  int size;
-  string genome_id;
-  string ftp_url;
-  string genome_scientific_name;
   assembly_ref assembly_ref;
-} Bowtie2Indexes;
+} Bowtie2IndexV2;

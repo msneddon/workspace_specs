@@ -11,12 +11,21 @@ This is designed for fast count lookup of all the types instead of having to dri
 typedef mapping<string, int> counts_map;
 
 /*
+Reference to a taxon object 
+    @id ws KBaseGenomeAnnotations.Taxon
+*/
+typedef string taxon_ref;
+
+/*
+Reference to an assembly object 
+    @id ws KBaseGenomeAnnotations.Assembly
+*/
+typedef string assembly_ref;
+
+/*
 The GenomeAnnotationSummary is a hidden object that's purpose is to optimize landing page performance. 
 This object needs to be generated every time a new version of the genome annotation is generated.
-dropped alias_source_counts_map for now
-
-@optional organism_aliases genetic_code scientific_lineage assembly_source assembly_source_id assembly_source_origination_date
-@optional external_source external_source_origination_date original_source_file_name
+All fields are required.
 */
 typedef structure {
   genome_annotation_ref genome_annotation_ref;
@@ -38,4 +47,8 @@ typedef structure {
   string release;
   string original_source_file_name;
   counts_map feature_counts_map;
+  list<string> alias_sources;
+  taxon_ref taxon_ref;
+  assembly_ref assembly_ref;
+  int cds_coding_for_proteins_count;
 } GenomeAnnotationSummary;

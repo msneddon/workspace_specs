@@ -1,3 +1,4 @@
+
 module KBaseGenomeAnnotations{ 
 
 /*
@@ -102,9 +103,9 @@ due to the limitations of the assembly itself.
 
 is_complete - is an indication of complete chromosome, plasmid, etc.
 
-is_circular - True, False and Unknown are viable values, could make an int(bool). If field not present viewed as unknown.
+is_circ - int value, 0=false, 1=true; If field not present viewed as unknown.
 
-@optional name description is_complete 
+@optional name description is_complete is_circ Ncount
 */
 typedef structure {
   string contig_id;
@@ -113,9 +114,7 @@ typedef structure {
   string name;
   string description;
   int is_complete; 
-  string is_circular; 
-  int start_position;
-  int num_bytes;
+  int is_circ;
   float gc_content;
   int Ncount;
 } contig;
@@ -149,6 +148,7 @@ assembly_stats assembly_stats; - should be in there, but needs to be flushed out
 @metadata ws md5 as MD5
 @metadata ws name as Name
 @metadata ws dna_size as Size
+@metadata ws length(contigs) as N Contigs
 
 @optional name external_source external_source_id external_source_origination_date reads_handle_ref notes taxon_ref
 
@@ -270,7 +270,7 @@ The inner list is to accommodate domains that are non-continuous sequence.
 What about the following?
 INTERACTIONS? ACTIVE SITE? ALLOSTERIC SITE? Folding pattern?
 
-@optional function domain_locations
+@optional function domain_locations aliases
 */
 typedef structure {
   string protein_id;
@@ -279,6 +279,7 @@ typedef structure {
   string function;
   mapping<string alias, list<string> sources> aliases;
   string md5;
+  int translation_derived;
 } protein;
 
 
@@ -556,10 +557,7 @@ typedef string genome_annotation_ref;
 /* 
 The GenomeAnnotationSummary is a hidden object that's purpose is to optimize landing page performance. 
 This object needs to be generated every time a new version of the genome annotation is generated.
-dropped alias_source_counts_map for now
-
-@optional organism_aliases genetic_code scientific_lineage assembly_source assembly_source_id assembly_source_origination_date
-@optional external_source external_source_origination_date original_source_file_name 
+All fields are required.
 
 */ 
 typedef structure { 
@@ -582,6 +580,11 @@ typedef structure {
   string release; 
   string original_source_file_name; 
   counts_map feature_counts_map;
+  list<string> alias_sources;
+  taxon_ref taxon_ref;
+  assembly_ref assembly_ref;
+  int cds_coding_for_proteins_count;
 }GenomeAnnotationSummary;
 
 };
+

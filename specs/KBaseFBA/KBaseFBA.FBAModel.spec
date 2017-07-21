@@ -217,16 +217,22 @@ typedef string modelcompartment_ref;
 /*
 ModelCompound object
 
-@optional aliases maxuptake
+@optional aliases maxuptake dblinks displayID smiles inchikey string_attributes numerical_attributes
 */
 typedef structure {
   modelcompound_id id;
+  string displayID;
   compound_ref compound_ref;
+  mapping<string, list<string>> dblinks;
+  mapping<string, string> string_attributes;
+  mapping<string, float> numerical_attributes;
   list<string> aliases;
   string name;
   float charge;
   float maxuptake;
   string formula;
+  string smiles;
+  string inchikey;
   modelcompartment_ref modelcompartment_ref;
 } ModelCompound;
 
@@ -292,12 +298,14 @@ typedef structure {
 /*
 ModelReaction object
 
-@optional gapfill_data name pathway reference aliases maxforflux maxrevflux
+@optional gapfill_data name pathway reference aliases displayID dblinks maxforflux maxrevflux imported_gpr string_attributes numerical_attributes
 */
 typedef structure {
   modelreaction_id id;
+  string displayID;
   reaction_ref reaction_ref;
   string name;
+  mapping<string, list<string>> dblinks;
   list<string> aliases;
   string pathway;
   string reference;
@@ -305,10 +313,13 @@ typedef structure {
   float protons;
   float maxforflux;
   float maxrevflux;
+  string imported_gpr;
   modelcompartment_ref modelcompartment_ref;
   float probability;
   list<ModelReactionReagent> modelReactionReagents;
   list<ModelReactionProtein> modelReactionProteins;
+  mapping<string, string> string_attributes;
+  mapping<string, float> numerical_attributes;
   mapping<string, mapping<int, tuple<string, bool, list<ModelReactionProtein>>>> gapfill_data;
 } ModelReaction;
 

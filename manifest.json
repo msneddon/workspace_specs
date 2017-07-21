@@ -1,6 +1,18 @@
 {
     "_url": "https://appdev.kbase.us/services/ws",
     "modules": {
+        "DataPalette": {
+            "_chsum": "4e4cf57dc2266f9167c67bd81ad992c3",
+            "_timestamp": "2017-01-26 16:36:08",
+            "_version": 1485477368058,
+            "owners": [
+                "kkeller"
+            ],
+            "types": [
+                "DataPalette.DataReference-1.0",
+                "DataPalette.DataPalette-1.0"
+            ]
+        },
         "GenomeComparison": {
             "_chsum": "252e419eb96023b9848c00c3e8e6e583",
             "_timestamp": "2014-07-16 15:48:29",
@@ -13,11 +25,12 @@
             ]
         },
         "KBaseAssembly": {
-            "_chsum": "12fcfb09068bc13af810f8555f641f6a",
-            "_timestamp": "2015-02-10 14:55:58",
-            "_version": 1423608958397,
+            "_chsum": "6f9476505e903cf2bb9825ecd9f97f9a",
+            "_timestamp": "2017-04-07 10:09:13",
+            "_version": 1491584953786,
             "owners": [
-                "fangfang"
+                "fangfang",
+                "sjyoo"
             ],
             "types": [
                 "KBaseAssembly.ReferenceAssembly-2.1",
@@ -25,21 +38,24 @@
                 "KBaseAssembly.AssemblyInput-2.1",
                 "KBaseAssembly.AssemblyReport-1.0",
                 "KBaseAssembly.Handle-2.0",
-                "KBaseAssembly.SingleEndLibrary-2.1"
+                "KBaseAssembly.SingleEndLibrary-2.1",
+                "KBaseAssembly.BinnedAssembly-1.0"
             ]
         },
         "KBaseBiochem": {
-            "_chsum": "57f2bb1066eee24d81b336fe38c54836",
-            "_timestamp": "2014-11-10 10:24:36",
-            "_version": 1415643876678,
+            "_chsum": "461747336217ded8d98c469654a4280c",
+            "_timestamp": "2017-07-13 11:24:52",
+            "_version": 1499970292042,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBaseBiochem.BiochemistryStructures-1.1",
-                "KBaseBiochem.Media-4.0",
-                "KBaseBiochem.Biochemistry-4.0",
-                "KBaseBiochem.MetabolicMap-6.0"
+                "KBaseBiochem.CompoundSet-2.0",
+                "KBaseBiochem.Media-4.1",
+                "KBaseBiochem.Biochemistry-5.0",
+                "KBaseBiochem.MediaSet-1.0",
+                "KBaseBiochem.MetabolicMap-6.0",
+                "KBaseBiochem.BiochemistryStructures-1.1"
             ]
         },
         "KBaseCommon": {
@@ -56,61 +72,66 @@
             ]
         },
         "KBaseFBA": {
-            "_chsum": "e095172f03309bd1d958d0905459d354",
-            "_timestamp": "2016-08-08 22:53:53",
-            "_version": 1470722033017,
+            "_chsum": "e9e590332eeeef84154ed8ba477deae0",
+            "_timestamp": "2017-06-23 12:58:05",
+            "_version": 1498247885492,
             "owners": [
                 "chenry"
             ],
             "types": [
-                "KBaseFBA.FBAComparison-5.0",
-                "KBaseFBA.NewModelTemplate-1.0",
+                "KBaseFBA.ReactionSensitivityAnalysis-5.0",
                 "KBaseFBA.Classifier-1.1",
                 "KBaseFBA.ClassifierResult-3.0",
-                "KBaseFBA.FBAPathwayAnalysis-1.0",
-                "KBaseFBA.PromConstraint-4.0",
                 "KBaseFBA.FBAModelSet-1.0",
+                "KBaseFBA.Gapfilling-6.1",
+                "KBaseFBA.PromConstraint-4.0",
+                "KBaseFBA.ModelComparison-2.0",
                 "KBaseFBA.ModelTemplate-4.1",
                 "KBaseFBA.ETC-6.0",
-                "KBaseFBA.FBA-13.0",
-                "KBaseFBA.Gapfilling-6.1",
-                "KBaseFBA.ClassifierTrainingSet-3.0",
+                "KBaseFBA.FBAPathwayAnalysis-1.0",
+                "KBaseFBA.FBA-13.1",
+                "KBaseFBA.FBAComparison-5.0",
                 "KBaseFBA.FBAPathwayAnalysisMultiple-1.0",
-                "KBaseFBA.ReactionSensitivityAnalysis-5.0",
-                "KBaseFBA.ModelComparison-2.0",
+                "KBaseFBA.ClassifierTrainingSet-3.0",
                 "KBaseFBA.SubsystemAnnotation-1.0",
                 "KBaseFBA.Gapgeneration-4.0",
                 "KBaseFBA.MissingRoleData-1.0",
-                "KBaseFBA.FBAModel-9.0"
+                "KBaseFBA.NewModelTemplate-1.0",
+                "KBaseFBA.FBAModel-9.1"
             ]
         },
         "KBaseFeatureValues": {
-            "_chsum": "a1d5d900ad66e862bd0af5e0936b5254",
-            "_timestamp": "2015-08-21 14:09:17",
-            "_version": 1440191357130,
+            "_chsum": "f10fde42136839c8b1483dde70bd2ef5",
+            "_timestamp": "2017-07-13 16:00:04",
+            "_version": 1499986804392,
             "owners": [
-                "rsutormin"
+                "msneddon",
+                "rsutormin",
+                "scanon",
+                "sychan",
+                "wjriehl"
             ],
             "types": [
-                "KBaseFeatureValues.AnalysisReport-1.0",
-                "KBaseFeatureValues.FeatureClusters-1.0",
                 "KBaseFeatureValues.ExpressionMatrix-1.0",
+                "KBaseFeatureValues.FeatureClusters-1.0",
+                "KBaseFeatureValues.DifferentialExpressionMatrix-1.0",
                 "KBaseFeatureValues.EstimateKResult-1.0",
-                "KBaseFeatureValues.SingleKnockoutFitnessMatrix-1.0"
+                "KBaseFeatureValues.SingleKnockoutFitnessMatrix-1.0",
+                "KBaseFeatureValues.AnalysisReport-1.0"
             ]
         },
         "KBaseFile": {
-            "_chsum": "28ab8a91edb9ab9547d987111a246369",
-            "_timestamp": "2015-01-08 12:31:13",
-            "_version": 1420749073885,
+            "_chsum": "e4da1e39122356237e45718d5462ab98",
+            "_timestamp": "2016-12-08 13:07:51",
+            "_version": 1481231271973,
             "owners": [
                 "gaprice"
             ],
             "types": [
                 "KBaseFile.AssemblyFile-1.1",
-                "KBaseFile.PairedEndLibrary-2.0",
+                "KBaseFile.PairedEndLibrary-2.1",
+                "KBaseFile.SingleEndLibrary-2.1",
                 "KBaseFile.AnnotationFile-1.1",
-                "KBaseFile.SingleEndLibrary-2.0",
                 "KBaseFile.FileRef-1.1"
             ]
         },
@@ -128,43 +149,37 @@
             ]
         },
         "KBaseGenomeAnnotations": {
-            "_chsum": "eaf0579058cf14627351617688391839",
-            "_timestamp": "2016-07-07 15:47:06",
-            "_version": 1467931626508,
+            "_chsum": "a83d38b50001cdd259b76ba35f3691fe",
+            "_timestamp": "2017-04-20 08:51:20",
+            "_version": 1492703480408,
             "owners": [
-                "kbasedata"
+                "kbasedata",
+                "msneddon"
             ],
             "types": [
-                "KBaseGenomeAnnotations.EvidenceContainer-1.0",
-                "KBaseGenomeAnnotations.SeedRoles-1.0",
-                "KBaseGenomeAnnotations.FeatureContainer-1.0",
-                "KBaseGenomeAnnotations.ProteinContainer-1.0",
-                "KBaseGenomeAnnotations.Assembly-2.0",
-                "KBaseGenomeAnnotations.AnnotationQuality-1.0",
-                "KBaseGenomeAnnotations.GenomeAnnotationSummary-1.0",
-                "KBaseGenomeAnnotations.Taxon-1.0",
-                "KBaseGenomeAnnotations.GenomeAnnotation-2.0",
                 "KBaseGenomeAnnotations.TaxonSet-1.0",
                 "KBaseGenomeAnnotations.TaxonLookup-1.0",
-                "KBaseGenomeAnnotations.GenomeAnnotationSet-1.0"
+                "KBaseGenomeAnnotations.GenomeAnnotationSummary-2.0",
+                "KBaseGenomeAnnotations.Taxon-1.0",
+                "KBaseGenomeAnnotations.Assembly-3.0"
             ]
         },
         "KBaseGenomes": {
-            "_chsum": "cf142c0995a04609377bb97444ef1ddf",
-            "_timestamp": "2016-09-06 23:40:12",
-            "_version": 1473230412657,
+            "_chsum": "903bec264f775b95a92a3f444261bbc5",
+            "_timestamp": "2017-01-24 11:35:16",
+            "_version": 1485286516403,
             "owners": [
                 "chenry"
             ],
             "types": [
                 "KBaseGenomes.GenomeDomainData-4.0",
                 "KBaseGenomes.ContigSet-3.0",
+                "KBaseGenomes.Genome-8.3",
                 "KBaseGenomes.ProbabilisticAnnotation-3.0",
                 "KBaseGenomes.MetagenomeAnnotation-1.1",
                 "KBaseGenomes.Pangenome-4.0",
-                "KBaseGenomes.Feature-2.2",
-                "KBaseGenomes.GenomeComparison-2.0",
-                "KBaseGenomes.Genome-8.2"
+                "KBaseGenomes.Feature-2.3",
+                "KBaseGenomes.GenomeComparison-2.0"
             ]
         },
         "KBaseNarrative": {
@@ -207,26 +222,46 @@
             ]
         },
         "KBaseRNASeq": {
-            "_chsum": "91d38a2dccb75b308f1ef98b34416a4b",
-            "_timestamp": "2016-09-23 09:02:44",
-            "_version": 1474646564488,
+            "_chsum": "1f55325b91ae57950e12d22d3f110aae",
+            "_timestamp": "2017-06-23 08:43:33",
+            "_version": 1498232613555,
             "owners": [
+                "msneddon",
+                "sjyoo",
                 "srividya22"
             ],
             "types": [
-                "KBaseRNASeq.RNASeqSampleSet-1.0",
-                "KBaseRNASeq.Bowtie2Indexes-3.0",
-                "KBaseRNASeq.cummerbundplot-1.0",
-                "KBaseRNASeq.RNASeqAlignmentSet-2.0",
-                "KBaseRNASeq.RNASeqSample-2.0",
+                "KBaseRNASeq.Bowtie2IndexV2-1.0",
+                "KBaseRNASeq.RNASeqAlignmentSet-3.0",
+                "KBaseRNASeq.Bowtie2Indexes-3.1",
                 "KBaseRNASeq.AlignmentStatsResults-2.0",
                 "KBaseRNASeq.cummerbund_output-1.0",
-                "KBaseRNASeq.RNASeqExpressionSet-2.0",
-                "KBaseRNASeq.RNASeqAlignment-2.0",
+                "KBaseRNASeq.GFFAnnotation-2.0",
+                "KBaseRNASeq.RNASeqSampleSet-1.0",
                 "KBaseRNASeq.RNASeqExpression-2.0",
-                "KBaseRNASeq.DifferentialExpressionStat-1.0",
-                "KBaseRNASeq.RNASeqDifferentialExpression-2.0",
-                "KBaseRNASeq.GFFAnnotation-2.0"
+                "KBaseRNASeq.RNASeqExpressionSet-3.0",
+                "KBaseRNASeq.cummerbundplot-1.0",
+                "KBaseRNASeq.RNASeqAlignment-3.0",
+                "KBaseRNASeq.RNASeqDifferentialExpression-3.0",
+                "KBaseRNASeq.DifferentialExpressionStat-2.0"
+            ]
+        },
+        "KBaseSets": {
+            "_chsum": "1c4947c605a869799c1c6614fce1b4d2",
+            "_timestamp": "2017-07-13 13:53:39",
+            "_version": 1499979219590,
+            "owners": [
+                "msneddon",
+                "wjriehl"
+            ],
+            "types": [
+                "KBaseSets.DifferentialExpressionMatrixSet-1.0",
+                "KBaseSets.GenomeSet-1.0",
+                "KBaseSets.ReadsSet-1.0",
+                "KBaseSets.ExpressionSet-1.0",
+                "KBaseSets.ReadsAlignmentSet-2.0",
+                "KBaseSets.FeatureSetSet-1.0",
+                "KBaseSets.AssemblySet-1.0"
             ]
         },
         "KBaseTrees": {
