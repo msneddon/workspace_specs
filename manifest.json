@@ -239,6 +239,17 @@
                 "KBaseRNASeq.DifferentialExpressionStat-2.0"
             ]
         },
+        "KBaseSets": {
+            "_chsum": "3c1d6d54dfeb944dce1cac5d04b24aa0",
+            "_timestamp": "2017-01-12 16:16:19",
+            "_version": 1484266579753,
+            "owners": [
+                "msneddon"
+            ],
+            "types": [
+                "KBaseSets.ReadsSet-1.0"
+            ]
+        },
         "KBaseTrees": {
             "_chsum": "eae3e9a824a904cf79baaf5df3065c30",
             "_timestamp": "2014-07-16 12:38:35",
